@@ -1,0 +1,7 @@
+{
+	"replace": false,
+	"values": [
+		"pcub:chest_menu_event/set_data",
+		"pld:system/chest_menu/check_click"
+	]
+}

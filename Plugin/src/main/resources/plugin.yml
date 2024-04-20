@@ -1,0 +1,10 @@
+name: PCUB-Extension
+version: '${project.version}'
+main: org.pcub.extension.main
+api-version: '1.20'
+depend:
+  - floodgate
+load: POSTWORLD
+commands:
+  pcub:
+    description: 盘灵无界功能专用命令
