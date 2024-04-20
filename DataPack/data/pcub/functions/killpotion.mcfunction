@@ -1,0 +1,3 @@
+clear @s minecraft:potion{id:"panling:killpotion"}
+give @s minecraft:potion{id:"panling:killpotion",CustomPotionColor:4393481,CustomModelData:30,CustomPotionEffects:[{Id:7b,Amplifier:19b,Duration:20}],display:{Lore:['{"translate":"pl.item.lore.killpotiona"}','{"translate":"pl.item.lore.killpotionb"}'],Name:'{"translate":"pl.item.name.killpotion"}'}}
+execute if entity @s[nbt={Inventory:[{tag:{id:"pcub:stack_killpotion",CustomModelData:30}}]}] run scoreboard players set @s pcub_inventory_fix_delay 2
