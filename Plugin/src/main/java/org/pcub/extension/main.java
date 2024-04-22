@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Server;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,14 +14,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
-import org.geysermc.cumulus.Form;
 import org.geysermc.cumulus.form.CustomForm;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.geysermc.floodgate.api.player.FloodgatePlayer;
@@ -30,9 +26,7 @@ import org.geysermc.floodgate.util.DeviceOs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 public final class main extends JavaPlugin {
 
@@ -188,17 +182,18 @@ public final class main extends JavaPlugin {
             plSetTempScore("operating_limit_count", targetID, 0);
             plSetTempScore("clicked", targetID, 0);
             plSetTempScore("inventory_opened", targetID, 0);
+            plSetTempScore("pot_clicked", targetID, 0);
             cancelSneak(targetPlayer);
             new BukkitRunnable(){
                 @Override
                 public void run(){
                     plConsoleExec("execute as " + targetID + " run function #pcub:join_" + translateEditon);
+                    if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + translateEditon + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\"}]");
                 }
             }.runTaskLater(myPlugin, 0L);
             //幻域无界独有
             event.setJoinMessage(null);
-            getLogger().info("\n" + textEditon + "版玩家: " + targetDisplay + " 加入了游戏");
-            if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("tellraw @a[name=!\"" + targetName + "\"] [{\"translate\":\"fcub.player." + translateEditon + "\"},{\"text\":\"§e: " + targetDisplay + " \"},{\"translate\":\"fcub.player.joined\"}]");
+            getLogger().info("\n" + textEditon + "版玩家 " + targetDisplay + " 加入了游戏");
         }
 
         //玩家退出事件
@@ -222,8 +217,8 @@ public final class main extends JavaPlugin {
             //幻域无界独有
             event.setQuitMessage(null);
             plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
-            if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("tellraw @a [{\"translate\":\"fcub.player." + translateEditon + "\"},{\"text\":\"§e: " + targetDisplay + " \"},{\"translate\":\"fcub.player.left\"}]");
-            getLogger().info("\n" + textEditon + "版玩家: " + targetDisplay + " 退出了游戏");
+            if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + translateEditon + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\"}]");
+            getLogger().info("\n" + textEditon + "版玩家 " + targetDisplay + " 退出了游戏");
         }
 
         //容器打开事件
@@ -455,26 +450,34 @@ public final class main extends JavaPlugin {
             UUID targetIDN = targetPlayer.getUniqueId();
             String targetID = targetIDN.toString();
             FloodgateApi fgInstance = FloodgateApi.getInstance();
-            FloodgatePlayer fgPlayer = fgInstance.getPlayer(targetIDN);
+            //FloodgatePlayer fgPlayer = fgInstance.getPlayer(targetIDN);
             boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
             //plGetScore("pcub_is_bedrock", targetName) == 1;
-            //右键事件
-            /*String cbt = "";
-            if (event.getClickedBlock() != null) cbt = " " + event.getClickedBlock().getType();
-            if (targetPlayer.isOp()) targetPlayer.chat(Bukkit.getWorld("world").getFullTime() + " " + event.getAction() + cbt);*/
+            //调试
+            //String cbt = "";
+            //if (event.getClickedBlock() != null) cbt = " " + event.getClickedBlock().getType();
+            //if (targetPlayer.isOp()) targetPlayer.chat(Bukkit.getWorld("world").getFullTime() + " " + event.getAction() + cbt);
             boolean blockFunction = false;
+            //右键方块检测
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Material targetMat = event.getClickedBlock().getType();
-                if (!targetPlayer.isSneaking() && !targetMat.isAir()) {
-                    String targetStr = targetMat.toString();
-                    //检查方块是否可操作
-                    if (targetStr.endsWith("CHEST")) blockFunction = true;
-                    else if (targetStr.endsWith("BUTTON")) blockFunction = true;
-                    else if (targetStr.endsWith("DOOR")) blockFunction = true;
-                    else if (targetStr.endsWith("SIGN")) blockFunction = true;
-                    else if (targetMat == Material.DISPENSER) blockFunction = true;
-                    //取消非OP的食用蛋糕、破坏花盆操作
-                    else if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
+                String targetStr = targetMat.toString();
+                //取消冒险玩家的食用蛋糕、破坏花盆操作
+                if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
+                //检查方块是否可操作
+                else if (!targetPlayer.isSneaking() && !targetMat.isAir()) {
+                    if (
+                        targetStr.endsWith("CHEST") ||
+                        targetStr.endsWith("BUTTON")||
+                        targetStr.endsWith("DOOR") ||
+                        targetStr.endsWith("GATE") ||
+                        targetStr.endsWith("SIGN") ||
+                        targetMat == Material.DISPENSER ||
+                        targetMat == Material.LEVER ||
+                        targetMat == Material.NOTE_BLOCK ||
+                        targetMat == Material.DROPPER ||
+                        targetMat == Material.JUKEBOX
+                    ) blockFunction = true;
                     //开启漏斗（基岩版）
                     else if (targetMat == Material.HOPPER) {
                         blockFunction = true;
@@ -490,7 +493,7 @@ public final class main extends JavaPlugin {
                     }.runTaskLaterAsynchronously(myPlugin,0L);
                 }
             }
-            if (!blockFunction && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || !blockFunction && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 ItemStack usedItem = event.getItem();
                 ItemMeta usedMeta = null;
                 if (usedItem != null) usedMeta = usedItem.getItemMeta();
@@ -501,7 +504,7 @@ public final class main extends JavaPlugin {
                     boolean needCancel = getOperationLimit("dp" + targetID, 1);
                     //投掷速度单位为每投一个间隔刻数
                     int enableContinuous = plGetScore("pcub_enable_continuous", targetName),dropSpeed = 7;
-                    event.setCancelled(needCancel);
+                    if(needCancel) event.setCancelled(true);
                     if (
                         //始终禁用连续投掷
                         enableContinuous == 0 ||
@@ -533,8 +536,8 @@ public final class main extends JavaPlugin {
         }
 
         //潜行记录
-        ArrayList<BukkitRunnable> sneakSkill = new ArrayList<BukkitRunnable>();
-        ArrayList<Player> sneakSkillPlayer = new ArrayList<Player>();
+        ArrayList<BukkitRunnable> sneakSkill = new ArrayList<>();
+        ArrayList<Player> sneakSkillPlayer = new ArrayList<>();
 
         //玩家切换潜行
         @EventHandler
@@ -596,7 +599,7 @@ public final class main extends JavaPlugin {
             Player targetPlayer = (Player) sender;
             String targetName = targetPlayer.getName();
             UUID targetIDN = targetPlayer.getUniqueId();
-            String targetID = targetIDN.toString();
+            //String targetID = targetIDN.toString();
             FloodgateApi fgInstance = FloodgateApi.getInstance();
             boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
             String locale = targetPlayer.getLocale();
@@ -796,7 +799,7 @@ public final class main extends JavaPlugin {
         public ArrayList<String> onTabComplete(CommandSender sender, Command command, String string, String[] args) {
             //Player targetPlayer = (Player) sender;
             //String targetName = targetPlayer.getName();
-            ArrayList<String> content = new ArrayList<String>();
+            ArrayList<String> content = new ArrayList<>();
             if (args.length == 1) {
                 String[] enTab = {"stack", "dropContinuous", "dropInterval", "fastSkill", "fastSkillDuration"};
                 for (String tab : enTab) if (tab.toLowerCase().startsWith(args[0].toLowerCase())) content.add(tab);
@@ -975,9 +978,9 @@ public final class main extends JavaPlugin {
 
         //强制叠放物品
         public int forceStack(Player player, int amount){
-            ArrayList<String> metaStrList = new ArrayList<String>();
-            ArrayList<Material> typeList = new ArrayList<Material>();
-            ArrayList<ArrayList<ItemStack>> itemList = new ArrayList<ArrayList<ItemStack>>();
+            ArrayList<String> metaStrList = new ArrayList<>();
+            ArrayList<Material> typeList = new ArrayList<>();
+            ArrayList<ArrayList<ItemStack>> itemList = new ArrayList<>();
             //获取全背包物品分类
             for (int i = 0; i < 36; i ++) {
                 ItemStack item = player.getInventory().getItem(i);
@@ -995,7 +998,7 @@ public final class main extends JavaPlugin {
                     if (notFound == metaStrList.size()) {
                         metaStrList.add(currentMeta);
                         typeList.add(currentType);
-                        itemList.add(new ArrayList<ItemStack>());
+                        itemList.add(new ArrayList<>());
                         itemList.get(itemList.size() - 1).add(item);
                     }
                 }
