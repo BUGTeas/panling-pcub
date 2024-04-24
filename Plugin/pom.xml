@@ -6,7 +6,7 @@
 
   <groupId>org.pcub.extension</groupId>
   <artifactId>PCUB-Extension</artifactId>
-  <version>0.5.1</version>
+  <version>0.5.2</version>
   <packaging>jar</packaging>
 
   <name>盘灵无界互通功能修复扩展（插件）</name>
@@ -89,6 +89,13 @@
           <groupId>org.geysermc.floodgate</groupId>
           <artifactId>api</artifactId>
           <version>2.2.2-SNAPSHOT</version>
+          <scope>provided</scope>
+      </dependency>
+      <!--GeyserAPI-->
+      <dependency>
+          <groupId>org.geysermc.geyser</groupId>
+          <artifactId>api</artifactId>
+          <version>2.2.3-SNAPSHOT</version>
           <scope>provided</scope>
       </dependency>
   </dependencies>
