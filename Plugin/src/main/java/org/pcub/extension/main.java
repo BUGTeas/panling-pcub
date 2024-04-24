@@ -23,9 +23,11 @@ import org.geysermc.cumulus.form.CustomForm;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.geysermc.floodgate.api.player.FloodgatePlayer;
 import org.geysermc.floodgate.util.DeviceOs;
+import org.geysermc.geyser.api.GeyserApi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.UUID;
 
 public final class main extends JavaPlugin {
@@ -36,6 +38,8 @@ public final class main extends JavaPlugin {
         server.getPluginManager().registerEvents(new eventListener(), this);
         Bukkit.getPluginCommand("pcub").setExecutor(new eventListener());
         Bukkit.getPluginCommand("pcub").setTabCompleter(new eventListener());
+        if(!geyserVaild) getLogger().info("找不到 Geyser 插件，BE 玩家将无法通过菜单书查看成就进度。（可使用命令 “/geyser advancements”）");
+        if(!fgVaild) getLogger().info("找不到 Floodgate 插件，BE 玩家将无法使用菜单书。（大佬可尝试通过相关 trigger 记分项进行操作）");
     }
     /*@Override
     public void onDisable() {
@@ -48,6 +52,11 @@ public final class main extends JavaPlugin {
     //获取控制台
     Server server = getServer();
     CommandSender console = server.getConsoleSender();
+
+    //检查Geyser插件
+    boolean geyserVaild = getServer().getPluginManager().getPlugin("Geyser-Spigot") != null;
+    //检查Floodgate插件
+    boolean fgVaild = getServer().getPluginManager().getPlugin("floodgate") != null;
 
     public class eventListener implements Listener, CommandExecutor, TabExecutor {
         //控制台执行器
@@ -162,41 +171,46 @@ public final class main extends JavaPlugin {
             String targetDisplay = targetPlayer.getDisplayName();
             UUID targetIDN = targetPlayer.getUniqueId();
             String targetID = targetIDN.toString();
-            FloodgateApi fgInstance = FloodgateApi.getInstance();
-            FloodgatePlayer fgPlayer = fgInstance.getPlayer(targetIDN);
-            boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
-            String textEditon,translateEditon;
-            if (isBedrock){
-                textEditon = "基岩";
-                translateEditon = "bedrock";
-                if (
-                    fgPlayer.getDeviceOs() == DeviceOs.GOOGLE ||
-                    fgPlayer.getDeviceOs() == DeviceOs.IOS ||
-                    fgPlayer.getDeviceOs() == DeviceOs.WINDOWS_PHONE
-                ) plSetTempScore("is_touch", targetID, 1);
-                else plSetTempScore("is_touch", targetID, 0);
+            FloodgateApi fgInstance = (!fgVaild) ? null : FloodgateApi.getInstance();
+            FloodgatePlayer fgPlayer = (!fgVaild) ? null : fgInstance.getPlayer(targetIDN);
+            boolean isGeyser = geyserVaild && GeyserApi.api().isBedrockPlayer(targetIDN);
+            boolean isFloodgate = fgVaild && fgInstance.isFloodgatePlayer(targetIDN);
+            //当Floodgate登录出现异常时踢出玩家
+            if (fgVaild && !isFloodgate && geyserVaild && isGeyser) {
+                targetPlayer.kickPlayer("登录系统出现异常， 请重新加入服务器。");
+                getLogger().info("\n" + targetDisplay + " 因为 Floodgate 登录异常无法正常加入游戏");
+                plSetTempScore("login_status", targetID, 0);
             } else {
-                textEditon = "Java ";
-                translateEditon = "java";
+                plSetTempScore("is_touch", targetID, (
+                    isFloodgate && (
+                        fgPlayer.getDeviceOs() == DeviceOs.GOOGLE ||
+                        fgPlayer.getDeviceOs() == DeviceOs.IOS ||
+                        fgPlayer.getDeviceOs() == DeviceOs.WINDOWS_PHONE
+                    ) ||
+                    !fgVaild && geyserVaild && isGeyser
+                ) ? 1 : 0);
+                plSetTempScore("login_status", targetID, (isFloodgate || isGeyser) ? 2 : 1);
+                plSetTempScore("operating_limit_count", targetID, 0);
+                plSetTempScore("clicked", targetID, 0);
+                plSetTempScore("inventory_opened", targetID, 0);
+                plSetTempScore("pot_clicked", targetID, 0);
+                cancelSneak(targetPlayer);
+                String edition = (isFloodgate || isGeyser) ? "bedrock" : "java";
+                new BukkitRunnable(){
+                    @Override
+                    public void run(){
+                        plConsoleExec("execute as " + targetID + " run function #pcub:join_" + edition);
+                        if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\",\"color\":\"yellow\"}]");
+                    }
+                }.runTaskLater(myPlugin, 0L);
+                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）加入了游戏");
             }
-            plSetTempScore("operating_limit_count", targetID, 0);
-            plSetTempScore("clicked", targetID, 0);
-            plSetTempScore("inventory_opened", targetID, 0);
-            plSetTempScore("pot_clicked", targetID, 0);
-            cancelSneak(targetPlayer);
-            new BukkitRunnable(){
-                @Override
-                public void run(){
-                    plConsoleExec("execute as " + targetID + " run function #pcub:join_" + translateEditon);
-                    if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + translateEditon + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\"}]");
-                }
-            }.runTaskLater(myPlugin, 0L);
             //幻域无界独有
             event.setJoinMessage(null);
-            getLogger().info("\n" + textEditon + "版玩家 " + targetDisplay + " 加入了游戏");
         }
 
         //玩家退出事件
+        //幻域无界独有
         @EventHandler
         public void onPlayerQuit(PlayerQuitEvent event) {
             Player targetPlayer = event.getPlayer();
@@ -204,21 +218,13 @@ public final class main extends JavaPlugin {
             String targetDisplay = targetPlayer.getDisplayName();
             UUID targetIDN = targetPlayer.getUniqueId();
             String targetID = targetIDN.toString();
-            FloodgateApi fgInstance = FloodgateApi.getInstance();
-            boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
-            String textEditon,translateEditon;
-            if (isBedrock){
-                textEditon = "基岩";
-                translateEditon = "bedrock";
-            } else {
-                textEditon = "Java ";
-                translateEditon = "java";
+            if (plGetTempScore("login_status", targetID) > 0) {
+                String edition = (plGetTempScore("login_status", targetID) > 1) ? "bedrock" : "java";
+                plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
+                if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\",\"color\":\"yellow\"}]");
+                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）退出了游戏");
             }
-            //幻域无界独有
             event.setQuitMessage(null);
-            plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
-            if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + translateEditon + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\"}]");
-            getLogger().info("\n" + textEditon + "版玩家 " + targetDisplay + " 退出了游戏");
         }
 
         //容器打开事件
@@ -449,10 +455,8 @@ public final class main extends JavaPlugin {
             String targetName = targetPlayer.getName();
             UUID targetIDN = targetPlayer.getUniqueId();
             String targetID = targetIDN.toString();
-            FloodgateApi fgInstance = FloodgateApi.getInstance();
-            //FloodgatePlayer fgPlayer = fgInstance.getPlayer(targetIDN);
-            boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
-            //plGetScore("pcub_is_bedrock", targetName) == 1;
+            boolean isGeyser = geyserVaild && GeyserApi.api().isBedrockPlayer(targetIDN);
+            boolean isFloodgate = fgVaild && FloodgateApi.getInstance().isFloodgatePlayer(targetIDN);
             //调试
             //String cbt = "";
             //if (event.getClickedBlock() != null) cbt = " " + event.getClickedBlock().getType();
@@ -481,7 +485,7 @@ public final class main extends JavaPlugin {
                     //开启漏斗（基岩版）
                     else if (targetMat == Material.HOPPER) {
                         blockFunction = true;
-                        if (isBedrock) plSetTempScore("inventory_opened", targetID, 1);
+                        if (isFloodgate || isGeyser) plSetTempScore("inventory_opened", targetID, 1);
                     }
                     //开启钱庄箱子
                     if (targetMat == Material.ENDER_CHEST) plSetTempScore("inventory_opened", targetID, 2);
@@ -509,7 +513,7 @@ public final class main extends JavaPlugin {
                         //始终禁用连续投掷
                         enableContinuous == 0 ||
                         //仅基岩版禁用连续投掷
-                        enableContinuous == 2 && isBedrock ||
+                        enableContinuous == 2 && (isFloodgate || isGeyser) ||
                         //仅移动端禁用连续投掷
                         enableContinuous == 3 && plGetTempScore("is_touch", targetID) == 1
                     ) needCancel = false;
@@ -517,7 +521,7 @@ public final class main extends JavaPlugin {
                     if (!needCancel) setOperationLimit("dp" + targetID, dropSpeed);
                 }
                 //基岩版功能
-                if (isBedrock && usedMeta != null) {
+                if ((isFloodgate || isGeyser) && usedMeta != null) {
                     boolean openMenu = usedType == Material.CARROT_ON_A_STICK && bedrockMenu(usedItem, targetPlayer);
                     //副手功能
                     if (!openMenu && plGetScore("pcub_player_interact", targetName) == 0) {
@@ -546,13 +550,14 @@ public final class main extends JavaPlugin {
             String targetName = targetPlayer.getName();
             UUID targetIDN = targetPlayer.getUniqueId();
             String targetID = targetIDN.toString();
-            FloodgateApi fgInstance = FloodgateApi.getInstance();
+            boolean isGeyser = geyserVaild && GeyserApi.api().isBedrockPlayer(targetIDN);
+            boolean isFloodgate = fgVaild && FloodgateApi.getInstance().isFloodgatePlayer(targetIDN);
             ItemStack currentItem = targetPlayer.getInventory().getItemInMainHand();
             int enableFastskill = plGetScore("pcub_enable_fastskill", targetName);
             if (
                 plGetScore("job", targetName) == 0 && (
                     enableFastskill == 1 ||
-                    enableFastskill == 2 && fgInstance.isFloodgatePlayer(targetIDN) ||
+                    enableFastskill == 2 && (isFloodgate || isGeyser) ||
                     enableFastskill == 3 && plGetTempScore("is_touch", targetID) == 1
                 )
             ) {
@@ -593,15 +598,15 @@ public final class main extends JavaPlugin {
         @Override
         public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage("\n" + sender + "\n" + command + "\n" + label + "\n" + Arrays.toString(args));
+                sender.sendMessage("该命令只能在玩家的聊天栏中执行！");
                 return true;
             }
             Player targetPlayer = (Player) sender;
             String targetName = targetPlayer.getName();
             UUID targetIDN = targetPlayer.getUniqueId();
-            //String targetID = targetIDN.toString();
-            FloodgateApi fgInstance = FloodgateApi.getInstance();
-            boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
+            FloodgateApi fgInstance = (!fgVaild) ? null : FloodgateApi.getInstance();
+            boolean isGeyser = geyserVaild && GeyserApi.api().isBedrockPlayer(targetIDN);
+            boolean isFloodgate = fgVaild && fgInstance.isFloodgatePlayer(targetIDN);
             String locale = targetPlayer.getLocale();
             boolean isCN = locale.equalsIgnoreCase("zh_cn");
             if (args.length >= 1 && args[0].equalsIgnoreCase("stack")) new BukkitRunnable(){
@@ -685,11 +690,13 @@ public final class main extends JavaPlugin {
             }.runTaskAsynchronously(myPlugin);
             else if (args.length >= 1 && args[0].equalsIgnoreCase("option")) {
                 //基岩Forms菜单
-                if (!isBedrock) {
+                if (!fgVaild && !geyserVaild) {
+                    sender.sendMessage("§c" + ((isCN) ? "至少需要安装 Floodgate 和 Geyser-Spigot 插件中的任意一个，才能使用此功能。" : "至少需要安裝 Floodgate 和 Geyser-Spigot 插件中的任意一個，才能使用此功能。"));
+                    return true;
+                } else if (!isFloodgate && !isGeyser) {
                     sender.sendMessage("§c" + ((isCN) ? "该命令只能由基岩版的玩家执行！" : "這個指令只能由基岩版玩家執行！"));
                     return true;
                 } else if (args.length < 2) return true;
-                FloodgatePlayer fgPlayer = fgInstance.getPlayer(targetIDN);
                 //基岩版设置界面
                 if (args[1].equalsIgnoreCase("combat")) new BukkitRunnable() {
                     @Override
@@ -732,7 +739,13 @@ public final class main extends JavaPlugin {
                                 .slider(skillTitle + ((isCN) ? " 所需时长 （秒）" : " 所需時長 （秒）"), (float) 0, (float) 1, (float) 0.05, (float) currentSkillDuration / 20);
                         } else currentFastSkill = currentSkillDuration = -1;
                         optForm
-                            .closedResultHandler(() -> targetPlayer.performCommand("forms open menubook-be"))
+                            .closedResultHandler(() -> new BukkitRunnable(){
+                                    @Override
+                                    public void run() {
+                                        targetPlayer.performCommand("forms open menubook-be");
+                                    }
+                                }.runTask(myPlugin)
+                            )
                             .validResultHandler(response -> new BukkitRunnable(){
                                 @Override
                                 public void run() {
@@ -779,7 +792,8 @@ public final class main extends JavaPlugin {
                                     }
                                 }
                             }.runTaskAsynchronously(myPlugin));
-                        fgPlayer.sendForm(optForm);
+                        if(fgVaild) fgInstance.getPlayer(targetIDN).sendForm(optForm);
+                        else if(geyserVaild) GeyserApi.api().sendForm(targetIDN, optForm);
                     }
                 }.runTaskAsynchronously(myPlugin);
             }

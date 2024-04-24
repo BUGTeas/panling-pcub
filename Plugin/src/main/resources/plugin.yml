@@ -2,7 +2,8 @@ name: PCUB-Extension
 version: '${project.version}'
 main: org.pcub.extension.main
 api-version: '1.20'
-depend:
+softdepend:
+  - Geyser-Spigot
   - floodgate
 load: POSTWORLD
 commands:
