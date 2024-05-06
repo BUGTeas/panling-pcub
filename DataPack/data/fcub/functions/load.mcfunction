@@ -11,3 +11,6 @@ team modify attack collisionRule pushOwnTeam
 team modify defence collisionRule pushOwnTeam
 #昆仑bgm时间倒数
 scoreboard players set #5ticks_bgm_shen_all time_trigger 350
+#真盘检测
+scoreboard objectives add fcub_final_state dummy
+say 8
