@@ -14,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,7 +40,7 @@ public final class main extends JavaPlugin {
         Bukkit.getPluginCommand("pcub").setExecutor(new eventListener());
         Bukkit.getPluginCommand("pcub").setTabCompleter(new eventListener());
         if(!geyserVaild) getLogger().info("找不到 Geyser 插件，BE 玩家将无法通过菜单书查看成就进度。（可使用命令 “/geyser advancements”）");
-        if(!fgVaild) getLogger().info("找不到 Floodgate 插件，BE 玩家将无法使用菜单书。（大佬可尝试通过相关 trigger 记分项进行操作）");
+        if(!fgVaild) getLogger().info("找不到 Floodgate 插件，需要在启动参数中添加“-Djdk.util.jar.enableMultiRelease=force”，BE玩家才能正常使用菜单书。");
     }
     /*@Override
     public void onDisable() {
@@ -150,7 +151,7 @@ public final class main extends JavaPlugin {
                         plSetTempScore("operating_limit_count", target, 0);
                     }
                 }
-            }.runTaskLaterAsynchronously(myPlugin, delay);
+            }.runTaskLater(myPlugin, delay);
         }
         //获取状态
         public boolean getOperationLimit(String target, int when) {
@@ -201,6 +202,7 @@ public final class main extends JavaPlugin {
                     public void run(){
                         plConsoleExec("execute as " + targetID + " run function #pcub:join_" + edition);
                         if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\",\"color\":\"yellow\"}]");
+                        if (!(isFloodgate && !fgPlayer.isLinked())) targetPlayer.performCommand("bskin quiet " + targetName);
                     }
                 }.runTaskLater(myPlugin, 0L);
                 getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）加入了游戏");
@@ -223,6 +225,7 @@ public final class main extends JavaPlugin {
                 plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
                 if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\",\"color\":\"yellow\"}]");
                 getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）退出了游戏");
+                if(getServer().getOnlinePlayers().size() == 1) getLogger().info("所有玩家已退出！");
             }
             event.setQuitMessage(null);
         }
@@ -241,9 +244,9 @@ public final class main extends JavaPlugin {
 
         //快速移动变量
         Player moveUser = null;
-        ItemStack moveFrom = null;
-        int moveFromAmount = 0;
-        InventoryType moveFormInv = null;
+        ItemStack moveFromCopy = null;
+        Inventory moveFormInv = null;
+        InventoryType moveFormInvType = null;
         int moveFormSlot = 0;
 
         //容器点击事件
@@ -256,8 +259,8 @@ public final class main extends JavaPlugin {
             //获取事件类型
             InventoryAction currentAction = event.getAction();
             ClickType currentClick = event.getClick();
-            InventoryType currentInvType = null;
-            if(event.getClickedInventory() != null) currentInvType = event.getClickedInventory().getType();
+            Inventory currentInv = event.getClickedInventory();
+            InventoryType currentInvType = (currentInv != null) ? currentInv.getType() : null;
             int currentSlot = event.getSlot();
             //获取指针物品和槽位物品
             Material currentType = null,cursorType = null;
@@ -311,21 +314,22 @@ public final class main extends JavaPlugin {
                         }
                     }.runTaskLaterAsynchronously(myPlugin,0L);
                 }
-            } else if (currentAction == InventoryAction.PICKUP_HALF && isForceStack(currentType)) {
+            } else if (currentAction.toString().startsWith("PICKUP_") && isForceStack(currentType)) {
+                //当变量被其他玩家占用、或同一刻下再次拿起，则阻止
                 if (moveUser != null) event.setCancelled(true);
                 else if (currentInvType != InventoryType.MERCHANT || currentSlot != 2) {
                     //移动
                     moveUser = targetPlayer;
-                    moveFrom = currentItem;
-                    moveFormInv = currentInvType;
+                    moveFromCopy = (currentItem != null) ? new ItemStack(currentItem) : null;
+                    moveFormInv = currentInv;
+                    moveFormInvType = currentInvType;
                     moveFormSlot = currentSlot;
-                    moveFromAmount = currentItem.getAmount();
                     new BukkitRunnable() {
                         @Override
                         public void run() {
                             moveUser = null;
                         }
-                    }.runTaskLaterAsynchronously(myPlugin, (currentType == Material.SNOWBALL) ? 2L : 0L);
+                    }.runTaskLater(myPlugin, 2L);
                 }
             }
             //NPC丹药修复
@@ -342,24 +346,28 @@ public final class main extends JavaPlugin {
                 7199539 RIGHT PLAYER PLACE_ONE 指针:potion 槽位:air X T
                 7199539 LEFT MERCHANT PICKUP_ALL 指针:air 槽位:potion X
             */
-            boolean tradeClicked = getOperationLimit("td" + targetID, 1);
+            boolean notPickup = getOperationLimit("pu" + targetID, 1);
             //全局过滤多余操作
-            if (tradeClicked) event.setCancelled(true);
+            if (notPickup) {
+                if (currentAction.toString().startsWith("PICKUP_") || currentAction == InventoryAction.SWAP_WITH_CURSOR) event.setCancelled(true);
+                setOperationLimit("pu" + targetID, 2L);
+            }
             if (currentInvType == InventoryType.MERCHANT && currentSlot == 2) {
                 //交易目标拿起
                 //（鼠标左键）同一刻内第二次触发则开始自动归位
                 if (
-                    tradeClicked &&
+                    notPickup &&
                     currentAction == InventoryAction.PICKUP_ALL &&
                     currentClick == ClickType.RIGHT &&
                     cursorItem != null &&
                     cursorType != Material.AIR
                 ) afterTrade(cursorItem, targetPlayer);
                 //第一次点击
-                else if (!tradeClicked && isForceStack(currentType)) {
-                    setOperationLimit("td" + targetID, 0L);
+                else if (!notPickup) {
+                    //限制一刻内不能拿起
+                    setOperationLimit("pu" + targetID, 2L);
                     //当丹药存在模型数据时，阻止JE的Shift交易
-                    if (currentAction == InventoryAction.MOVE_TO_OTHER_INVENTORY && currentMeta.hasCustomModelData()) event.setCancelled(true);
+                    if (currentAction == InventoryAction.MOVE_TO_OTHER_INVENTORY && currentMeta.hasCustomModelData() && isForceStack(currentType)) event.setCancelled(true);
                 }
             } else if (plGetScore("screen", targetName) >= 0) {
                 //钱庄箱子按钮点击
@@ -400,26 +408,97 @@ public final class main extends JavaPlugin {
                     isForceStack(currentType)
                 )
             ) {
-                if (moveUser != null && !tradeClicked) event.setCancelled(true);
-                //基岩版双击/Shift移动丹药修复
+                if (moveUser != null && moveUser != targetPlayer && !notPickup) event.setCancelled(true);
+                //基岩版双击/Shift移动散开修复
                 //当PICKUP_HALF触发时将变量origin设为current，下一刻清除
                 //如果同一刻又触发了PLACE_ONE，则直接将current设为origin，然后将cursor、origin叠放设为0
                 if (
                     moveUser == targetPlayer &&
-                    (moveFormSlot != currentSlot || moveFormInv != currentInvType)
+                    (moveFormSlot != currentSlot || moveFormInvType != currentInvType)
                 ) {
-                    event.setCurrentItem(moveFrom);
-                    event.getCurrentItem().setAmount(moveFromAmount);
-                    cursorItem.setAmount(0);
-                    moveFrom.setAmount(0);
-                    getLogger().info(targetName + "：已强制快速移动。");
+                    Material srcType = moveFromCopy.getType();
+                    ItemMeta srcMeta = moveFromCopy.getItemMeta();
+                    String srcMetaStr = (srcMeta != null) ? srcMeta.getAsString() : "";
+                    //快速移动
+                    //目标槽位没有任何物品，则触发此项
+                    if (currentType == Material.AIR || currentType == null) {
+                        if (!notPickup) event.setCancelled(true);
+                        event.setCurrentItem(moveFromCopy);
+                        if (cursorItem != null) cursorItem.setAmount(0);
+                        //moveFrom.setAmount(0);
+                        ItemStack srcSlotItem = moveFormInv.getItem(moveFormSlot);
+                        if (srcSlotItem != null) srcSlotItem.setAmount(0);
+                        getLogger().info(targetName + "：已强制移动。");
+                        //限制一刻内不能拿起
+                        setOperationLimit("pu" + targetID, 2L);
+                    }
+                    //双击合并
+                    //目标已有物品与源物品相同，则触发此项
+                    else if (currentType == srcType && srcMetaStr.equals(currentMetaStr)) {
+                        if (!notPickup) event.setCancelled(true);
+                        ArrayList<ItemStack> itemList = new ArrayList<>();
+                        int itemOriginAmount = currentItem.getAmount() + ((cursorItem != null) ? cursorItem.getAmount() : 0);
+                        int itemAmount = itemOriginAmount;
+                        //从当前容器获取同类物品
+                        for (int i = 0; i < currentInv.getSize(); i ++) {
+                            ItemStack item = currentInv.getItem(i);
+                            ItemMeta tempMeta = (item != null) ? item.getItemMeta() : null;
+                            if (
+                                i != currentSlot &&
+                                item != null &&
+                                item.getType() == srcType &&
+                                srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "")
+                            ) {
+                                itemList.add(item);
+                                itemAmount += item.getAmount();
+                            }
+                        }
+                        //如果当前容器不是玩家背包，则另外从背包获取一遍
+                        if (currentInvType != InventoryType.PLAYER) for (int i = 0; i < 36; i ++) {
+                            ItemStack item = targetPlayer.getInventory().getItem(i);
+                            ItemMeta tempMeta = (item != null) ? item.getItemMeta() : null;
+                            if (
+                                item != null &&
+                                item.getType() == srcType &&
+                                srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "")
+                            ) {
+                                itemList.add(item);
+                                itemAmount += item.getAmount();
+                            }
+                        }
+                        //将双击处的物品设置成同类物品数量的总和，超出64的部分保持原样
+                        if (itemAmount > 64) {
+                            int remainderAmount = 64 - itemOriginAmount;
+                            currentItem.setAmount(64);
+                            for (ItemStack itemStack : itemList) {
+                                if (itemStack.getAmount() < remainderAmount) {
+                                    remainderAmount -= itemStack.getAmount();
+                                    itemStack.setAmount(0);
+                                } else {
+                                    itemStack.setAmount(itemStack.getAmount() - remainderAmount);
+                                    break;
+                                }
+                            }
+                        } else {
+                            currentItem.setAmount(itemAmount);
+                            for (ItemStack itemStack : itemList) itemStack.setAmount(0);
+                        }
+                        //清空指针上的多余
+                        if (cursorItem != null) cursorItem.setAmount(0);
+                        getLogger().info(targetName + "：已强制双击合并。");
+                        //限制一刻内不能拿起
+                        setOperationLimit("pu" + targetID, 2L);
+                    }
                 }
                 //（触屏单击/Shift）同一刻内第二次触发则开始自动归位
                 else if (
-                    tradeClicked &&
+                    notPickup &&
                     cursorItem != null &&
                     cursorType != Material.AIR
-                ) afterTrade(cursorItem, targetPlayer);
+                ) {
+                    afterTrade(cursorItem, targetPlayer);
+                    event.setCancelled(true);
+                }
                 //放置物品后强制刷新物品栏
                 new BukkitRunnable() {
                     @Override
@@ -966,11 +1045,12 @@ public final class main extends JavaPlugin {
                 }
             }
             if (air != -1 && originAmount > 0) {
+                origin.setAmount(originAmount);
                 player.getInventory().setItem(air, origin);
-                player.getInventory().getItem(air).setAmount(originAmount);
                 originAmount = 0;
             }
             origin.setAmount(originAmount);
+            getLogger().info(player.getName() + "：已强制交易归位。");
         }
 
         //交易丹药模型数据转对应数量
@@ -1017,26 +1097,30 @@ public final class main extends JavaPlugin {
                     }
                 }
             }
+            int stackedAmount = 0;
             //开始整理
             for (ArrayList<ItemStack> itemSubList : itemList) {
                 int slotAmount = itemSubList.size();
                 int itemAmount = 0;
-                for (ItemStack itemStack : itemSubList) itemAmount += itemStack.getAmount();
-                //sender.sendMessage(itemSubList.get(0).getType() + " 不足64个的多出部分：" + (itemAmount % 64) + " 个");
-                int remainderAmount = itemAmount % amount;
-                int fullSlotAmount = (itemAmount - remainderAmount) / amount;
-                if (
-                    remainderAmount > 0 && slotAmount > fullSlotAmount ||
-                    remainderAmount == 0 && slotAmount >= fullSlotAmount
-                ) for (int a = 0; a < slotAmount; a++) {
-                    if (a < fullSlotAmount) itemSubList.get(a).setAmount(amount);
-                    else if (remainderAmount > 0) {
-                        itemSubList.get(a).setAmount(remainderAmount);
-                        remainderAmount = 0;
-                    } else itemSubList.get(a).setAmount(0);
+                if (!(slotAmount == 1 && itemSubList.get(0).getAmount() <= amount)) {
+                    stackedAmount ++;
+                    for (ItemStack itemStack : itemSubList) itemAmount += itemStack.getAmount();
+                    //sender.sendMessage(itemSubList.get(0).getType() + " 不足64个的多出部分：" + (itemAmount % 64) + " 个");
+                    int remainderAmount = itemAmount % amount;
+                    int fullSlotAmount = (itemAmount - remainderAmount) / amount;
+                    if (
+                        remainderAmount > 0 && slotAmount > fullSlotAmount ||
+                        remainderAmount == 0 && slotAmount >= fullSlotAmount
+                    ) for (int a = 0; a < slotAmount; a++) {
+                        if (a < fullSlotAmount) itemSubList.get(a).setAmount(amount);
+                        else if (remainderAmount > 0) {
+                            itemSubList.get(a).setAmount(remainderAmount);
+                            remainderAmount = 0;
+                        } else itemSubList.get(a).setAmount(0);
+                    }
                 }
             }
-            return itemList.size();
+            return stackedAmount;
         }
     }
 }
