@@ -44,4 +44,4 @@ kill @e[type=villager,nbt={CustomName:'{"translate":"pl.npc.name.tong4"}'}]
 function pld:npcs/yao/yaotong4
 kill @e[type=villager,nbt={CustomName:'{"translate":"pl.npc.name.zhantong4"}'}]
 function pld:npcs/zhan/zhantong4
-schedule function pcub:stack_fix/forceload3 5s
+schedule function pcub_mod:stack_fix/forceload3 5s

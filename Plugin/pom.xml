@@ -6,7 +6,7 @@
 
   <groupId>org.pcub.extension</groupId>
   <artifactId>PCUB-Extension</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.4</version>
   <packaging>jar</packaging>
 
   <name>盘灵无界互通功能修复扩展（插件）</name>

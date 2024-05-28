@@ -1,6 +1,7 @@
 {
 	"values": [
 		"pcub:load",
+		"pcub_ext:load",
 		"fcub:load"
 	]
 }

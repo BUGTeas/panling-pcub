@@ -1,10 +1,10 @@
 #元素银行激活
 scoreboard objectives add fcub_element_store_enable dummy
-#反连点次数
-#scoreboard objectives add fcub_auto_click_count dummy
-scoreboard objectives remove fcub_auto_click_count
-#隐藏提示
+#强制玩家进服游戏模式
+scoreboard objectives add fcub_gamemode dummy
+#隐藏进服提示
 scoreboard objectives add fcub_hidden dummy
+
 #禁用玩家碰撞
 team modify normal collisionRule pushOwnTeam
 team modify attack collisionRule pushOwnTeam
