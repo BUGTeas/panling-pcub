@@ -1,0 +1,7 @@
+{
+	"replace": false,
+	"values": [
+		"pcub:java/tick",
+		"pcub_ext:tick_java"
+	]
+}

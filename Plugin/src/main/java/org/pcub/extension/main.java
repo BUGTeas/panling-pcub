@@ -59,6 +59,10 @@ public final class main extends JavaPlugin {
     //检查Floodgate插件
     boolean fgVaild = getServer().getPluginManager().getPlugin("floodgate") != null;
 
+    public class testClass {
+        public static void main(){}
+    }
+
     public class eventListener implements Listener, CommandExecutor, TabExecutor {
         //控制台执行器
         public void plConsoleExec(String command){
@@ -539,7 +543,7 @@ public final class main extends JavaPlugin {
             //调试
             //String cbt = "";
             //if (event.getClickedBlock() != null) cbt = " " + event.getClickedBlock().getType();
-            //if (targetPlayer.isOp()) targetPlayer.chat(Bukkit.getWorld("world").getFullTime() + " " + event.getAction() + cbt);
+            //getLogger().info(Bukkit.getWorld("world").getFullTime() + " " + event.getAction() + cbt);
             boolean blockFunction = false;
             //右键方块检测
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -601,7 +605,7 @@ public final class main extends JavaPlugin {
                 }
                 //基岩版功能
                 if ((isFloodgate || isGeyser) && usedMeta != null) {
-                    boolean openMenu = usedType == Material.CARROT_ON_A_STICK && bedrockMenu(usedItem, targetPlayer);
+                    boolean openMenu = usedType == Material.BOOK && bedrockMenu(usedItem, targetPlayer);
                     //副手功能
                     if (!openMenu && plGetScore("pcub_player_interact", targetName) == 0) {
                         //发出执行请求
@@ -789,7 +793,7 @@ public final class main extends JavaPlugin {
                             strIs = 0;
                             int currentSlot = plGetScore("WeaponSlot", targetName) - 1;
                             if (currentSlot == -2) currentSlot = 9;
-                            String name = (isCN) ? "武器激活位置" : "武器啟用位置";
+                            String name = "武器激活位置";
                             String[] s = {" 主手", "", "一", "二", "三", "四", "五", "六", "七", "八", "九", ""};
                             s[1] = (isCN) ? "号位" :"號位";
                             if (job == 1 || currentSlot == 9) {
@@ -936,27 +940,35 @@ public final class main extends JavaPlugin {
             ItemMeta itemMeta = item.getItemMeta();
             String metaString = (itemMeta == null) ? "{}" : itemMeta.getAsString();
             String[] metaList = metaString.substring(1, metaString.length() - 1).split(",");
-            //打开菜单书
-            for (String tag : metaList) if (tag.equals("id:\"pcub:menubook\"")) {
-                plSetScore("pcub_open_bedrock_menu", targetName, 1);
-                opened = true;
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        if (!getOperationLimit("mb" + targetID, 1)) {
-                            //隐藏物品》隐藏对话》菜单
-                            //获取记分项
-                            boolean hideItem = plGetScore("pcub_hide_item_enable", targetName) == 1;
-                            boolean hideTalk = plGetScore("pcub_hide_talk_enable", targetName) == 1;
-                            if (hideItem && hideTalk) player.performCommand("forms open hide-task-be");
-                            else if (hideItem) player.performCommand("forms open hide-item-be");
-                            else if (hideTalk) player.performCommand("forms open hide-talk-be");
-                            else player.performCommand("forms open menubook-be");
+            for (String tag : metaList) {
+                if (tag.equals("id:\"pcub:menubook\"")) {
+                    //打开菜单书
+                    plSetScore("pcub_open_bedrock_menu", targetName, 1);
+                    opened = true;
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if (!getOperationLimit("mb" + targetID, 1)) {
+                                //隐藏物品》隐藏对话》菜单
+                                //获取记分项
+                                boolean hideItem = plGetScore("pcub_hide_item_enable", targetName) == 1;
+                                boolean hideTalk = plGetScore("pcub_hide_talk_enable", targetName) == 1;
+                                if (hideItem && hideTalk) player.performCommand("forms open hide-task-be");
+                                else if (hideItem) player.performCommand("forms open hide-item-be");
+                                else if (hideTalk) player.performCommand("forms open hide-talk-be");
+                                else player.performCommand("forms open menubook-be");
+                            }
+                            setOperationLimit("mb" + targetID, 10L);
                         }
-                        setOperationLimit("mb" + targetID, 10L);
-                    }
-                }.runTaskLater(myPlugin, 2L);
-                break;
+                    }.runTaskLater(myPlugin, 2L);
+                    break;
+                } else if (tag.startsWith("id:\"shortcut:")) {
+                    //命令捷径
+                    opened = true;
+                    if (!getOperationLimit("mb" + targetID, 1)) player.performCommand(tag.substring(13, tag.length() - 1));
+                    setOperationLimit("mb" + targetID, 10L);
+                    break;
+                }
             }
             return opened;
         }

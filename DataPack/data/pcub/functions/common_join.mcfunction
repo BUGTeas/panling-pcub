@@ -5,4 +5,4 @@ execute unless score @s pcub_drop_interval matches 0.. run scoreboard players se
 execute unless score @s job matches 1.. unless score @s pcub_enable_fastskill matches 0.. run scoreboard players set @s pcub_enable_fastskill 3
 execute unless score @s job matches 1.. unless score @s pcub_fastskill_duration matches 0.. run scoreboard players set @s pcub_fastskill_duration 0
 #重置钱庄箱子开启记录
-execute if score @s screen matches 0.. run function pcub:chest_menu_event/leave
+execute if score @s screen matches 0.. run function #pcub:chest_menu_leave

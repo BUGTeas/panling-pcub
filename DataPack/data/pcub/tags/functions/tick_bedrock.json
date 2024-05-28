@@ -1,0 +1,7 @@
+{
+	"replace": false,
+	"values": [
+		"pcub:bedrock/tick",
+		"pcub_ext:tick_bedrock"
+	]
+}
