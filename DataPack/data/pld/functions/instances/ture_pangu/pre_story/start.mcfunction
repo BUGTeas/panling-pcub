@@ -7,5 +7,5 @@ scoreboard players set #system tick_final_story 2
 schedule clear pld:instances/instance5/end
 
 scoreboard players set #system fcub_final_state 2
-kick @a[scores={fcub_final_state=3}] 您已参加过最终剧情，在本轮结束前将无法进入服务器。
+#kick @a[scores={fcub_final_state=3}] 您已参加过最终剧情，在本轮结束前将无法进入服务器。
 execute as @a unless score @s fcub_final_state matches 3 run scoreboard players set @s fcub_final_state 2

@@ -13,3 +13,8 @@ team modify defence collisionRule pushOwnTeam
 scoreboard players set #5ticks_bgm_shen_all time_trigger 350
 #真盘检测
 scoreboard objectives add fcub_final_state dummy
+#真盘预检测
+scoreboard objectives add fcub_end_check dummy
+
+#高频传送稳定性测试
+scoreboard objectives add fcub_teleport_test dummy
