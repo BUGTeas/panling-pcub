@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.pcub.extension</groupId>
-  <artifactId>PCUB-Extension</artifactId>
-  <version>0.6.4</version>
+  <artifactId>PCUB</artifactId>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>盘灵无界互通功能修复扩展（插件）</name>
+  <name>盘灵无界互通功能修复（插件）</name>
 
   <properties>
     <java.version>17</java.version>

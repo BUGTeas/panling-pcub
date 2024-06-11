@@ -40,7 +40,7 @@ public final class main extends JavaPlugin {
         Bukkit.getPluginCommand("pcub").setExecutor(new eventListener());
         Bukkit.getPluginCommand("pcub").setTabCompleter(new eventListener());
         if(!geyserVaild) getLogger().info("找不到 Geyser 插件，BE 玩家将无法通过菜单书查看成就进度。（可使用命令 “/geyser advancements”）");
-        if(!fgVaild) getLogger().info("找不到 Floodgate 插件，需要在启动参数中添加“-Djdk.util.jar.enableMultiRelease=force”，BE玩家才能正常使用菜单书。");
+//        if(!fgVaild) getLogger().info("找不到 Floodgate 插件，需要在启动参数中添加“-Djdk.util.jar.enableMultiRelease=force”，BE玩家才能正常使用菜单书。");
     }
     /*@Override
     public void onDisable() {
@@ -205,34 +205,34 @@ public final class main extends JavaPlugin {
                     @Override
                     public void run(){
                         plConsoleExec("execute as " + targetID + " run function #pcub:join_" + edition);
-                        if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\",\"color\":\"yellow\"}]");
-                        if (!(isFloodgate && !fgPlayer.isLinked())) targetPlayer.performCommand("bskin quiet " + targetName);
+//                        if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\",\"color\":\"yellow\"}]");
+//                        if (!(isFloodgate && !fgPlayer.isLinked())) targetPlayer.performCommand("bskin quiet " + targetName);
                     }
                 }.runTaskLater(myPlugin, 0L);
-                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）加入了游戏");
+//                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）加入了游戏");
             }
             //幻域无界独有
-            event.setJoinMessage(null);
+//            event.setJoinMessage(null);
         }
 
         //玩家退出事件
         //幻域无界独有
-        @EventHandler
-        public void onPlayerQuit(PlayerQuitEvent event) {
-            Player targetPlayer = event.getPlayer();
-            String targetName = targetPlayer.getName();
-            String targetDisplay = targetPlayer.getDisplayName();
-            UUID targetIDN = targetPlayer.getUniqueId();
-            String targetID = targetIDN.toString();
-            if (plGetTempScore("login_status", targetID) > 0) {
-                String edition = (plGetTempScore("login_status", targetID) > 1) ? "bedrock" : "java";
-                plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
-                if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\",\"color\":\"yellow\"}]");
-                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）退出了游戏");
-                if(getServer().getOnlinePlayers().size() == 1) getLogger().info("所有玩家已退出！");
-            }
-            event.setQuitMessage(null);
-        }
+//        @EventHandler
+//        public void onPlayerQuit(PlayerQuitEvent event) {
+//            Player targetPlayer = event.getPlayer();
+//            String targetName = targetPlayer.getName();
+//            String targetDisplay = targetPlayer.getDisplayName();
+//            UUID targetIDN = targetPlayer.getUniqueId();
+//            String targetID = targetIDN.toString();
+//            if (plGetTempScore("login_status", targetID) > 0) {
+//                String edition = (plGetTempScore("login_status", targetID) > 1) ? "bedrock" : "java";
+//                plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
+//                if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\",\"color\":\"yellow\"}]");
+//                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）退出了游戏");
+//                if(getServer().getOnlinePlayers().size() == 1) getLogger().info("所有玩家已退出！");
+//            }
+//            event.setQuitMessage(null);
+//        }
 
         //容器打开事件
         @EventHandler

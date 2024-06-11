@@ -1,4 +1,4 @@
-name: PCUB-Extension
+name: PCUB
 version: '${project.version}'
 main: org.pcub.extension.main
 api-version: '1.20'
