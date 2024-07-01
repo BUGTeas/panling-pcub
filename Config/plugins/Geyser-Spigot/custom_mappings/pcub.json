@@ -1,0 +1,643 @@
+{
+	"format_version": "1",
+	"items": {
+		//命令捷径（书）
+		"minecraft:book": [
+			{
+				"name": "book_normal",
+				"custom_model_data": 1,
+				"texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "book_written",
+				"custom_model_data": 2,
+				"texture_size": 26,
+				"allow_offhand": false
+			}
+		],
+		//胡萝卜钓竿
+		"minecraft:carrot_on_a_stick": [
+			{
+				"name": "carrot_on_a_stick_1",
+				"custom_model_data": 1,
+                "texture_size": 24,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_2",
+				"custom_model_data": 2,
+                "texture_size": 26,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_3",
+				"custom_model_data": 3,
+                "texture_size": 52,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_4",
+				"custom_model_data": 4,
+                "texture_size": 24,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_5",
+				"custom_model_data": 5,
+                "texture_size": 24,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_6",
+				"custom_model_data": 6,
+                "texture_size": 24,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_10",
+				"custom_model_data": 10,
+                "texture_size": 26,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_13",
+				"custom_model_data": 13,
+                "texture_size": 26,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_14",
+				"custom_model_data": 14,
+                "texture_size": 26,
+				"allow_offhand": true
+			}, {
+				"name": "carrot_on_a_stick_21",
+				"custom_model_data": 21,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_22",
+				"custom_model_data": 22,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_23",
+				"custom_model_data": 23,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_24",
+				"custom_model_data": 24,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_25",
+				"custom_model_data": 25,
+                "texture_size": 52,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_26",
+				"custom_model_data": 26,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_32",
+				"custom_model_data": 32,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_33",
+				"custom_model_data": 33,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_34",
+				"custom_model_data": 34,
+                "texture_size": 26,
+				"allow_offhand": false
+			}, {
+				"name": "carrot_on_a_stick_35",
+				"custom_model_data": 35,
+                "texture_size": 52,
+				"allow_offhand": false
+			}
+		],
+		"minecraft:blue_ice": [
+			//移植落日技能
+			{
+				"name": "fall_sun",
+				"custom_model_data": 1
+			}
+		],
+		//木稿
+		"minecraft:wooden_pickaxe": [
+			{
+				"name": "wooden_pickaxe_1",
+				"custom_model_data": 1,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_2",
+				"custom_model_data": 2,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_20",
+				"custom_model_data": 20,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_21",
+				"custom_model_data": 21,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_30",
+				"custom_model_data": 30,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_31",
+				"custom_model_data": 31,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_40",
+				"custom_model_data": 40,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_41",
+				"custom_model_data": 41,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_50",
+				"custom_model_data": 50,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_51",
+				"custom_model_data": 51,
+                "texture_size": 26,
+				"allow_offhand": false
+			},{
+				"name": "wooden_pickaxe_60",
+				"custom_model_data": 60,
+                "texture_size": 26,
+				"allow_offhand": false
+			}
+		],
+		//兔肉煲
+		"minecraft:rabbit_stew": [
+			{
+				"name": "rabbit_stew",
+				"custom_model_data": 0,
+				"texture_size": 26,
+				"allow_offhand": false
+			}
+		],
+		"minecraft:mushroom_stew": [
+			{
+				"name": "mushroom_stew",
+				"custom_model_data": 0,
+				"texture_size": 26,
+				"allow_offhand": false
+			}
+		],
+
+		//钱庄末影箱界面
+		//玻璃板扁平化（挡板）
+		"minecraft:gray_stained_glass_pane": [ {
+			"name": "pcub_gray_stained_glass_pane",
+			"custom_model_data": 0
+		} ],
+		"minecraft:black_stained_glass_pane": [ {
+			"name": "pcub_black_stained_glass_pane",
+			"custom_model_data": 0
+		} ],
+		//木斧（UI按钮）
+		"minecraft:wooden_axe": [
+			{
+				"name": "pcub_arrow_left",
+				"custom_model_data": 1
+			},{
+				"name": "pcub_arrow_right",
+				"custom_model_data": 2
+			},{
+				"name": "pcub_bow_up",
+				"custom_model_data": 3
+			},{
+				"name": "pcub_sword_up",
+				"custom_model_data": 4
+			},{
+				"name": "pcub_arrow_up",
+				"custom_model_data": 5
+			},{
+				"name": "pcub_arrow_down",
+				"custom_model_data": 6
+			}
+		],
+
+		//羽毛
+		"minecraft:feather": [ {
+			"name": "feather",
+            "texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": false
+		} ],
+		//重华晶（诡异真菌钓竿）
+		"minecraft:warped_fungus_on_a_stick": [ {
+			"name": "warped_fungus_on_a_stick",
+            "texture_size": 52,
+			"custom_model_data": 0,
+			"allow_offhand": false
+		} ],
+		//重生石（下界之星）
+		"minecraft:nether_star": [ {
+			"name": "nether_star",
+            "texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		} ],
+
+		//五大元素（用于副手即时炼化）
+		//金元素
+		"minecraft:emerald": [ {
+			"name": "emerald",
+            "texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		} ],
+		//木元素
+		"minecraft:bone": [ {
+			"name": "bone",
+			"texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		} ],
+		//水元素
+		"minecraft:string": [ {
+			"name": "string",
+			"texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		} ],
+		//火元素
+		"minecraft:blaze_rod": [ {
+			"name": "blaze_rod",
+			"texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		} ],
+		//土元素
+		"minecraft:magma_cream": [ {
+			"name": "magma_cream",
+			"texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		} ],
+		//浓缩金元素
+		"minecraft:flint": [{
+			"name": "flint",
+            "texture_size": 52,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		}],
+		//浓缩木元素
+		"minecraft:melon_seeds": [{
+			"name": "seeds_melon",
+            "texture_size": 52,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		}],
+		//浓缩水元素
+		"minecraft:wheat_seeds": [{
+			"name": "seeds_wheat",
+            "texture_size": 52,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		}],
+		//浓缩火元素
+		"minecraft:charcoal": [{
+			"name": "charcoal",
+            "texture_size": 52,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		}],
+		//浓缩土元素
+		"minecraft:pumpkin_seeds": [{
+			"name": "seeds_pumpkin",
+            "texture_size": 52,
+			"custom_model_data": 0,
+			"allow_offhand": true
+		}],
+
+		//雪球缩小
+		"minecraft:snowball": [ {
+			"name": "snowball",
+            "texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": false
+		} ],
+		//绊线钩钥匙
+		"minecraft:tripwire_hook": [ {
+			"name": "tripwire_hook",
+            "texture_size": 26,
+			"custom_model_data": 0,
+			"allow_offhand": false
+		} ],
+		//种族补给品
+		"minecraft:brick": [
+			{
+				"name": "brick_money0",
+				"custom_model_data": 1,
+				"texture_size": 52,
+				"allow_offhand": true
+			},{
+				"name": "brick_money1",
+				"custom_model_data": 2,
+				"texture_size": 26,
+				"allow_offhand": true
+			},{
+				"name": "brick_money2",
+				"custom_model_data": 3,
+				"texture_size": 52,
+				"allow_offhand": true
+			},{
+				"name": "brick_money3",
+				"custom_model_data": 4,
+				"texture_size": 52,
+				"allow_offhand": true
+			},{
+				"name": "brick_money4",
+				"custom_model_data": 5,
+				"texture_size": 52,
+				"allow_offhand": true
+			}
+		],
+		//附灵石
+		"minecraft:blue_dye": [
+			{
+				"name": "enchant_stone_armor",
+				"custom_model_data": 0,
+				"texture_size": 52,
+				"allow_offhand": true
+			},{
+				"name": "enchant_stone_weapon",
+				"custom_model_data": 2,
+				"texture_size": 52,
+				"allow_offhand": true
+			}
+		],
+		//纪念版限定玩偶
+		"minecraft:echo_shard": [
+			{
+				"name": "echo_shard_1",
+				"custom_model_data": 1,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_2",
+				"custom_model_data": 2,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_3",
+				"custom_model_data": 3,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_4",
+				"custom_model_data": 4,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_5",
+				"custom_model_data": 5,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_6",
+				"custom_model_data": 6,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_7",
+				"custom_model_data": 7,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_8",
+				"custom_model_data": 8,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_9",
+				"custom_model_data": 9,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_10",
+				"custom_model_data": 10,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_11",
+				"custom_model_data": 11,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_12",
+				"custom_model_data": 12,
+				"allow_offhand": false
+			},{
+				"name": "echo_shard_13",
+				"custom_model_data": 13,
+				"allow_offhand": false
+			}
+		]
+	},
+
+
+
+
+
+	"blocks": {
+		//隐藏结构方块边框
+		"minecraft:structure_block": {
+			"name": "structure_block"
+		},
+		//圆石压力板-传送圆环
+		"minecraft:stone_pressure_plate": {
+			"name": "plbe_cd_plate",
+			"geometry": "geometry.plbe_cd_plate",
+			"state_overrides": {
+				"powered=true": {
+					"material_instances": {
+						"*": {
+							"texture": "plbe_cd_plate_actived",
+							"render_method": "alpha_test",
+							"face_dimming": true,
+							"ambient_occlusion": true
+						}
+					}
+				},
+				"powered=false": {
+					"material_instances": {
+						"*": {
+							"texture": "plbe_cd_plate",
+							"render_method": "alpha_test",
+							"face_dimming": true,
+							"ambient_occlusion": true
+						}
+					}
+				}
+			}
+		},
+		//轻型测重压力板-NPC感应板
+		"minecraft:light_weighted_pressure_plate": {
+			"name": "plbe_light_pressure_plate",
+			"geometry": "geometry.plbe_light_pressure_plate",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_light_pressure_plate",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//棕色地毯-木地板
+		"minecraft:brown_carpet": {
+			"name": "plbe_brown_carpet",
+			"geometry": "geometry.plbe_brown_carpet",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_sponge_top",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//漏斗-投放桶
+		"minecraft:hopper": {
+			"name": "plbe_hopper",
+			"state_overrides": {
+				"enabled=true,facing=down": {
+					"geometry": "geometry.plbe_hopper_down"
+				},
+				"enabled=true,facing=north": {
+					"geometry": "geometry.plbe_hopper_side"
+				},
+				"enabled=true,facing=south": {
+					"geometry": "geometry.plbe_hopper_side",
+					"transformation": { "rotation": [ 0, 180, 0 ] }
+				},
+				"enabled=true,facing=west": {
+					"geometry": "geometry.plbe_hopper_side",
+					"transformation": { "rotation": [ 0, 90, 0 ] }
+				},
+				"enabled=true,facing=east": {
+					"geometry": "geometry.plbe_hopper_side",
+					"transformation": { "rotation": [ 0, 270, 0 ] }
+				}
+			},
+			"material_instances": {
+				"*": {
+					"texture": "plbe_textures_mix_1",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//绿色玻璃-棋盘
+		"minecraft:green_stained_glass": {
+			"name": "plbe_glass_green",
+			"geometry": "geometry.plbe_glass_green",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_glass_green",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//橙色玻璃-茶具
+		"minecraft:orange_stained_glass": {
+			"name": "plbe_glass_orange",
+			"geometry": "geometry.plbe_glass_orange",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_glass_orange",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//淡灰色玻璃-书台
+		"minecraft:light_gray_stained_glass": {
+			"name": "plbe_glass_gray",
+			"geometry": "geometry.plbe_glass_gray",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_glass_gray",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//湿海绵-木桶
+		"minecraft:wet_sponge": {
+			"name": "plbe_wet_sponge",
+			"geometry": "geometry.plbe_wet_sponge",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_textures_mix_1",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//暗海晶石-毒液桶
+		"minecraft:dark_prismarine": {
+			"name": "plbe_dark_prismarine_1",
+			"geometry": "geometry.plbe_dark_prismarine_1",
+			"material_instances": {
+				"*": {
+					"texture": "plbe_textures_mix_1",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//深色橡木原木-茶桶
+		"minecraft:dark_oak_log": {
+			"name": "plbe_dark_oak_log",
+			"state_overrides": {
+				"axis=z": {
+					"geometry": "geometry.plbe_dark_oak_log_side"
+				},
+				"axis=x": {
+					"geometry": "geometry.plbe_dark_oak_log_side",
+					"transformation":{ "rotation":[0,90,0] }
+				}
+			},
+			"material_instances": {
+				"*": {
+					"texture": "plbe_textures_mix_1",
+					"render_method": "alpha_test",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
+		//相思树原木-杂货篓
+		"minecraft:acacia_log": {
+			"name": "plbe_acacia_log_y",
+			"geometry": "geometry.plbe_acacia_log",
+			"state_overrides": {
+				"axis=z": {
+					"material_instances": {
+						"*": {
+							"texture": "plbe_acacia_log_z",
+							"render_method": "alpha_test",
+							"face_dimming": true,
+							"ambient_occlusion": true
+						}
+					}
+				},
+				"axis=x": {
+					"material_instances": {
+						"*": {
+							"texture": "plbe_acacia_log_x",
+							"render_method": "alpha_test",
+							"face_dimming": true,
+							"ambient_occlusion": true
+						}
+					}
+				}
+			}
+		}
+	}
+}

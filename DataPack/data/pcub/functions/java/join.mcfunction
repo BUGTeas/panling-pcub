@@ -1,2 +1,3 @@
 #检测玩家类型用
-scoreboard players set @s pcub_is_bedrock 0
+tag @s remove player_bedrock
+tag @s add player_java

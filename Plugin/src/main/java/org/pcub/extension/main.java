@@ -696,7 +696,7 @@ public final class main extends JavaPlugin {
                 //强制叠放物品
                 @Override
                 public void run(){
-                    sender.sendMessage("§a" + ((isCN) ? "已强制叠放" : "已強制疊放") + " §b" + forceStack(targetPlayer, 64) + " 件物品");
+                    sender.sendMessage("§a" + ((isCN) ? "已强制叠放" : "已強制疊放") + " §b" + forceStack(targetPlayer, 64) + ((isCN) ? " 种" : " 種") + "物品");
                 }
             }.runTaskAsynchronously(myPlugin);
             else if (args.length >= 1 && args[0].equalsIgnoreCase("dropContinuous")) new BukkitRunnable(){
@@ -786,8 +786,8 @@ public final class main extends JavaPlugin {
                     public void run(){
                         int job = plGetScore("job", targetName);
                         CustomForm.Builder optForm = CustomForm.builder()
-                                .title("plbe.option.combat")
-                                .label("plbe.option.combat.content");
+                                .title("pcub.title.combat_option")
+                                .label("pcub.content.combat_option");
                         //武器激活位置
                         if (job != 2) {
                             strIs = 0;
@@ -808,7 +808,7 @@ public final class main extends JavaPlugin {
                         int currentDropInterval = plGetScore("pcub_drop_interval", targetName);
                         int currentEnCont = plGetScore("pcub_enable_continuous", targetName);
                         optForm
-                            .dropdown(dropTitle + ((isCN) ? " （可能受网络延迟影响）" : " （可能受網路延遲影響）"), currentEnCont, "plbe.option.continuous.disable", "plbe.option.continuous.enable", "plbe.option.continuous.bedrockonly", "plbe.option.continuous.mobileonly")
+                            .dropdown(dropTitle + ((isCN) ? " （可能受网络延迟影响）" : " （可能受網路延遲影響）"), currentEnCont, "pcub.combat_option.disable", "pcub.combat_option.enable", "pcub.combat_option.disable_bedrock", "pcub.combat_option.disable_mobile")
                             .slider(dropTitle + ((isCN) ? "间隔 （秒）" : "間隔 （秒）"), (float) 0, (float) 1, (float) 0.05, (float) currentDropInterval / 20);
                         int currentFastSkill,currentSkillDuration;
                         //战士专项
@@ -818,7 +818,7 @@ public final class main extends JavaPlugin {
                             String skillTitle = (isCN) ? "按住潜行发动技能" : "按住潛行發動技能";
                             currentSkillDuration = plGetScore("pcub_fastskill_duration", targetName);
                             optForm
-                                .dropdown(skillTitle, currentFastSkill, "plbe.option.continuous.disable", "plbe.option.continuous.enable", "plbe.option.fastskill.bedrockonly", "plbe.option.fastskill.mobileonly")
+                                .dropdown(skillTitle, currentFastSkill, "pcub.combat_option.disable", "pcub.combat_option.enable", "pcub.combat_option.enable_bedrock", "pcub.combat_option.enable_mobile")
                                 .slider(skillTitle + ((isCN) ? " 所需时长 （秒）" : " 所需時長 （秒）"), (float) 0, (float) 1, (float) 0.05, (float) currentSkillDuration / 20);
                         } else currentFastSkill = currentSkillDuration = -1;
                         optForm

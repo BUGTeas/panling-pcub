@@ -1,0 +1,209 @@
+# Configuration of forms for Bedrock Edition
+
+enable: true
+
+global-permission-defaults:
+  # Permission to use the form
+  USE: TRUE
+  # Permission to open the form through commands. USE is required for this to actually work.
+  COMMAND: TRUE
+
+# Don't touch this
+config-version: 5
+
+forms:
+  #主菜单
+  menubook-be:
+    type: simple_form
+    title: "pcub.title.menubook"
+    content: "pcub.content.menubook"
+    buttons: 
+      #进度成就
+      - text: "pcub.menubook.advancements"
+        image: "textures/menubook/advancements"
+        actions:
+          - commands: "player; geyser advancements"
+      #查看资历点数
+      - text: "pcub.menubook.11"
+        image: "textures/menubook/race/%objective_score_{race}%_1"
+        actions:
+          - commands: "player; trigger menu set 11"
+      #领取种族证明&泡泡
+      - text: "pcub.menubook.1"
+        image: "textures/menubook/bubble"
+        actions:
+          - commands: "player; trigger menu set 1"
+      #战斗相关设置（0.5新版）
+      #- text: "pcub.menubook.4"
+      - text: "pcub.menubook.combat_option"
+        image: "textures/menubook/job/%objective_score_{job}%"
+        actions:
+          - commands: "player; pcub option combat"
+          #- commands: "player; slotset-be%objective_score_{job}%"
+      #强制叠放背包物品
+      - text: "pcub.menubook.stack"
+        image: "textures/menubook/stack"
+        actions:
+          - commands: "player; pcub stack"
+      #主手物品展示
+      - text: "pcub.menubook.13"
+        actions:
+          - commands:
+              #- "execute as %player_uuid% run trigger menu set 13"
+              - "execute as %player_uuid% run scoreboard players set @s pcub_showitem 1"
+              - "execute as %player_uuid% run title @s subtitle {\"translate\":\"pcub.showitem.subtitle\"}"
+              - "execute as %player_uuid% run title @s title {\"translate\":\"pcub.showitem.title\"}"
+      #副手物品展示
+      - text: "pcub.menubook.14"
+        actions:
+          - commands: "player; trigger menu set 14"
+      #补领新芽之羽
+      - text: "pcub.menubook.7.%objective_score_{check_feather}%"
+        image: "textures/menubook/feather%objective_score_{check_feather}%"
+        actions:
+          - commands: "player; get-feather-be%objective_score_{check_feather}%"
+      #补领重华晶
+      - text: "pcub.menubook.8.%objective_score_{check_stone}%"
+        image: "textures/menubook/tp_stone%objective_score_{check_stone}%"
+        actions:
+          - commands: "player; get-tp-stone-be%objective_score_{check_stone}%"
+      #箭袋自动补充
+      - text: "pcub.menubook.2.%objective_score_{check_arrow_pack}%_%objective_score_{arrowpack_auto}%"
+        image: "textures/menubook/arrowpack%objective_score_{check_arrow_pack}%"
+        actions:
+          - commands: "player; set-arrow-pack-be%objective_score_{check_arrow_pack}%"
+      #找回神器（）
+      #- text: "pcub.menubook.3"
+      #  actions:
+      #    - commands: "player; trigger menu set 3"
+      #切换试炼祝福
+      - text: "pcub.menubook.5.%objective_score_{check_race_test}%"
+        image: "textures/menubook/test_bliss%objective_score_{check_race_test}%"
+        actions:
+          - commands: "player; set-test-bless-be%objective_score_{check_race_test}%"
+      #领取试炼祝福道具
+      - text: "pcub.menubook.6.%objective_score_{check_race_test}%"
+        image: "textures/menubook/race/%objective_score_{test_bless_act}%_1"
+        actions:
+          - commands: "player; get-test-bless-be%objective_score_{check_race_test}%"
+      #更新菜单书
+      - text: "pcub.menubook.12"
+        image: "textures/menubook/book"
+        actions:
+          - commands: "player; trigger menu set 12"
+      #版本信息
+      - text: "pcub.menubook.version"
+        image: "textures/menubook/pcub"
+        actions:
+          - form: version-be
+  #版本信息
+  version-be:
+    type: simple_form
+    title: "pcub.title.version"
+    content: "pcub.content.version"
+    buttons: 
+      - text: "pcub.menubook.9"
+        image: "textures/menubook/pangu_continent"
+        actions:
+          - commands:
+              - "player; trigger menu set 9"
+      - text: "pcub.menubook.10"
+        image: "textures/menubook/pcub"
+        actions:
+          - commands:
+              - "player; trigger menu set 10"
+      - text: "gui.back"
+        image: "textures/panling/items/arrow_left"
+        actions:
+          - form: menubook-be
+  #切换试炼祝福
+  test-bless-be:
+    type: simple_form
+    title: "pcub.title.test_bless"
+    content: "pcub.content.test_bless"
+    buttons: 
+      #女娲
+      - text: "pcub.test_bless.ren.%objective_score_{ren_test_all}%"
+        image: "textures/menubook/race/4_%objective_score_{ren_test_all}%"
+        actions:
+          - commands: "player; ren-test-bless-be%objective_score_{ren_test_all}%"
+      #盘古
+      - text: "pcub.test_bless.shen.%objective_score_{shen_test_all}%"
+        image: "textures/menubook/race/0_%objective_score_{shen_test_all}%"
+        actions:
+          - commands: "player; shen-test-bless-be%objective_score_{shen_test_all}%"
+      #蚩尤
+      - text: "pcub.test_bless.zhan.%objective_score_{zhan_test_all}%"
+        image: "textures/menubook/race/3_%objective_score_{zhan_test_all}%"
+        actions:
+          - commands: "player; zhan-test-bless-be%objective_score_{zhan_test_all}%"
+      - text: "gui.back"
+        image: "textures/panling/items/arrow_left"
+        actions:
+          - form: menubook-be
+  #条目未开启
+  test-bless-disabled:
+    type: modal_form
+    title: "gui.error"
+    content: "pcub.test_bless.disabled"
+    button1:
+      text: "gui.close"
+    button2:
+      text: "gui.back"
+      actions:
+        - form: test-bless-be
+  #隐藏任务界面
+  hide-task-be:
+    type: simple_form
+    title: "pcub.title.menubook"
+    content: "pcub.content.hide.talk"
+    buttons: 
+      - text: "pcub.hide.race%objective_score_{race}%.talk%objective_score_{pcub_hide_talk}%"
+        image: "textures/menubook/talk"
+        actions:
+          - commands: "execute as %player_uuid% run function pcub:hide/talk"
+      - text: "pcub.hide.race%objective_score_{race}%.mission_item%objective_score_{pcub_hide_item}%"
+        image: "textures/menubook/talk"
+        actions:
+          - commands: "execute as %player_uuid% run function pcub:hide/item"
+      - text: "pcub.forms.menubook"
+        image: "textures/menubook/book"
+        actions:
+          - form: menubook-be
+  hide-talk-be:
+    type: simple_form
+    title: "pcub.title.menubook"
+    content: "pcub.content.hide.talk"
+    buttons: 
+      - text: "pcub.hide.race%objective_score_{race}%.talk%objective_score_{pcub_hide_talk}%"
+        image: "textures/menubook/talk"
+        actions:
+          - commands: "execute as %player_uuid% run function pcub:hide/talk"
+      - text: "pcub.forms.menubook"
+        image: "textures/menubook/book"
+        actions:
+          - form: menubook-be
+  hide-item-be:
+    type: simple_form
+    title: "pcub.title.menubook"
+    content: "pcub.content.hide.mission_item"
+    buttons: 
+      - text: "pcub.hide.race%objective_score_{race}%.mission_item%objective_score_{pcub_hide_item}%"
+        image: "textures/menubook/talk"
+        actions:
+          - commands: "execute as %player_uuid% run function pcub:hide/item"
+      - text: "pcub.forms.menubook"
+        image: "textures/menubook/book"
+        actions:
+          - form: menubook-be
+  #条目未开启
+  option-disabled:
+    type: modal_form
+    title: "gui.error"
+    content: "pcub.menubook.disabled"
+    button1:
+      text: "gui.close"
+    button2:
+      text: "gui.back"
+      actions:
+        - form: menubook-be

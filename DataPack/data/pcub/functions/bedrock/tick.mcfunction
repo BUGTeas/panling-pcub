@@ -1,6 +1,5 @@
 #菜单书切换
-execute if entity @s[nbt={Inventory:[{tag:{title:"§6菜单", author:"§6天道"}}]}] run function pcub:menubook/switch_bedrock
-execute if entity @s[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{id:"pcub:menubook"}}]}] run function pcub:menubook/switch_bedrock
+execute if entity @s[nbt={Inventory:[{tag:{title:"§6菜单", author:"§6天道"}}]}] run function pcub:menubook/panling/switch_bedrock
 #展示主手物品
 execute if entity @s[scores={pcub_showitem=1}] unless entity @s[nbt={SelectedItem:{tag:{id:"pcub:menubook"}}}] run function pcub:bedrock/showitem
 #副手修复

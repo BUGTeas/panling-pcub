@@ -1,0 +1,8 @@
+将梦回盘灵资源包“panling1.20-资源包-1.1.0b.zip”解压到当前目录即可
+之后这个目录下应该有这些文件：
+panling
+	|-assets/
+	|-pack.png
+	|-pack.mcmeta
+	|-NOTICE
+转换工具只会用到其中的“assets”目录，以读取语言文件。

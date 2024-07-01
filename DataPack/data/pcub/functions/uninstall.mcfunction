@@ -1,5 +1,3 @@
-#判断基岩玩家
-scoreboard objectives remove pcub_is_bedrock
 #基岩菜单书、成就
 scoreboard objectives remove pcub_open_bedrock_menu
 #基岩版主手物品展示优化

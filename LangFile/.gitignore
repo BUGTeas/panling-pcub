@@ -1,0 +1,6 @@
+/node_modules/
+/output/
+/resources/*
+!/resources/panling/
+/resources/panling/*
+!/resources/panling/NOTICE

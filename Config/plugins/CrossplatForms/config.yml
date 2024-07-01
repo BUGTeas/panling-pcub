@@ -1,0 +1,132 @@
+# General config
+
+# Commands can be dynamically defined here, to open specific forms.
+commands:
+  #菜单书条目
+  #切换试炼祝福
+  set-test-bless-be0:
+    method: register
+    command: set-test-bless-be0
+    actions:
+      - form: option-disabled
+    permission: crossplatforms.command.open
+  set-test-bless-be1:
+    method: register
+    command: set-test-bless-be1
+    actions:
+      - form: test-bless-be
+    permission: crossplatforms.command.open
+  #女娲
+  ren-test-bless-be0:
+    method: register
+    command: ren-test-bless-be0
+    actions:
+      - form: test-bless-disabled
+    permission: crossplatforms.command.open
+  ren-test-bless-be1:
+    method: register
+    command: ren-test-bless-be1
+    actions:
+      - commands: "player; trigger test_bless set 14"
+    permission: crossplatforms.command.open
+  #盘古
+  shen-test-bless-be0:
+    method: register
+    command: shen-test-bless-be0
+    actions:
+      - form: test-bless-disabled
+    permission: crossplatforms.command.open
+  shen-test-bless-be1:
+    method: register
+    command: shen-test-bless-be1
+    actions:
+      - commands: "player; trigger test_bless set 10"
+    permission: crossplatforms.command.open
+  #蚩尤
+  zhan-test-bless-be0:
+    method: register
+    command: zhan-test-bless-be0
+    actions:
+      - form: test-bless-disabled
+    permission: crossplatforms.command.open
+  zhan-test-bless-be1:
+    method: register
+    command: zhan-test-bless-be1
+    actions:
+      - commands: "player; trigger test_bless set 13"
+    permission: crossplatforms.command.open
+  #领取试炼祝福道具
+  get-test-bless-be0:
+    method: register
+    command: get-test-bless-be0
+    actions:
+      - form: option-disabled
+    permission: crossplatforms.command.open
+  get-test-bless-be1:
+    method: register
+    command: get-test-bless-be1
+    actions:
+      - commands: "player; trigger menu set 6"
+    permission: crossplatforms.command.open
+  #箭袋选项
+  set-arrow-pack-be0:
+    method: register
+    command: set-arrow-pack-be0
+    actions:
+      - form: option-disabled
+    permission: crossplatforms.command.open
+  set-arrow-pack-be1:
+    method: register
+    command: set-arrow-pack-be1
+    actions:
+      - commands: "player; trigger menu set 2"
+    permission: crossplatforms.command.open
+  #新芽之羽补领
+  get-feather-be0:
+    method: register
+    command: get-feather-be0
+    actions:
+      - form: option-disabled
+    permission: crossplatforms.command.open
+  get-feather-be1:
+    method: register
+    command: get-feather-be1
+    actions:
+      - commands: "player; trigger menu set 7"
+    permission: crossplatforms.command.open
+  #重华晶补领
+  get-tp-stone-be0:
+    method: register
+    command: get-tp-stone-be0
+    actions:
+      - form: option-disabled
+    permission: crossplatforms.command.open
+  get-tp-stone-be1:
+    method: register
+    command: get-tp-stone-be1
+    actions:
+      - commands: "player; trigger menu set 8"
+    permission: crossplatforms.command.open
+  #登录异常
+  login-error-java:
+    method: register
+    command: login-error-java
+    actions:
+      - form: login-error-java
+    permission: crossplatforms.command.open
+  login-error-bedrock:
+    method: register
+    command: login-error-bedrock
+    actions:
+      - form: login-error-bedrock
+    permission: crossplatforms.command.open
+
+# Allows commands to be registered with the REGISTER method after server startup.
+# Even with this disabled, the actions and permission of existing commands can still be changed and reloaded.
+unsafe-command-registration: false
+
+# Toggle debug logging
+enable-debug: false
+
+# Don't touch this
+config-version: 3
