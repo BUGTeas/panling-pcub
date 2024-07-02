@@ -1,9 +1,6 @@
 package org.pcub.extension;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.Server;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +14,8 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
@@ -172,7 +171,6 @@ public final class main extends JavaPlugin {
         @EventHandler
         public void onPlayerJoin(PlayerJoinEvent event) {
             Player targetPlayer = event.getPlayer();
-            String targetName = targetPlayer.getName();
             String targetDisplay = targetPlayer.getDisplayName();
             UUID targetIDN = targetPlayer.getUniqueId();
             String targetID = targetIDN.toString();
@@ -205,34 +203,10 @@ public final class main extends JavaPlugin {
                     @Override
                     public void run(){
                         plConsoleExec("execute as " + targetID + " run function #pcub:join_" + edition);
-//                        if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a[name=!" + targetName + "] [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.joined\",\"color\":\"yellow\"}]");
-//                        if (!(isFloodgate && !fgPlayer.isLinked())) targetPlayer.performCommand("bskin quiet " + targetName);
                     }
                 }.runTaskLater(myPlugin, 0L);
-//                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）加入了游戏");
             }
-            //幻域无界独有
-//            event.setJoinMessage(null);
         }
-
-        //玩家退出事件
-        //幻域无界独有
-//        @EventHandler
-//        public void onPlayerQuit(PlayerQuitEvent event) {
-//            Player targetPlayer = event.getPlayer();
-//            String targetName = targetPlayer.getName();
-//            String targetDisplay = targetPlayer.getDisplayName();
-//            UUID targetIDN = targetPlayer.getUniqueId();
-//            String targetID = targetIDN.toString();
-//            if (plGetTempScore("login_status", targetID) > 0) {
-//                String edition = (plGetTempScore("login_status", targetID) > 1) ? "bedrock" : "java";
-//                plConsoleExec("execute as " + targetID + " run function aiod:timer_sync");
-//                if (plGetScore("fcub_hidden", targetName) == 0) plConsoleExec("execute as " + targetID + " run tellraw @a [{\"translate\":\"fcub.player." + edition + "\"},{\"text\":\" \"},{\"selector\":\"@s\",\"color\":\"yellow\"},{\"text\":\" \"},{\"translate\":\"fcub.player.left\",\"color\":\"yellow\"}]");
-//                getLogger().info("\n" + edition.toUpperCase().charAt(0) + edition.substring(1) + " 玩家 " + targetDisplay + "（" + targetName + "）退出了游戏");
-//                if(getServer().getOnlinePlayers().size() == 1) getLogger().info("所有玩家已退出！");
-//            }
-//            event.setQuitMessage(null);
-//        }
 
         //容器打开事件
         @EventHandler
@@ -692,6 +666,7 @@ public final class main extends JavaPlugin {
             boolean isFloodgate = fgVaild && fgInstance.isFloodgatePlayer(targetIDN);
             String locale = targetPlayer.getLocale();
             boolean isCN = locale.equalsIgnoreCase("zh_cn");
+            // pcub stack
             if (args.length >= 1 && args[0].equalsIgnoreCase("stack")) new BukkitRunnable(){
                 //强制叠放物品
                 @Override
@@ -699,6 +674,7 @@ public final class main extends JavaPlugin {
                     sender.sendMessage("§a" + ((isCN) ? "已强制叠放" : "已強制疊放") + " §b" + forceStack(targetPlayer, 64) + ((isCN) ? " 种" : " 種") + "物品");
                 }
             }.runTaskAsynchronously(myPlugin);
+            // pcub dropContinuous
             else if (args.length >= 1 && args[0].equalsIgnoreCase("dropContinuous")) new BukkitRunnable(){
                 //连续投掷
                 @Override
@@ -718,6 +694,7 @@ public final class main extends JavaPlugin {
                     } else sender.sendMessage("§a" + ((isCN) ? "当前 连续投掷 为" : "當前 連續投擲 為") + ": §b" + setResult[plGetScore("pcub_enable_continuous", targetName)]);
                 }
             }.runTaskAsynchronously(myPlugin);
+            // pcub dropInterval
             else if (args.length >= 1 && args[0].equalsIgnoreCase("dropInterval")) new BukkitRunnable(){
                 //每次投掷间隔
                 @Override
@@ -733,6 +710,7 @@ public final class main extends JavaPlugin {
                     } else sender.sendMessage("§a" + ((isCN) ? "当前 连续投掷间隔 为" : "當前 連續投擲間隔 為") + ": §b" + plGetScore("pcub_drop_interval", targetName) + " 刻");
                 }
             }.runTaskAsynchronously(myPlugin);
+            // pcub fastSkill
             else if (args.length >= 1 && args[0].equalsIgnoreCase("fastSkill")) new BukkitRunnable(){
                 //按住潜行发动技能
                 @Override
@@ -754,6 +732,7 @@ public final class main extends JavaPlugin {
                     } else sender.sendMessage((isCN) ? "§c错误: 本功能仅限战士使用。" : "§c錯誤: 本功能僅限戰士使用。");
                 }
             }.runTaskAsynchronously(myPlugin);
+            // pcub fastSkillDuration
             else if (args.length >= 1 && args[0].equalsIgnoreCase("fastSkillDuration")) new BukkitRunnable(){
                 //发动技能所需时长
                 @Override
@@ -771,6 +750,7 @@ public final class main extends JavaPlugin {
                     } else sender.sendMessage((isCN) ? "§c错误: 本功能仅限战士使用。" : "§c錯誤: 本功能僅限戰士使用。");
                 }
             }.runTaskAsynchronously(myPlugin);
+            // pcub option
             else if (args.length >= 1 && args[0].equalsIgnoreCase("option")) {
                 //基岩Forms菜单
                 if (!fgVaild && !geyserVaild) {
@@ -932,45 +912,44 @@ public final class main extends JavaPlugin {
         //
 
         //基岩版菜单书
+        //键名定义
+        private final NamespacedKey shortcutKey = new NamespacedKey(myPlugin, "run_command");
+        private final NamespacedKey menuKey = new NamespacedKey(myPlugin, "menubook");
         public boolean bedrockMenu(ItemStack item, Player player){
-            boolean opened = false;
             String targetID = player.getUniqueId().toString();
             String targetName = player.getName();
             //获取自定义标签
             ItemMeta itemMeta = item.getItemMeta();
-            String metaString = (itemMeta == null) ? "{}" : itemMeta.getAsString();
-            String[] metaList = metaString.substring(1, metaString.length() - 1).split(",");
-            for (String tag : metaList) {
-                if (tag.equals("id:\"pcub:menubook\"")) {
-                    //打开菜单书
-                    plSetScore("pcub_open_bedrock_menu", targetName, 1);
-                    opened = true;
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            if (!getOperationLimit("mb" + targetID, 1)) {
-                                //隐藏物品》隐藏对话》菜单
-                                //获取记分项
-                                boolean hideItem = plGetScore("pcub_hide_item_enable", targetName) == 1;
-                                boolean hideTalk = plGetScore("pcub_hide_talk_enable", targetName) == 1;
-                                if (hideItem && hideTalk) player.performCommand("forms open hide-task-be");
-                                else if (hideItem) player.performCommand("forms open hide-item-be");
-                                else if (hideTalk) player.performCommand("forms open hide-talk-be");
-                                else player.performCommand("forms open menubook-be");
-                            }
-                            setOperationLimit("mb" + targetID, 10L);
+            if(itemMeta == null) return true;
+            PersistentDataContainer dataCont = itemMeta.getPersistentDataContainer();
+            String shortcut = dataCont.get(shortcutKey, PersistentDataType.STRING);
+            if (Boolean.TRUE.equals(dataCont.get(menuKey, PersistentDataType.BOOLEAN))) {
+                //打开菜单书
+                plSetScore("pcub_open_bedrock_menu", targetName, 1);
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        if (!getOperationLimit("mb" + targetID, 1)) {
+                            //隐藏物品》隐藏对话》菜单
+                            //获取记分项
+                            boolean hideItem = plGetScore("pcub_hide_item_enable", targetName) == 1;
+                            boolean hideTalk = plGetScore("pcub_hide_talk_enable", targetName) == 1;
+                            if (hideItem && hideTalk) player.performCommand("forms open hide-task-be");
+                            else if (hideItem) player.performCommand("forms open hide-item-be");
+                            else if (hideTalk) player.performCommand("forms open hide-talk-be");
+                            else player.performCommand("forms open menubook-be");
                         }
-                    }.runTaskLater(myPlugin, 2L);
-                    break;
-                } else if (tag.startsWith("id:\"shortcut:")) {
-                    //命令捷径
-                    opened = true;
-                    if (!getOperationLimit("mb" + targetID, 1)) player.performCommand(tag.substring(13, tag.length() - 1));
-                    setOperationLimit("mb" + targetID, 10L);
-                    break;
-                }
+                        setOperationLimit("mb" + targetID, 10L);
+                    }
+                }.runTaskLater(myPlugin, 2L);
+                return true;
+            } if (shortcut != null) {
+                //命令捷径
+                if (!getOperationLimit("mb" + targetID, 1)) player.performCommand(shortcut);
+                setOperationLimit("mb" + targetID, 10L);
+                return true;
             }
-            return opened;
+            return false;
         }
 
         //取消潜行
