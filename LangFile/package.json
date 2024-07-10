@@ -1,0 +1,14 @@
+{
+  "name": "langfile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "pcub-locale": "git+https://gitee.com/BugTeaON/pcub-locale#v1.0.1"
+  }
+}
