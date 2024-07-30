@@ -3,15 +3,15 @@
 		"fallback":{},
 		"base":{},
 		"conversion":{
-			"pl.info.resourcepack_version":"盘灵无界版本： v1.1",
+			"pl.info.resourcepack_version":"盘灵无界版本： v1.2",
 			"pl.info.datapack_version":"梦回盘灵版本： ",
 			"pl.info.now_version":"§6梦回盘灵版本： ",
-			"pl.info.newest_version":"§6盘灵无界版本： v1.1",
+			"pl.info.newest_version":"§6盘灵无界版本： v1.2",
 			"pl.sign.training_job2_15.1.text1":"因为游戏限制原因",
-			"pl.sign.training_job2_15.1.text2":"请使用shift+鼠标左键",
-			"pl.sign.training_job2_15.1.text3":"或者触屏双击点两下",
+			"pl.sign.training_job2_15.1.text2":"请使用触屏双击点两下",
+			"pl.sign.training_job2_15.1.text3":"或者Shift+鼠标左键",
 			"pl.sign.training_job2_15.1.text4":"以将丹药放入背包",
-			"pl.book.t0.page2":"陆:§9种族证明§0和§9NPC对话泡泡§0是用来接取任务用的,一次会固定消耗一枚，如果用尽或不幸遗失,可以在菜单书内重新领取.\n\n柒:为了避免丹药散开，请使用shift+鼠标单击或者触屏双击移动丹药.若不小心将丹药拿起,可丢出并重新捡回,同样能防止丹药散开.",
+			"pl.book.t0.page2":"陆:§9种族证明§0和§9NPC对话泡泡§0是用来接取任务用的,一次会固定消耗一枚，如果用尽或不幸遗失,可以在菜单书内重新领取.\n\n柒:为了避免丹药散开，请使用触屏双击或者 Shift + 鼠标单击移动丹药.若不小心将丹药拿起,可丢出并重新捡回,同样能防止丹药散开.",
 			"pl.info.slotsetoffhand":"武器激活位已设置为副手，这将使得武器在基岩版中无法使用。 §7（可以切换回一至九号位恢复正常）",
 			"pl.info.rechoose_info":"§a如果您确定要转生，请在聊天栏输入以下命令： ",
 			"pl.info.rechoose_click":"\n§4§l/trigger rechoose_trigger set 1",
@@ -23,7 +23,7 @@
 	},
 	"bedrock":{
 		"fallback":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.1 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.2 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！"
 		},
 		"base":{
@@ -32,7 +32,7 @@
 			"potion.empty":" "
 		},
 		"conversion":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.1 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.2 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！",
 			"disconnectionScreen.disconnected":"（请重新连接） 未能从盘古大陆得到任何回应...",
 			"disconnectionScreen.cantConnect":"这个世界似乎仍在等待盘古的开辟...",
@@ -41,7 +41,6 @@
 			"item.iron_ingot.name":"§7破败的银票(不可使用)",
 			"item.netherStar.name":"§7黯淡的重生石(不可使用)",
 			"item.bone.name":"§7破败的木元素(不可使用)",
-			"item.dye.lime.name":"对话内容：",
 			"map.toolTip.unkown":"一张地图",
 			"enchantment.protect.all":"防御提升",
 			"enchantment.protect.fire":"忍耐火焰",
@@ -107,7 +106,7 @@
 			"pcub.combat_option.enable_mobile":"仅 Android/iOS/WP 启用",
 
 			"pcub.title.version":"§4版本信息",
-			"pcub.content.version":"当前资源包版本： v1.1 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
+			"pcub.content.version":"当前资源包版本： v1.2 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
 
 			"pcub.title.test_bless":"切换试炼祝福",
 			"pcub.content.test_bless":"可以在这里切换已获得的试炼祝福。",

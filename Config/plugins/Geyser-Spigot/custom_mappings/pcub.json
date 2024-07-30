@@ -4,13 +4,13 @@
 		//命令捷径（书）
 		"minecraft:book": [
 			{
-				"name": "book_normal",
 				"custom_model_data": 1,
+				"name": "book_normal",
 				"texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "book_written",
 				"custom_model_data": 2,
+				"name": "book_written",
 				"texture_size": 26,
 				"allow_offhand": false
 			}
@@ -18,182 +18,158 @@
 		//胡萝卜钓竿
 		"minecraft:carrot_on_a_stick": [
 			{
-				"name": "carrot_on_a_stick_1",
 				"custom_model_data": 1,
+				"name": "panling_ldl",
                 "texture_size": 24,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_2",
 				"custom_model_data": 2,
+				"name": "panling_arrowpack",
                 "texture_size": 26,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_3",
 				"custom_model_data": 3,
+				"name": "panling_back_stone",
                 "texture_size": 52,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_4",
 				"custom_model_data": 4,
+				"name": "panling_furnace4",
                 "texture_size": 24,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_5",
 				"custom_model_data": 5,
+				"name": "panling_furnace5",
                 "texture_size": 24,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_6",
 				"custom_model_data": 6,
+				"name": "panling_furnace6",
                 "texture_size": 24,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_10",
 				"custom_model_data": 10,
+				"name": "panling_shen_test",
                 "texture_size": 26,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_13",
 				"custom_model_data": 13,
+				"name": "panling_zhan_test",
                 "texture_size": 26,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_14",
 				"custom_model_data": 14,
+				"name": "panling_ren_test",
                 "texture_size": 26,
 				"allow_offhand": true
 			}, {
-				"name": "carrot_on_a_stick_21",
 				"custom_model_data": 21,
+				"name": "panling_sword1",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_22",
 				"custom_model_data": 22,
+				"name": "panling_sword2",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_23",
 				"custom_model_data": 23,
+				"name": "panling_sword3",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_24",
 				"custom_model_data": 24,
+				"name": "panling_sword4",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_25",
 				"custom_model_data": 25,
+				"name": "panling_sword5",
                 "texture_size": 52,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_26",
 				"custom_model_data": 26,
+				"name": "panling_stick",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_32",
 				"custom_model_data": 32,
+				"name": "panling_axe2",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_33",
 				"custom_model_data": 33,
+				"name": "panling_axe3",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_34",
 				"custom_model_data": 34,
+				"name": "panling_axe4",
                 "texture_size": 26,
 				"allow_offhand": false
 			}, {
-				"name": "carrot_on_a_stick_35",
 				"custom_model_data": 35,
+				"name": "panling_axe5",
                 "texture_size": 52,
 				"allow_offhand": false
-			}
-		],
-		"minecraft:blue_ice": [
-			//移植落日技能
-			{
-				"name": "fall_sun",
-				"custom_model_data": 1
 			}
 		],
 		//木稿
 		"minecraft:wooden_pickaxe": [
 			{
-				"name": "wooden_pickaxe_1",
 				"custom_model_data": 1,
+				"name": "panling_bow_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_2",
 				"custom_model_data": 2,
+				"name": "panling_crossbow_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_20",
 				"custom_model_data": 20,
+				"name": "panling_bow2_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_21",
 				"custom_model_data": 21,
+				"name": "panling_crossbow2_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_30",
 				"custom_model_data": 30,
+				"name": "panling_bow3_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_31",
 				"custom_model_data": 31,
+				"name": "panling_crossbow3_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_40",
 				"custom_model_data": 40,
+				"name": "panling_bow4_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_41",
 				"custom_model_data": 41,
+				"name": "panling_crossbow4_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_50",
 				"custom_model_data": 50,
+				"name": "panling_bow5_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_51",
 				"custom_model_data": 51,
+				"name": "panling_crossbow5_invalid",
                 "texture_size": 26,
 				"allow_offhand": false
 			},{
-				"name": "wooden_pickaxe_60",
 				"custom_model_data": 60,
+				"name": "panling_bow6_invalid",
                 "texture_size": 26,
-				"allow_offhand": false
-			}
-		],
-		//兔肉煲
-		"minecraft:rabbit_stew": [
-			{
-				"name": "rabbit_stew",
-				"custom_model_data": 0,
-				"texture_size": 26,
-				"allow_offhand": false
-			}
-		],
-		"minecraft:mushroom_stew": [
-			{
-				"name": "mushroom_stew",
-				"custom_model_data": 0,
-				"texture_size": 26,
 				"allow_offhand": false
 			}
 		],
@@ -201,239 +177,244 @@
 		//钱庄末影箱界面
 		//玻璃板扁平化（挡板）
 		"minecraft:gray_stained_glass_pane": [ {
-			"name": "pcub_gray_stained_glass_pane",
-			"custom_model_data": 0
+			"custom_model_data": 0,
+			"name": "pcub_gray_glass"
 		} ],
 		"minecraft:black_stained_glass_pane": [ {
-			"name": "pcub_black_stained_glass_pane",
-			"custom_model_data": 0
+			"custom_model_data": 0,
+			"name": "pcub_black_glass"
 		} ],
 		//木斧（UI按钮）
 		"minecraft:wooden_axe": [
 			{
-				"name": "pcub_arrow_left",
-				"custom_model_data": 1
+				"custom_model_data": 1,
+				"name": "panling_arrow_left"
 			},{
-				"name": "pcub_arrow_right",
-				"custom_model_data": 2
+				"custom_model_data": 2,
+				"name": "panling_arrow_right"
 			},{
-				"name": "pcub_bow_up",
-				"custom_model_data": 3
+				"custom_model_data": 3,
+				"name": "panling_bow_up"
 			},{
-				"name": "pcub_sword_up",
-				"custom_model_data": 4
+				"custom_model_data": 4,
+				"name": "panling_sword_up"
 			},{
-				"name": "pcub_arrow_up",
-				"custom_model_data": 5
+				"custom_model_data": 5,
+				"name": "panling_arrow_up"
 			},{
-				"name": "pcub_arrow_down",
-				"custom_model_data": 6
+				"custom_model_data": 6,
+				"name": "panling_arrow_down"
 			}
 		],
 
-		//羽毛
-		"minecraft:feather": [ {
-			"name": "feather",
-            "texture_size": 26,
-			"custom_model_data": 0,
-			"allow_offhand": false
-		} ],
-		//重华晶（诡异真菌钓竿）
-		"minecraft:warped_fungus_on_a_stick": [ {
-			"name": "warped_fungus_on_a_stick",
-            "texture_size": 52,
-			"custom_model_data": 0,
-			"allow_offhand": false
-		} ],
+		//原生副手实现
 		//重生石（下界之星）
 		"minecraft:nether_star": [ {
-			"name": "nether_star",
             "texture_size": 26,
+			"name": "nether_star",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
-
-		//五大元素（用于副手即时炼化）
 		//金元素
 		"minecraft:emerald": [ {
-			"name": "emerald",
             "texture_size": 26,
+			"name": "emerald",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
 		//木元素
 		"minecraft:bone": [ {
-			"name": "bone",
 			"texture_size": 26,
+			"name": "bone",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
 		//水元素
 		"minecraft:string": [ {
-			"name": "string",
 			"texture_size": 26,
+			"name": "string",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
 		//火元素
 		"minecraft:blaze_rod": [ {
-			"name": "blaze_rod",
 			"texture_size": 26,
+			"name": "blaze_rod",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
 		//土元素
 		"minecraft:magma_cream": [ {
-			"name": "magma_cream",
 			"texture_size": 26,
+			"name": "magma_cream",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
 		//浓缩金元素
 		"minecraft:flint": [{
-			"name": "flint",
             "texture_size": 52,
+			"name": "flint",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
 		//浓缩木元素
 		"minecraft:melon_seeds": [{
-			"name": "seeds_melon",
             "texture_size": 52,
+			"name": "seeds_melon",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
 		//浓缩水元素
 		"minecraft:wheat_seeds": [{
-			"name": "seeds_wheat",
             "texture_size": 52,
+			"name": "seeds_wheat",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
 		//浓缩火元素
 		"minecraft:charcoal": [{
-			"name": "charcoal",
             "texture_size": 52,
+			"name": "charcoal",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
 		//浓缩土元素
 		"minecraft:pumpkin_seeds": [{
-			"name": "seeds_pumpkin",
             "texture_size": 52,
+			"name": "seeds_pumpkin",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
 
-		//雪球缩小
+		//贴图缩小
+		//雪球
 		"minecraft:snowball": [ {
-			"name": "snowball",
             "texture_size": 26,
+			"name": "snowball",
 			"custom_model_data": 0,
 			"allow_offhand": false
 		} ],
+		//重华晶（诡异真菌钓竿）
+		"minecraft:warped_fungus_on_a_stick": [ {
+            "texture_size": 52,
+			"name": "warped_fungus_on_a_stick",
+			"custom_model_data": 0,
+			"allow_offhand": false
+		} ],
+
 		//绊线钩钥匙
 		"minecraft:tripwire_hook": [ {
-			"name": "tripwire_hook",
             "texture_size": 26,
+			"name": "pcub_tripwire_hook",
 			"custom_model_data": 0,
 			"allow_offhand": false
 		} ],
+
+		//落日技能特效模型
+		"minecraft:blue_ice": [
+			{
+				"custom_model_data": 1,
+				"name": "pcub_fall_sun"
+			}
+		],
+
 		//种族补给品
 		"minecraft:brick": [
 			{
-				"name": "brick_money0",
 				"custom_model_data": 1,
+				"name": "panling_money0",
 				"texture_size": 52,
 				"allow_offhand": true
 			},{
-				"name": "brick_money1",
 				"custom_model_data": 2,
+				"name": "panling_money1",
 				"texture_size": 26,
 				"allow_offhand": true
 			},{
-				"name": "brick_money2",
 				"custom_model_data": 3,
+				"name": "panling_money2",
 				"texture_size": 52,
 				"allow_offhand": true
 			},{
-				"name": "brick_money3",
 				"custom_model_data": 4,
+				"name": "panling_money3",
 				"texture_size": 52,
 				"allow_offhand": true
 			},{
-				"name": "brick_money4",
 				"custom_model_data": 5,
+				"name": "panling_money4",
 				"texture_size": 52,
 				"allow_offhand": true
 			}
 		],
+
 		//附灵石
 		"minecraft:blue_dye": [
 			{
-				"name": "enchant_stone_armor",
 				"custom_model_data": 0,
+				"name": "panling_enchant_stone_armor",
 				"texture_size": 52,
 				"allow_offhand": true
 			},{
-				"name": "enchant_stone_weapon",
+				"name": "panling_enchant_stone_weapon",
 				"custom_model_data": 2,
 				"texture_size": 52,
 				"allow_offhand": true
 			}
 		],
+
 		//纪念版限定玩偶
 		"minecraft:echo_shard": [
 			{
-				"name": "echo_shard_1",
+				"name": "panling_figurines_1",
 				"custom_model_data": 1,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_2",
+				"name": "panling_figurines_2",
 				"custom_model_data": 2,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_3",
+				"name": "panling_figurines_3",
 				"custom_model_data": 3,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_4",
+				"name": "panling_figurines_4",
 				"custom_model_data": 4,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_5",
+				"name": "panling_figurines_5",
 				"custom_model_data": 5,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_6",
+				"name": "panling_figurines_6",
 				"custom_model_data": 6,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_7",
+				"name": "panling_figurines_7",
 				"custom_model_data": 7,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_8",
+				"name": "panling_figurines_8",
 				"custom_model_data": 8,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_9",
+				"name": "panling_figurines_9",
 				"custom_model_data": 9,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_10",
+				"name": "panling_figurines_10",
 				"custom_model_data": 10,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_11",
+				"name": "panling_figurines_11",
 				"custom_model_data": 11,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_12",
+				"name": "panling_figurines_12",
 				"custom_model_data": 12,
 				"allow_offhand": false
 			},{
-				"name": "echo_shard_13",
+				"name": "panling_figurines_13",
 				"custom_model_data": 13,
 				"allow_offhand": false
 			}
