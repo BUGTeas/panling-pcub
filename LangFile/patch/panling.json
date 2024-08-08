@@ -3,10 +3,10 @@
 		"fallback":{},
 		"base":{},
 		"conversion":{
-			"pl.info.resourcepack_version":"盘灵无界版本： v1.2",
+			"pl.info.resourcepack_version":"盘灵无界版本： v1.3",
 			"pl.info.datapack_version":"梦回盘灵版本： ",
 			"pl.info.now_version":"§6梦回盘灵版本： ",
-			"pl.info.newest_version":"§6盘灵无界版本： v1.2",
+			"pl.info.newest_version":"§6盘灵无界版本： v1.3",
 			"pl.sign.training_job2_15.1.text1":"因为游戏限制原因",
 			"pl.sign.training_job2_15.1.text2":"请使用触屏双击点两下",
 			"pl.sign.training_job2_15.1.text3":"或者Shift+鼠标左键",
@@ -23,7 +23,7 @@
 	},
 	"bedrock":{
 		"fallback":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.2 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！"
 		},
 		"base":{
@@ -32,7 +32,7 @@
 			"potion.empty":" "
 		},
 		"conversion":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.2 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！",
 			"disconnectionScreen.disconnected":"（请重新连接） 未能从盘古大陆得到任何回应...",
 			"disconnectionScreen.cantConnect":"这个世界似乎仍在等待盘古的开辟...",
@@ -46,12 +46,10 @@
 			"enchantment.protect.fire":"忍耐火焰",
 			"enchantment.protect.projectile":"抵御箭矢",
 			"enchantment.thorns":"反射伤害",
-			"trade.notEnough":"不够 %s §8请检查物品名称是否和交易项一致且足够",
+			"trade.notEnough":"不够 %s §8请放入足够且名称和左侧栏一致的物品",
 			"playscreen.realms":"威廉与境界",
 			"soundCategory.music":"音乐 (服务器内无效)",
 			"options.group.audio":"游戏内总音量",
-			"options.uiprofile":"UI 档案 (建议经典)",
-			"options.uiprofile.pocket":"携带版 (资源包 UI 暂未适配)",
 			"gui.submit":"§l保存更改",
 			"potion.conduitPower":"洛神祝福",
 			"potion.digSlowDown":"坎水禁锢",
@@ -59,13 +57,13 @@
 			"potion.wither":"瘴气",
 			"trade.mysteriousText":"检查",
 		
-			"pcub.ui_tips.inventory.touch":"§e§l友情提示： §r丹药/煲类食物/符文最多可堆叠至64，但受限于客户端，§f§l这些物品只能通过双击进行移动§r。 （详见游玩指南网页）",
-			"pcub.ui_tips.inventory.mouse":"§e§l友情提示： §r丹药/煲类食物/符文最多可堆叠至64，但受限于客户端，§f§l这些物品只能通过shift+鼠标左键进行移动§r。 （详见游玩指南网页）",
-			"pcub.ui_tips.inventory.game_pad":"§e§l友情提示： §r丹药/煲类食物/符文最多可堆叠至64，但受限于客户端，§f§l这些物品无法直接移动，只能丢出再捡回§r。 （详见游玩指南网页）",
-			"pcub.ui_tips.trade":"§e§l友情提示： §r触屏§f§l按住左侧交易菜单中的物品图标可显示物品信息§r。 选择交易项后，如果相同图标的错误物品被自动放入槽位，那么交易时会自动纠正，无需担心，只需检查交易是否成功即可。 §f§l但如果交易槽红色不能交易§r，请手动将足够的正确物品放入槽位。 §f§l在交易后，如果物品紧随手指而不放入物品栏§r，点击外面将其扔出，然后捡回即可。 §f§l如果在选择交易项后自动跳转到其他交易项§r，请将槽位上的物品放下来，然后一次性重新选择。 （交易前建议按下“检查”确认物品是否正确） 请尊重剧情，§f§l书本需阅读后才能交易§r。 （详见游玩指南网页）",
+			"pcub.ui_tips.inventory.touch":"§e§l友情提示： §r丹药/煲类食物/符文最多可堆叠至 64，但受限于客户端，§f§l这些物品只能通过双击进行移动§r。 （详见游玩指南网页）",
+			"pcub.ui_tips.inventory.mouse":"§e§l友情提示： §r丹药/煲类食物/符文最多可堆叠至 64，但受限于客户端，§f§l这些物品只能通过Shift+鼠标左键进行移动§r。 （详见游玩指南网页）",
+			"pcub.ui_tips.inventory.game_pad":"§e§l友情提示： §r丹药/煲类食物/符文最多可堆叠至 64，但受限于客户端，§f§l这些物品无法直接移动，只能丢出再捡回§r。 （详见游玩指南网页）",
+			"pcub.ui_tips.trade":"§e§l友情提示： §r触屏§f§l按住左侧交易栏中的物品图标可显示物品信息§r。 §f§l如果在选择交易项后自动跳转到其他交易项§r，请关闭再重新打开交易界面，然后一次性重新选择。 请尊重剧情，§f§l书本需阅读后才能交易§r。 （详见游玩指南网页）",
 			"pcub.ui_tips.hopper.touch":"§e§l友情提示： §r由于游戏限制，请§f§l双击丹药以将其放入背包， 或者丢出再捡回§r。",
 			"pcub.ui_tips.hopper.mouse":"§e§l友情提示： §r由于游戏限制，请§f§l使用shift+鼠标左键转移丹药， 或者丢出再捡回§r。",
-			"pcub.ui_tips.hopper.game_pad":"§e§l友情提示： §r由于游戏限制，请§f§l与锅炉保持距离， 然后将丹药丢出再捡回§r。",
+			"pcub.ui_tips.hopper.game_pad":"§e§l友情提示： §r由于游戏限制，请§f§l与丹炉保持距离， 然后将丹药丢出再捡回§r。",
 			"pcub.ui_tips.enderchest":"§e§l友情提示： §r触屏交互需双击（物品栏要有一格留空）或丢出图标，键鼠同 Java 版一样直接单击即可。 （详见游玩指南网页）",
 			"pcub.title.menubook":"菜单",
 			"pcub.content.menubook":"游戏内常规功能选项都在这里 （有部分功能在钱庄服务箱子中）",
@@ -106,7 +104,7 @@
 			"pcub.combat_option.enable_mobile":"仅 Android/iOS/WP 启用",
 
 			"pcub.title.version":"§4版本信息",
-			"pcub.content.version":"当前资源包版本： v1.2 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
+			"pcub.content.version":"当前资源包版本： v1.3 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
 
 			"pcub.title.test_bless":"切换试炼祝福",
 			"pcub.content.test_bless":"可以在这里切换已获得的试炼祝福。",
