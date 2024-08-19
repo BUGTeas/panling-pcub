@@ -23,7 +23,7 @@
 	},
 	"bedrock":{
 		"fallback":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.2 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！"
 		},
 		"base":{
@@ -32,7 +32,7 @@
 			"potion.empty":" "
 		},
 		"conversion":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.2 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！",
 			"disconnectionScreen.disconnected":"（请重新连接） 未能从盘古大陆得到任何回应...",
 			"disconnectionScreen.cantConnect":"这个世界似乎仍在等待盘古的开辟...",
@@ -48,7 +48,7 @@
 			"enchantment.thorns":"反射伤害",
 			"trade.notEnough":"不够 %s §8请放入足够且名称和左侧栏一致的物品",
 			"playscreen.realms":"威廉与境界",
-			"soundCategory.music":"音乐 (服务器内无效)",
+			"soundCategory.music":"原版音乐 (服务器内无效)",
 			"options.group.audio":"游戏内总音量",
 			"gui.submit":"§l保存更改",
 			"potion.conduitPower":"洛神祝福",
@@ -104,7 +104,7 @@
 			"pcub.combat_option.enable_mobile":"仅 Android/iOS/WP 启用",
 
 			"pcub.title.version":"§4版本信息",
-			"pcub.content.version":"当前资源包版本： v1.3 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
+			"pcub.content.version":"当前资源包版本： v1.3.2 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
 
 			"pcub.title.test_bless":"切换试炼祝福",
 			"pcub.content.test_bless":"可以在这里切换已获得的试炼祝福。",
