@@ -1,12 +1,14 @@
 {
 	"geyser":{
 		"fallback":{},
-		"base":{},
+		"base":{
+			"container.enderchest": "container.enderchest:force_desktop_ui:"
+		},
 		"conversion":{
-			"pl.info.resourcepack_version":"盘灵无界版本： v1.3",
+			"pl.info.resourcepack_version":"盘灵无界版本： v1.3.3",
 			"pl.info.datapack_version":"梦回盘灵版本： ",
 			"pl.info.now_version":"§6梦回盘灵版本： ",
-			"pl.info.newest_version":"§6盘灵无界版本： v1.3",
+			"pl.info.newest_version":"§6盘灵无界版本： v1.3.3",
 			"pl.sign.training_job2_15.1.text1":"因为游戏限制原因",
 			"pl.sign.training_job2_15.1.text2":"请使用触屏双击点两下",
 			"pl.sign.training_job2_15.1.text3":"或者Shift+鼠标左键",
@@ -15,15 +17,19 @@
 			"pl.info.slotsetoffhand":"武器激活位已设置为副手，这将使得武器在基岩版中无法使用。 §7（可以切换回一至九号位恢复正常）",
 			"pl.info.rechoose_info":"§a如果您确定要转生，请在聊天栏输入以下命令： ",
 			"pl.info.rechoose_click":"\n§4§l/trigger rechoose_trigger set 1",
+			"pl.info.www.1":"§e官方网站： http://pan-gu-continent.blogspot.tw (需要科学上网)",
+			"pl.info.www.2":"§e粉丝专页： https://www.facebook.com/pangu.continent (需要科学上网)",
 			"pcub.not_suppor.offhand":"§c检测到您正在使用副手作为武器激活位，§e这在基岩版中暂不支持§c，请通过菜单书将武器激活位设置为主手§e（一至九号位）§c，否则武器将无法使用。",
 			"pcub.showitem.title":"§6请选择要展示的物品",
 			"pcub.showitem.subtitle":"§a点击或按下槽位对应数字键"
 		},
-		"tw":{}
+		"tw":{
+			"container.enderchest": "container.enderchest:force_desktop_ui:"
+		}
 	},
 	"bedrock":{
 		"fallback":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.2 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.3 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！"
 		},
 		"base":{
@@ -32,7 +38,7 @@
 			"potion.empty":" "
 		},
 		"conversion":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.2 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.3 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！",
 			"disconnectionScreen.disconnected":"（请重新连接） 未能从盘古大陆得到任何回应...",
 			"disconnectionScreen.cantConnect":"这个世界似乎仍在等待盘古的开辟...",
@@ -104,7 +110,7 @@
 			"pcub.combat_option.enable_mobile":"仅 Android/iOS/WP 启用",
 
 			"pcub.title.version":"§4版本信息",
-			"pcub.content.version":"当前资源包版本： v1.3.2 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
+			"pcub.content.version":"当前资源包版本： v1.3.3 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
 
 			"pcub.title.test_bless":"切换试炼祝福",
 			"pcub.content.test_bless":"可以在这里切换已获得的试炼祝福。",
