@@ -28,6 +28,12 @@
    - overrides（**重要!** 为 Geyser 自定义语言文件，“.json”格式，放至 Geyser 配置目录的“locales”目录下，否则游戏内容乱码）
    - texts（为基岩客户端资源包语言文件，虽较少涉及游戏内容，但不可或缺）
 
+## 生成部分数据包函数文件
+
+**环境要求:** Node.js
+
+由于数据满足条件 `uses < maxUses - 2147483647` 的村民交易项（`Offers.Recipes[x]`）无法在基岩版 1.21.30+ 中使用触屏或 Shift 键交易，需要对其进行修改以实现修复，修复原理是将数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。这部分的数据包代码结构高度重复，故使用 JS 脚本批量生成。在当前目录下执行命令 `node make-functions.js` 即可，当村民被玩家交互时，由 PCUB 插件在交易界面加载前执行数据包中的函数，对其前 64 个交易项进行自动检查修复，当然也可更改此脚本中的变量 `maxLength` 以更改修复数量。
+
 ## 修改资源包
 
 资源包属于人工手动移植，没有生成的途径，故不提供源代码，可以直接从发布了的成品中薅过来。您可以在 `PanGuContinentUnbounded-server/plugins/Geyser-Spigot/packs` 中找到它们，虽然是 zip 格式，但其内部是标准的基岩版资源包结构。

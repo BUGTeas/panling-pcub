@@ -5,6 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -595,6 +597,25 @@ public final class main extends JavaPlugin {
                 }
             }
         }
+
+
+        @EventHandler
+        public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+            Entity targetEntity = event.getRightClicked();
+            //村民被玩家点击后，在展示交易界面前先执行修复函数
+            if (targetEntity.getType() == EntityType.VILLAGER) {
+                boolean fixed = false;
+                for (String tag : targetEntity.getScoreboardTags()) if (tag.equals("bedrock_fixed_134")) {
+                    fixed = true;
+                    break;
+                }
+                if (!fixed) {
+                    plConsoleExec("execute as " + targetEntity.getUniqueId().toString() + " run function pcub:bedrock_villager_fix/main");
+                    getLogger().info("已自动对 " + targetEntity.getName() + " 的部分交易项进行修改，以修复基岩版 1.20.30+ 的交易 Bug。");
+                }
+            }
+        }
+
 
         //潜行记录
         ArrayList<BukkitRunnable> sneakSkill = new ArrayList<>();
