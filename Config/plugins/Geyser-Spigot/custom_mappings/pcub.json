@@ -310,14 +310,6 @@
 			"allow_offhand": false
 		} ],
 
-		//落日技能特效模型
-		"minecraft:blue_ice": [
-			{
-				"custom_model_data": 1,
-				"name": "pcub_fall_sun"
-			}
-		],
-
 		//种族补给品
 		"minecraft:brick": [
 			{
