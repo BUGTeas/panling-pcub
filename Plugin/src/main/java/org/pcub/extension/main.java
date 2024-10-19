@@ -217,9 +217,7 @@ public final class main extends JavaPlugin {
             String targetName = targetPlayer.getName();
             String targetID = targetPlayer.getUniqueId().toString();
             //if (targetPlayer.isOp()) targetPlayer.chat(Bukkit.getWorld("world").getFullTime() + " 容器打开");
-            int invOpened = plGetTempScore("inventory_opened", targetID);
-            if (invOpened == 1) plSetScore("pcub_hopper_opened", targetName, 1);
-            if (invOpened == 2) plConsoleExec("execute as " + targetID + " run function pld:system/chest_menu/open");
+            if (plGetTempScore("inventory_opened", targetID) == 2) plConsoleExec("execute as " + targetID + " run function pld:system/chest_menu/open");
         }
 
         //快速移动变量
@@ -499,12 +497,6 @@ public final class main extends JavaPlugin {
             if (plGetScore("screen", targetName) >= 0) {
                 plConsoleExec("execute as " + targetName + " run function #pcub:chest_menu_leave");
             }
-            if (plGetScore("pcub_hopper_opened", targetName) == 1) new BukkitRunnable() {
-                @Override
-                public void run() {
-                    plSetScore("pcub_hopper_opened", targetName, 0);
-                }
-            }.runTaskLaterAsynchronously(myPlugin,5L);
         }
 
         //玩家交互事件
@@ -530,7 +522,7 @@ public final class main extends JavaPlugin {
                 if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
                 //检查方块是否可操作
                 else if ((!targetPlayer.isSneaking() || usedItem == null) && !targetMat.isAir()) {
-                    if (
+                    blockFunction = (
                         targetStr.endsWith("CHEST") ||
                         targetStr.endsWith("BUTTON")||
                         targetStr.endsWith("DOOR") ||
@@ -540,13 +532,9 @@ public final class main extends JavaPlugin {
                         targetMat == Material.LEVER ||
                         targetMat == Material.NOTE_BLOCK ||
                         targetMat == Material.DROPPER ||
-                        targetMat == Material.JUKEBOX
-                    ) blockFunction = true;
-                    //开启漏斗（基岩版）
-                    else if (targetMat == Material.HOPPER) {
-                        blockFunction = true;
-                        if (isFloodgate || isGeyser) plSetTempScore("inventory_opened", targetID, 1);
-                    }
+                        targetMat == Material.JUKEBOX ||
+                        targetMat == Material.HOPPER
+                    );
                     //开启钱庄箱子
                     if (targetMat == Material.ENDER_CHEST) plSetTempScore("inventory_opened", targetID, 2);
                     if (blockFunction) new BukkitRunnable() {

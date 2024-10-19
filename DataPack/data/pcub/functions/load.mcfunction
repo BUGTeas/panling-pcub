@@ -18,9 +18,6 @@ scoreboard objectives add pcub_fastskill_duration dummy
 scoreboard objectives add pcub_api_version dummy
 scoreboard players set #system pcub_api_version 1
 
-#（暂无作用）漏斗投放后先关闭再传送
-scoreboard objectives add pcub_hopper_opened dummy
-
 #隐藏任务
 scoreboard objectives add pcub_hide_item dummy
 scoreboard objectives add pcub_hide_talk dummy
