@@ -516,6 +516,7 @@ public final class main extends JavaPlugin {
             String targetID = targetIDN.toString();
             boolean isGeyser = geyserVaild && GeyserApi.api().isBedrockPlayer(targetIDN);
             boolean isFloodgate = fgVaild && FloodgateApi.getInstance().isFloodgatePlayer(targetIDN);
+            ItemStack usedItem = event.getItem();
             //调试
             //String cbt = "";
             //if (event.getClickedBlock() != null) cbt = " " + event.getClickedBlock().getType();
@@ -528,7 +529,7 @@ public final class main extends JavaPlugin {
                 //取消冒险玩家的食用蛋糕、破坏花盆操作
                 if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
                 //检查方块是否可操作
-                else if (!targetPlayer.isSneaking() && !targetMat.isAir()) {
+                else if ((!targetPlayer.isSneaking() || usedItem == null) && !targetMat.isAir()) {
                     if (
                         targetStr.endsWith("CHEST") ||
                         targetStr.endsWith("BUTTON")||
@@ -557,7 +558,6 @@ public final class main extends JavaPlugin {
                 }
             }
             if (event.getAction() == Action.RIGHT_CLICK_AIR || !blockFunction && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                ItemStack usedItem = event.getItem();
                 ItemMeta usedMeta = null;
                 if (usedItem != null) usedMeta = usedItem.getItemMeta();
                 Material usedType = null;
