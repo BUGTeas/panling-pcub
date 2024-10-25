@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "inventory_changed":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [ "minecraft:book" ],
+                        "nbt": "{id:\"pcub:menubook\"}"
+                    }
+                ],
+                "player": {
+                    "nbt": "{Tags:[\"player_java\"]}"
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": "pcub:menubook/panling/switch_java"
+    }
+}
