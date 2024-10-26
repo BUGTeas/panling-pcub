@@ -335,6 +335,7 @@ public final class main extends JavaPlugin {
                 setOperationLimit("pu" + targetID, 2L);
             }
 
+            boolean buttonClicked = plGetTempScore("clicked", targetID) == 1;
             if (currentInvType == InventoryType.MERCHANT && currentSlot == 2) {
                 //交易目标拿起
                 //JE Shift/F/1~9键 当丹药存在模型数据时取消动作
@@ -365,7 +366,7 @@ public final class main extends JavaPlugin {
                 //第一次点击，则限制2刻内不能拿起
                 else if (!notPickup) setOperationLimit("pu" + targetID, 2L);
             } else if (plGetScore("screen", targetName) >= 0) {
-                //钱庄箱子按钮点击
+                //钱庄末影箱按钮点击
                 boolean buttonOnCursor = isButton(cursorItem);
                 boolean buttonOnCurrent = isButton(currentItem);
                 //过滤操作
@@ -373,7 +374,7 @@ public final class main extends JavaPlugin {
                     //玩家频繁操作
                     buttonOnCurrent && getOperationLimit("ep" + targetID, 5) ||
                     //箱子整理模组、GeyserMC 导致同一刻内的多次点击
-                    plGetTempScore("clicked", targetID) > 0 ||
+                    buttonClicked ||
                     //将其他物品与按钮互换
                     cursorType != Material.AIR && !buttonOnCursor && buttonOnCurrent
                 ) {
@@ -405,7 +406,9 @@ public final class main extends JavaPlugin {
                 !isPickup(currentAction) && (
                     isForceStack(cursorType) ||
                     isForceStack(currentType)
-                )
+                ) &&
+                //未触发末影箱按钮
+                !buttonClicked
             ) {
                 if (moveUser != null && moveUser != targetPlayer && !notPickup) {
                     event.setCancelled(true);
