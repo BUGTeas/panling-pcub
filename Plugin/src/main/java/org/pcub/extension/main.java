@@ -614,17 +614,21 @@ public final class main extends JavaPlugin {
         @EventHandler
         public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
             Entity targetEntity = event.getRightClicked();
-            //村民被玩家点击后，在展示交易界面前先执行修复函数
+            Player targetPlayer = event.getPlayer();
+            //村民被玩家点击后，在打开交易界面前先执行函数
             if (targetEntity.getType() == EntityType.VILLAGER) {
-                boolean fixed = false;
-                for (String tag : targetEntity.getScoreboardTags()) if (tag.equals("bedrock_fixed_134")) {
-                    fixed = true;
+                //给玩家赋予 Tag 以便数据包函数检测到触发者
+                targetPlayer.addScoreboardTag("interact_villager");
+                //以村民身份执行函数
+                plConsoleExec("execute as " + targetEntity.getUniqueId().toString() + " run function pcub:interact_villager");
+                //如果玩家被赋予 Tag “ignoreTradeUI” 则将其删除并屏蔽交易界面
+                for (String tag : targetPlayer.getScoreboardTags()) if (tag.equals("ignoreTradeUI")) {
+                    targetPlayer.removeScoreboardTag("ignoreTradeUI");
+                    event.setCancelled(true);
                     break;
                 }
-                if (!fixed) {
-                    plConsoleExec("execute as " + targetEntity.getUniqueId().toString() + " run function pcub:bedrock_villager_fix/main");
-                    getLogger().info("已自动对 " + targetEntity.getName() + " 的部分交易项进行修改，以修复基岩版 1.20.30+ 的交易 Bug。");
-                }
+                //删除玩家 Tag
+                targetPlayer.removeScoreboardTag("interact_villager");
             }
         }
 

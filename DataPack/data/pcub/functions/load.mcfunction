@@ -24,5 +24,9 @@ scoreboard objectives add pcub_hide_talk dummy
 scoreboard objectives add pcub_hide_item_enable dummy
 scoreboard objectives add pcub_hide_talk_enable dummy
 
+#修改部分交易项，以修复基岩版 1.20.30+ 的交易 Bug
+scoreboard objectives add pcub_villagerFix_temp1 dummy
+scoreboard objectives add pcub_villagerFix_temp2 dummy
+
 #用于在基础必要组件加载后执行
 function #pcub:load
