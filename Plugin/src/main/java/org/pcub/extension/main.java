@@ -1,6 +1,7 @@
 package org.pcub.extension;
 
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -238,7 +239,7 @@ public final class main extends JavaPlugin {
             }
 
             //调试信息
-            plLogger(targetName + " " + currentClick + " " + currentInvType + " " + currentSlot + " " + event.getAction() + " 指针:" + cursorType + " 槽位:" + currentType);
+            plLogger(targetName + " " + currentClick + " " + currentInvType + " " + currentSlot + " " + currentAction + " 指针:" + cursorType + " 槽位:" + currentType);
 
             //将丹药的模型叠放转换为真实叠放
             if (
@@ -529,14 +530,14 @@ public final class main extends JavaPlugin {
             boolean isGeyser = geyserVaild && GeyserApi.api().isBedrockPlayer(targetIDN);
             boolean isFloodgate = fgVaild && FloodgateApi.getInstance().isFloodgatePlayer(targetIDN);
             ItemStack usedItem = event.getItem();
+            Action action = event.getAction();
+            Block clickedBlock = event.getClickedBlock();
             //调试
-            //String cbt = "";
-            //if (event.getClickedBlock() != null) cbt = " " + event.getClickedBlock().getType();
-            //getLogger().info(Bukkit.getWorld("world").getFullTime() + " " + event.getAction() + cbt);
+            plLogger(targetName + " " + action + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
             boolean blockFunction = false;
             //右键方块检测
-            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                Material targetMat = event.getClickedBlock().getType();
+            if (action == Action.RIGHT_CLICK_BLOCK) {
+                Material targetMat = clickedBlock.getType();
                 String targetStr = targetMat.toString();
                 //取消冒险玩家的食用蛋糕、破坏花盆操作
                 if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
@@ -566,10 +567,11 @@ public final class main extends JavaPlugin {
                                 plSetTempScore("inventory_opened", targetID, 0);
                             }
                         }.runTaskLaterAsynchronously(myPlugin,0L);
+                        plLogger(targetName + " 准备打开末影箱");
                     }
                 }
             }
-            if (event.getAction() == Action.RIGHT_CLICK_AIR || !blockFunction && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (action == Action.RIGHT_CLICK_AIR || !blockFunction && action == Action.RIGHT_CLICK_BLOCK) {
                 ItemMeta usedMeta = null;
                 if (usedItem != null) usedMeta = usedItem.getItemMeta();
                 Material usedType = null;
@@ -579,17 +581,30 @@ public final class main extends JavaPlugin {
                     boolean needCancel = getOperationLimit("dp" + targetID, 1);
                     //投掷速度单位为每投一个间隔刻数
                     int enableContinuous = plGetScore("pcub_enable_continuous", targetName),dropSpeed = 7;
-                    if(needCancel) event.setCancelled(true);
+                    if(needCancel) {
+                        event.setCancelled(true);
+                        plLogger(targetName + " 取消 - 投掷限制");
+                    }
+                    //连续投掷
                     if (
-                        //始终禁用连续投掷
+                        //始终禁用
                         enableContinuous == 0 ||
-                        //仅基岩版禁用连续投掷
+                        //仅基岩版禁用
                         enableContinuous == 2 && (isFloodgate || isGeyser) ||
-                        //仅移动端禁用连续投掷
+                        //仅移动端禁用
                         enableContinuous == 3 && plGetTempScore("is_touch", targetID) == 1
                     ) needCancel = false;
                     else dropSpeed = plGetScore("pcub_drop_interval", targetName);
-                    if (!needCancel) setOperationLimit("dp" + targetID, dropSpeed);
+                    //如果当前未限制，且投掷间隔大于0刻（MC原版投掷间隔约4刻），则在下一刻起设置限制（同一刻开始限制可能会导致 Bug）
+                    if (!needCancel && dropSpeed > 0) {
+                        int finalDropSpeed = dropSpeed;
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                setOperationLimit("dp" + targetID, finalDropSpeed);
+                            }
+                        }.runTaskLaterAsynchronously(myPlugin, 0L);
+                    }
                 }
                 //基岩版功能
                 if ((isFloodgate || isGeyser) && usedMeta != null) {
@@ -605,6 +620,9 @@ public final class main extends JavaPlugin {
                                 plSetScore("pcub_player_interact", targetName, 0);
                             }
                         }.runTaskLaterAsynchronously(myPlugin, 10L);
+                        plLogger(targetName + " 通过计分板向数据包请求");
+                    } else {
+                        plLogger(targetName + ((openMenu) ? " 打开菜单书或" : " ") + "请求频率限制");
                     }
                 }
             }
@@ -845,7 +863,7 @@ public final class main extends JavaPlugin {
                         int currentEnCont = plGetScore("pcub_enable_continuous", targetName);
                         optForm
                             .dropdown(dropTitle + ((isCN) ? " （可能受网络延迟影响）" : " （可能受網路延遲影響）"), currentEnCont, "pcub.combat_option.disable", "pcub.combat_option.enable", "pcub.combat_option.disable_bedrock", "pcub.combat_option.disable_mobile")
-                            .slider(dropTitle + ((isCN) ? "间隔 （秒）" : "間隔 （秒）"), (float) 0, (float) 1, (float) 0.05, (float) currentDropInterval / 20);
+                            .slider(dropTitle + ((isCN) ? "间隔 （秒）" : "間隔 （秒）"), 0F, 1F, 0.05F, (float) currentDropInterval / 20);
                         int currentFastSkill,currentSkillDuration;
                         //战士专项
                         if (job == 0) {
@@ -855,7 +873,7 @@ public final class main extends JavaPlugin {
                             currentSkillDuration = plGetScore("pcub_fastskill_duration", targetName);
                             optForm
                                 .dropdown(skillTitle, currentFastSkill, "pcub.combat_option.disable", "pcub.combat_option.enable", "pcub.combat_option.enable_bedrock", "pcub.combat_option.enable_mobile")
-                                .slider(skillTitle + ((isCN) ? " 所需时长 （秒）" : " 所需時長 （秒）"), (float) 0, (float) 1, (float) 0.05, (float) currentSkillDuration / 20);
+                                .slider(skillTitle + ((isCN) ? " 所需时长 （秒）" : " 所需時長 （秒）"), 0F, 1F, 0.05F, (float) currentSkillDuration / 20);
                         } else currentFastSkill = currentSkillDuration = -1;
                         optForm
                             .closedResultHandler(() -> new BukkitRunnable(){
@@ -952,7 +970,7 @@ public final class main extends JavaPlugin {
                     return content;
                 }
                 if (args[0].equalsIgnoreCase("dropInterval")) {
-                    if (args[1].isEmpty()) for (int i = 4; i <= 20; i += 4) content.add(i + "");
+                    if (args[1].isEmpty()) for (int i = 0; i <= 20; i += 4) content.add(i + "");
                     else for (int i = 0; i <= 20; i ++) if ((i + "").startsWith(args[1])) content.add(i + " ");
                     return content;
                 }
