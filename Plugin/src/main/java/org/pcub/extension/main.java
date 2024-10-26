@@ -62,7 +62,7 @@ public final class main extends JavaPlugin {
     //调试日志输出开关
     boolean showLog = false;
     public void plLogger(String info) {
-        if (showLog) console.sendMessage("PCUB调试|" + Bukkit.getWorld("world").getFullTime() + " " + info);
+        console.sendMessage("PCUB调试|" + Bukkit.getWorld("world").getFullTime() + " " + info);
     }
 
     public class eventListener implements Listener, CommandExecutor, TabExecutor {
@@ -239,7 +239,7 @@ public final class main extends JavaPlugin {
             }
 
             //调试信息
-            plLogger(targetName + " " + currentClick + " " + currentInvType + " " + currentSlot + " " + currentAction + " 指针:" + cursorType + " 槽位:" + currentType);
+            if (showLog) plLogger(targetName + " " + currentClick + " " + currentInvType + " " + currentSlot + " " + currentAction + " 指针:" + cursorType + " 槽位:" + currentType);
 
             //将丹药的模型叠放转换为真实叠放
             if (
@@ -250,7 +250,7 @@ public final class main extends JavaPlugin {
                 currentInvType == InventoryType.PLAYER &&
                 potionModelToStack(cursorItem, cursorType, cursorMeta)
             ) {
-                plLogger(targetName + " 伪叠放丹药转换");
+                if (showLog) plLogger(targetName + " 伪叠放丹药转换");
                 cursorMeta = cursorItem.getItemMeta();
                 cursorMetaStr = cursorMeta.getAsString();
             }
@@ -259,7 +259,7 @@ public final class main extends JavaPlugin {
             if (currentAction == InventoryAction.SWAP_WITH_CURSOR) {
                 //强制合并（常规交换）
                 int margeResult = margeItem(currentItem, cursorItem, currentType, currentMetaStr, cursorType, cursorMetaStr);
-                if (margeResult != 0) plLogger(targetName + " 强制交换合并 x" + margeResult);
+                if (margeResult != 0 && showLog)  plLogger(targetName + " 强制交换合并 x" + margeResult);
             } else if (currentAction == InventoryAction.HOTBAR_SWAP) {
                 //强制合并&刷新（HOTBAR_SWAP）
                 int hotbarSlot = event.getHotbarButton();
@@ -269,7 +269,7 @@ public final class main extends JavaPlugin {
                     int margeResult = margeItem(currentItem, targetItem, currentType, currentMetaStr, null, null);
                     if (margeResult != 0){
                         event.setCancelled(true);
-                        plLogger(targetName + " 取消并强制快捷栏合并 x" + margeResult);
+                        if (showLog) plLogger(targetName + " 取消并强制快捷栏合并 x" + margeResult);
                     }
                     if (targetItem != null && isForceStack(targetItem.getType())) new BukkitRunnable() {
                         @Override
@@ -282,7 +282,7 @@ public final class main extends JavaPlugin {
                 //当变量被其他玩家占用、或同一刻下再次拿起，则取消动作
                 if (moveUser != null) {
                     event.setCancelled(true);
-                    plLogger("取消 - 非标准叠放物同一刻再次拿起");
+                    if (showLog) plLogger("取消 - 非标准叠放物同一刻再次拿起");
                 }
                 //除交易操作以外执行
                 else if (currentInvType != InventoryType.MERCHANT || currentSlot != 2) {
@@ -330,7 +330,7 @@ public final class main extends JavaPlugin {
                     currentAction == InventoryAction.SWAP_WITH_CURSOR
                 ) {
                     event.setCancelled(true);
-                    plLogger(targetName + " 取消 - 拿起和交换受限");
+                    if (showLog) plLogger(targetName + " 取消 - 拿起和交换受限");
                 }
                 setOperationLimit("pu" + targetID, 2L);
             }
@@ -349,7 +349,7 @@ public final class main extends JavaPlugin {
                     currentMeta.hasCustomModelData()
                 ) {
                     event.setCancelled(true);
-                    plLogger(targetName + " 取消 - 伪叠放丹药Shift/F/1~9键交易");
+                    if (showLog) plLogger(targetName + " 取消 - 伪叠放丹药Shift/F/1~9键交易");
                 }
                 //基岩 键鼠左键 (在 Geyser 3be9b8a 后失效) 同一刻内多次触发，且动作为右键拿起全部，则开始自动归位
                 else if (
@@ -360,7 +360,7 @@ public final class main extends JavaPlugin {
                     cursorType != Material.AIR
                 ) {
                     afterTrade(cursorItem, targetPlayer);
-                    plLogger(targetName + " 强制交易归位 - 同一刻内多次触发且类型为右键拿起全部");
+                    if (showLog) plLogger(targetName + " 强制交易归位 - 同一刻内多次触发且类型为右键拿起全部");
                 }
                 //第一次点击，则限制2刻内不能拿起
                 else if (!notPickup) setOperationLimit("pu" + targetID, 2L);
@@ -378,7 +378,7 @@ public final class main extends JavaPlugin {
                     cursorType != Material.AIR && !buttonOnCursor && buttonOnCurrent
                 ) {
                     event.setCancelled(true);
-                    plLogger(targetName + " 取消 - 频繁操作/同一刻内多次点击/将其他物品与按钮互换");
+                    if (showLog) plLogger(targetName + " 取消 - 频繁操作/同一刻内多次点击/将其他物品与按钮互换");
                 }
                 //否则按下按钮开启限制，在下一刻执行按键函数并解除限制
                 else if (buttonOnCurrent) {
@@ -409,7 +409,7 @@ public final class main extends JavaPlugin {
             ) {
                 if (moveUser != null && moveUser != targetPlayer && !notPickup) {
                     event.setCancelled(true);
-                    plLogger(targetName + " 取消 - 不同数据");
+                    if (showLog) plLogger(targetName + " 取消 - 不同数据");
                 }
                 //基岩版移动/合并的同一刻内多次触发
                 if (
@@ -428,7 +428,7 @@ public final class main extends JavaPlugin {
                         //moveFrom.setAmount(0);
                         ItemStack srcSlotItem = moveFormInv.getItem(moveFormSlot);
                         if (srcSlotItem != null) srcSlotItem.setAmount(0);
-                        plLogger(targetName + " 取消并强制移动");
+                        if (showLog) plLogger(targetName + " 取消并强制移动");
                         //限制2刻内不能拿起
                         setOperationLimit("pu" + targetID, 2L);
                     }
@@ -485,7 +485,7 @@ public final class main extends JavaPlugin {
                         }
                         //清空指针上的多余
                         if (cursorItem != null) cursorItem.setAmount(0);
-                        plLogger(targetName + " 取消并强制双击合并");
+                        if (showLog) plLogger(targetName + " 取消并强制双击合并");
                         //限制2刻内不能拿起
                         setOperationLimit("pu" + targetID, 2L);
                     }
@@ -498,7 +498,7 @@ public final class main extends JavaPlugin {
                 ) {
                     afterTrade(cursorItem, targetPlayer);
                     event.setCancelled(true);
-                    plLogger(targetName + " 取消并强制交易归位 - 同一刻内任意触发，且指针不为空");
+                    if (showLog) plLogger(targetName + " 取消并强制交易归位 - 同一刻内任意触发，且指针不为空");
                 }
                 //放置物品后强制刷新物品栏
                 new BukkitRunnable() {
@@ -533,7 +533,7 @@ public final class main extends JavaPlugin {
             Action action = event.getAction();
             Block clickedBlock = event.getClickedBlock();
             //调试
-            plLogger(targetName + " " + action + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
+            if (showLog) plLogger(targetName + " " + action + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
             boolean blockFunction = false;
             //右键方块检测
             if (action == Action.RIGHT_CLICK_BLOCK) {
@@ -567,7 +567,7 @@ public final class main extends JavaPlugin {
                                 plSetTempScore("inventory_opened", targetID, 0);
                             }
                         }.runTaskLaterAsynchronously(myPlugin,0L);
-                        plLogger(targetName + " 准备打开末影箱");
+                        if (showLog) plLogger(targetName + " 准备打开末影箱");
                     }
                 }
             }
@@ -583,7 +583,7 @@ public final class main extends JavaPlugin {
                     int enableContinuous = plGetScore("pcub_enable_continuous", targetName),dropSpeed = 7;
                     if(needCancel) {
                         event.setCancelled(true);
-                        plLogger(targetName + " 取消 - 投掷限制");
+                        if (showLog) plLogger(targetName + " 取消 - 投掷限制");
                     }
                     //连续投掷
                     if (
@@ -620,10 +620,8 @@ public final class main extends JavaPlugin {
                                 plSetScore("pcub_player_interact", targetName, 0);
                             }
                         }.runTaskLaterAsynchronously(myPlugin, 10L);
-                        plLogger(targetName + " 通过计分板向数据包请求");
-                    } else {
-                        plLogger(targetName + ((openMenu) ? " 打开菜单书或" : " ") + "请求频率限制");
-                    }
+                        if (showLog) plLogger(targetName + " 通过计分板向数据包请求");
+                    } else if (showLog) plLogger(targetName + ((openMenu) ? " 打开菜单书或" : " ") + "请求频率限制");
                 }
             }
         }
@@ -643,6 +641,7 @@ public final class main extends JavaPlugin {
                 for (String tag : targetPlayer.getScoreboardTags()) if (tag.equals("ignoreTradeUI")) {
                     targetPlayer.removeScoreboardTag("ignoreTradeUI");
                     event.setCancelled(true);
+                    if (showLog) plLogger(targetPlayer.getName() + " 取消打开 " + targetEntity.getName() + " 的交易界面");
                     break;
                 }
                 //删除玩家 Tag
