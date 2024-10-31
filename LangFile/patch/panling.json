@@ -5,10 +5,10 @@
 			"container.enderchest": "container.enderchest:force_desktop_ui:"
 		},
 		"conversion":{
-			"pl.info.resourcepack_version":"盘灵无界版本： v1.3.4",
+			"pl.info.resourcepack_version":"盘灵无界版本： v1.4.0",
 			"pl.info.datapack_version":"梦回盘灵版本： v",
 			"pl.info.now_version":"§6梦回盘灵版本： v",
-			"pl.info.newest_version":"§6盘灵无界版本： v1.3.4",
+			"pl.info.newest_version":"§6盘灵无界版本： v1.4.0",
 			"pl.sign.training_job2_15.1.text1":"因为游戏限制原因",
 			"pl.sign.training_job2_15.1.text2":"请使用触屏双击点两下",
 			"pl.sign.training_job2_15.1.text3":"或者Shift+鼠标左键",
@@ -29,7 +29,7 @@
 	},
 	"bedrock":{
 		"fallback":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.5 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.4.0 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！"
 		},
 		"base":{
@@ -38,7 +38,7 @@
 			"potion.empty":" "
 		},
 		"conversion":{
-			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.3.5 （适用于梦回盘灵 v1.1.0 版本）",
+			"pack.name":"§6【盘灵无界】 §h盘灵古域基岩端资源包 v1.4.0 （适用于梦回盘灵 v1.1.0 版本）",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通服务端使用！",
 			"disconnectionScreen.disconnected":"（请重新连接） 未能从盘古大陆得到任何回应...",
 			"disconnectionScreen.cantConnect":"这个世界似乎仍在等待盘古的开辟...",
@@ -110,7 +110,7 @@
 			"pcub.combat_option.enable_mobile":"仅 Android/iOS/WP 启用",
 
 			"pcub.title.version":"§4版本信息",
-			"pcub.content.version":"当前资源包版本： v1.3.5 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
+			"pcub.content.version":"当前资源包版本： v1.4.0 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
 
 			"pcub.title.test_bless":"切换试炼祝福",
 			"pcub.content.test_bless":"可以在这里切换已获得的试炼祝福。",
