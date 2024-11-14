@@ -610,21 +610,30 @@ public final class main extends JavaPlugin {
                     }
                 }
                 //基岩版功能
-                if ((isFloodgate || isGeyser) && usedMeta != null) {
+                if (isFloodgate || isGeyser) {
                     boolean openMenu = usedType == Material.BOOK && bedrockMenu(usedItem, targetPlayer);
                     //副手功能
-                    if (!openMenu && plGetScore("pcub_player_interact", targetName) == 0) {
+                    if (
+                        !openMenu &&
+                        targetPlayer.getInventory().getItemInOffHand().getType() == Material.CARROT_ON_A_STICK &&
+                        usedType != Material.CARROT_ON_A_STICK &&
+                        usedType != Material.WARPED_FUNGUS_ON_A_STICK &&
+                        usedType != Material.BOW &&
+                        usedType != Material.CROSSBOW &&
+                        !isForceStack(usedType) &&
+                        plGetScore("pcub_player_interact", targetName) == 0
+                    ) {
                         //发出执行请求
                         plSetScore("pcub_player_interact", targetName, 1);
-                        //0.5秒CD
+                        //0.1秒CD
                         new BukkitRunnable() {
                             @Override
                             public void run() {
                                 plSetScore("pcub_player_interact", targetName, 0);
                             }
-                        }.runTaskLaterAsynchronously(myPlugin, 10L);
+                        }.runTaskLaterAsynchronously(myPlugin, 2L);
                         if (showLog) plLogger(targetName + " 通过计分板向数据包请求");
-                    } else if (showLog) plLogger(targetName + ((openMenu) ? " 打开菜单书或" : " ") + "请求频率限制");
+                    } else if (showLog) plLogger(targetName + ((openMenu) ? " 右键执行/" : " ") + "主手不符合/请求频率过高");
                 }
             }
         }
@@ -1004,7 +1013,7 @@ public final class main extends JavaPlugin {
             String targetName = player.getName();
             //获取自定义标签
             ItemMeta itemMeta = item.getItemMeta();
-            if(itemMeta == null) return true;
+            if(itemMeta == null) return false;
             PersistentDataContainer dataCont = itemMeta.getPersistentDataContainer();
             String shortcut = dataCont.get(shortcutKey, PersistentDataType.STRING);
             if (Boolean.TRUE.equals(dataCont.get(menuKey, PersistentDataType.BOOLEAN))) {
