@@ -62,7 +62,8 @@ public final class main extends JavaPlugin {
     //调试日志输出开关
     boolean showLog = false;
     public void plLogger(String info) {
-        console.sendMessage("PCUB调试|" + Bukkit.getWorld("world").getFullTime() + " " + info);
+        int worldTime = (int) Bukkit.getWorlds().get(0).getFullTime() % 1000;
+        console.sendMessage("PCUB调试" + new char[]{'/','\\'}[worldTime % 2] + worldTime + " " + info);
     }
 
     public class eventListener implements Listener, CommandExecutor, TabExecutor {
@@ -195,8 +196,10 @@ public final class main extends JavaPlugin {
             Player targetPlayer = (Player) event.getPlayer();
             String targetName = targetPlayer.getName();
             String targetID = targetPlayer.getUniqueId().toString();
-            //if (targetPlayer.isOp()) targetPlayer.chat(Bukkit.getWorld("world").getFullTime() + " 容器打开");
-            if (plGetTempScore("inventory_opened", targetID) == 2) plConsoleExec("execute as " + targetID + " run function pld:system/chest_menu/open");
+            if (plGetTempScore("inventory_opened", targetID) == 2) {
+                plConsoleExec("execute as " + targetID + " run function pld:system/chest_menu/open");
+                if (showLog) plLogger(targetName + " 已打开末影箱");
+            }
         }
 
         //快速移动变量
@@ -539,7 +542,7 @@ public final class main extends JavaPlugin {
             Action action = event.getAction();
             Block clickedBlock = event.getClickedBlock();
             //调试
-            if (showLog) plLogger(targetName + " " + action + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
+            if (showLog) plLogger(targetName + " " + action + " " + ((usedItem != null) ? usedItem.getType() : "") + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
             boolean blockFunction = false;
             //右键方块检测
             if (action == Action.RIGHT_CLICK_BLOCK) {
