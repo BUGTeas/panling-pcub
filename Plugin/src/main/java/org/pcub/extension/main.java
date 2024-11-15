@@ -168,11 +168,11 @@ public final class main extends JavaPlugin {
                 plSetTempScore("login_status", targetID, 0);
             } else {
                 plSetTempScore("is_touch", targetID, (
-                    isFloodgate && (
-                        fgPlayer.getDeviceOs() == DeviceOs.GOOGLE ||
-                        fgPlayer.getDeviceOs() == DeviceOs.IOS ||
-                        fgPlayer.getDeviceOs() == DeviceOs.WINDOWS_PHONE
-                    ) ||
+                    isFloodgate && Arrays.asList(
+                        DeviceOs.GOOGLE,
+                        DeviceOs.IOS,
+                        DeviceOs.WINDOWS_PHONE
+                    ).contains(fgPlayer.getDeviceOs()) ||
                     !fgVaild && geyserVaild && isGeyser
                 ) ? 1 : 0);
                 plSetTempScore("login_status", targetID, (isFloodgate || isGeyser) ? 2 : 1);
@@ -206,9 +206,9 @@ public final class main extends JavaPlugin {
         //快速移动变量
         Player moveUser = null;
         ItemStack moveFromCopy = null;
-        Inventory moveFormInv = null;
-        InventoryType moveFormInvType = null;
-        int moveFormSlot = 0;
+        Inventory moveFromInv = null;
+        InventoryType moveFromInvType = null;
+        int moveFromSlot = 0;
 
         //容器点击事件
         @EventHandler
@@ -303,9 +303,9 @@ public final class main extends JavaPlugin {
                     //为处理移动/合并的同一刻内多次触发，在第一次触发时设置变量
                     moveUser = targetPlayer;
                     if (currentItem != null) moveFromCopy = new ItemStack(currentItem);
-                    moveFormInv = currentInv;
-                    moveFormInvType = currentInvType;
-                    moveFormSlot = currentSlot;
+                    moveFromInv = currentInv;
+                    moveFromInvType = currentInvType;
+                    moveFromSlot = currentSlot;
                     //在2刻后清除变量，之后的触发视作下一刻
                     new BukkitRunnable() {
                         @Override
@@ -431,20 +431,27 @@ public final class main extends JavaPlugin {
                 //基岩版移动/合并的同一刻内多次触发
                 if (
                     moveUser == targetPlayer &&
-                    (moveFormSlot != currentSlot || moveFormInvType != currentInvType)
+                    (moveFromSlot != currentSlot || moveFromInvType != currentInvType)
                 ) {
+                    //原槽位物品
                     Material srcType = moveFromCopy.getType();
                     ItemMeta srcMeta = moveFromCopy.getItemMeta();
+                    int srcAmount = moveFromCopy.getAmount();
                     String srcMetaStr = (srcMeta != null) ? srcMeta.getAsString() : "";
                     //双击/Shift快速移动
                     //目标槽位没有任何物品，则触发此项
-                    if (currentType == Material.AIR || currentType == null) {
+                    if (
+                        (
+                            //当物品在原版堆叠范围内则不使用
+                            srcType == Material.SNOWBALL && srcAmount > 16 ||
+                            srcType != Material.SNOWBALL && srcAmount > 1
+                        ) &&
+                        (currentType == Material.AIR || currentType == null)
+                    ) {
                         event.setCancelled(true);
-                        //原槽位物品的数量
-                        int itemAmount = moveFromCopy.getAmount();
                         //是否为玩家背包快捷栏内的移动
-                        boolean moveInPlayerInv = moveFormInvType == currentInvType && currentInvType == InventoryType.PLAYER;
-                        boolean moveFromHotBar = moveInPlayerInv && moveFormSlot < 9;
+                        boolean moveInPlayerInv = moveFromInvType == currentInvType && currentInvType == InventoryType.PLAYER;
+                        boolean moveFromHotBar = moveInPlayerInv && moveFromSlot < 9;
                         boolean moveToHotBar = moveInPlayerInv && currentSlot < 9;
                         //从目标容器中获取同物品
                         ArrayList<ItemStack> itemList = new ArrayList<>();
@@ -454,11 +461,11 @@ public final class main extends JavaPlugin {
                             ItemMeta tempMeta = item.getItemMeta();
                             if (
                                 (
-                                    i != moveFormSlot ||
-                                    moveFormInvType != currentInvType
+                                    i != moveFromSlot ||
+                                    moveFromInvType != currentInvType
                                 ) &&
                                 item.getType() == srcType && //相同物品ID
-                                srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "{}") //相同物品标签
+                                srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "") //相同物品标签
                             ) {
                                 itemList.add(item);
                             }
@@ -469,22 +476,20 @@ public final class main extends JavaPlugin {
                             if (itemStack.getAmount() >= 64) continue;
                             //未满的槽位则利用原物品填满，直到其用尽
                             int targetAmount = itemStack.getAmount();
-                            itemAmount -= 64 - targetAmount;
-                            itemStack.setAmount(64 + Math.min(itemAmount, 0)); //如果原物品透支，则在填满的基础上扣回
-                            if (itemAmount <= 0) {
-                                itemAmount = 0;
-                                break;
-                            }
+                            srcAmount -= 64 - targetAmount;
+                            itemStack.setAmount(64 + Math.min(srcAmount, 0)); //如果原物品透支，则在填满的基础上扣回
+                            //原物品耗尽或透支，则停止遍历
+                            if (srcAmount <= 0) break;
                         }
                         //如果原物品还有剩，则将其放入目标槽位
-                        if (itemAmount > 0) {
-                            moveFromCopy.setAmount(itemAmount);
+                        if (srcAmount > 0) {
+                            moveFromCopy.setAmount(srcAmount);
                             event.setCurrentItem(moveFromCopy);
                         }
                         //清除指针
                         if (cursorItem != null) cursorItem.setAmount(0);
                         //清除原槽位
-                        ItemStack srcSlotItem = moveFormInv.getItem(moveFormSlot);
+                        ItemStack srcSlotItem = moveFromInv.getItem(moveFromSlot);
                         if (srcSlotItem != null) srcSlotItem.setAmount(0);
                         if (showLog) plLogger(targetName + " 取消并强制移动");
                         //限制2刻内不能拿起
@@ -500,10 +505,10 @@ public final class main extends JavaPlugin {
                         //从当前容器获取同类物品
                         for (int i = 0; i < currentInv.getSize(); i ++) {
                             ItemStack item = currentInv.getItem(i);
-                            ItemMeta tempMeta = (item != null) ? item.getItemMeta() : null;
+                            if (item == null) continue;
+                            ItemMeta tempMeta = item.getItemMeta();
                             if (
                                 i != currentSlot &&
-                                item != null &&
                                 item.getType() == srcType &&
                                 srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "")
                             ) {
@@ -512,16 +517,19 @@ public final class main extends JavaPlugin {
                             }
                         }
                         //如果当前容器不是玩家背包，则另外从背包获取一遍
-                        if (currentInvType != InventoryType.PLAYER) for (int i = 0; i < 36; i ++) {
-                            ItemStack item = targetPlayer.getInventory().getItem(i);
-                            ItemMeta tempMeta = (item != null) ? item.getItemMeta() : null;
-                            if (
-                                item != null &&
-                                item.getType() == srcType &&
-                                srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "")
-                            ) {
-                                itemList.add(item);
-                                itemAmount += item.getAmount();
+                        if (currentInvType != InventoryType.PLAYER) {
+                            Inventory playerInv = targetPlayer.getInventory();
+                            for (int i = 0; i < 36; i ++) {
+                                ItemStack item = playerInv.getItem(i);
+                                if (item == null) continue;
+                                ItemMeta tempMeta = item.getItemMeta();
+                                if (
+                                    item.getType() == srcType &&
+                                    srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "")
+                                ) {
+                                    itemList.add(item);
+                                    itemAmount += item.getAmount();
+                                }
                             }
                         }
                         //将双击处的物品设置成同类物品数量的总和，超出64的部分保持原样
@@ -696,7 +704,7 @@ public final class main extends JavaPlugin {
                             }
                         }.runTaskLaterAsynchronously(myPlugin, 2L);
                         if (showLog) plLogger(targetName + " 通过计分板向数据包请求");
-                    } else if (showLog) plLogger(targetName + ((openMenu) ? " 右键执行/" : " ") + "主手不符合/请求频率过高");
+                    } else if (showLog) plLogger(targetName + ((openMenu) ? " 右键执行/" : " ") + "主副手物品不满足条件/请求频率过高");
                 }
             }
         }
