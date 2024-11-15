@@ -523,6 +523,9 @@ public final class main extends JavaPlugin {
             }
         }
 
+        //连续投掷变量
+        int dropLastAmount = -1;
+
         //玩家交互事件
         @EventHandler
         public void onPlayerInteract(PlayerInteractEvent event) {
@@ -582,13 +585,25 @@ public final class main extends JavaPlugin {
                 //雪球、丹药投掷限制
                 if (usedType == Material.SNOWBALL || usedType == Material.SPLASH_POTION) {
                     boolean needCancel = getOperationLimit("dp" + targetID, 1);
-                    //投掷速度单位为每投一个间隔刻数
-                    int enableContinuous = plGetScore("pcub_enable_continuous", targetName),dropSpeed = 7;
-                    if(needCancel) {
+                    int dropAmount = usedItem.getAmount();
+                    //当在限制范围，且相比同一刻上一次事件使用物品的叠放量不同（投出了）则取消
+                    //这可能会使投掷限制在高延迟的创造模式下失效
+                    if(needCancel && dropLastAmount != dropAmount) {
                         event.setCancelled(true);
                         if (showLog) plLogger(targetName + " 取消 - 投掷限制");
                     }
+                    //更新当前使用物品叠放量
+                    //避免基岩版投出时同一刻触发多次事件，导致真正投出的触发被取消
+                    dropLastAmount = dropAmount;
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            dropLastAmount = -1;
+                        }
+                    }.runTaskLaterAsynchronously(myPlugin, 0L);
                     //连续投掷
+                    //如果每次触发都会设置限制，而不等待上一限制结束，就能达到禁用连续投掷的效果
+                    int enableContinuous = plGetScore("pcub_enable_continuous", targetName),dropSpeed = 7;
                     if (
                         //始终禁用
                         enableContinuous == 0 ||
@@ -597,17 +612,10 @@ public final class main extends JavaPlugin {
                         //仅移动端禁用
                         enableContinuous == 3 && plGetTempScore("is_touch", targetID) == 1
                     ) needCancel = false;
+                    //投掷速度单位为刻数/次
                     else dropSpeed = plGetScore("pcub_drop_interval", targetName);
-                    //如果当前未限制，且投掷间隔大于0刻（MC原版投掷间隔约4刻），则在下一刻起设置限制（同一刻开始限制可能会导致 Bug）
-                    if (!needCancel && dropSpeed > 0) {
-                        int finalDropSpeed = dropSpeed;
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                setOperationLimit("dp" + targetID, finalDropSpeed);
-                            }
-                        }.runTaskLaterAsynchronously(myPlugin, 0L);
-                    }
+                    //如果当前未限制，且投掷间隔大于0刻（MC原版投掷间隔约4刻），则设置限制
+                    if (!needCancel && dropSpeed > 0) setOperationLimit("dp" + targetID, dropSpeed);
                 }
                 //基岩版功能
                 if (isFloodgate || isGeyser) {
