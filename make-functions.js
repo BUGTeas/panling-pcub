@@ -1,5 +1,5 @@
 const fs = require("fs");
-const maxLength = 64;
+const maxLength = 24;
 for (i = 0; i < maxLength; i ++) fs.writeFileSync("./DataPack/data/pcub/functions/bedrock_villager_fix/recipe/" + i + ".mcfunction",
 "execute store result score @s pcub_villagerFix_temp1 run data get entity @s Offers.Recipes[" + i + "].uses\n\
 execute store result score @s pcub_villagerFix_temp2 run data get entity @s Offers.Recipes[" + i + "].maxUses\n\
