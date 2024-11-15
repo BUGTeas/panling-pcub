@@ -29,6 +29,7 @@ import org.geysermc.floodgate.util.DeviceOs;
 import org.geysermc.geyser.api.GeyserApi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 public final class main extends JavaPlugin {
@@ -263,7 +264,12 @@ public final class main extends JavaPlugin {
                 //强制合并（常规交换）
                 int margeResult = margeItem(currentItem, cursorItem, currentType, currentMetaStr, cursorType, cursorMetaStr);
                 if (margeResult != 0 && showLog)  plLogger(targetName + " 强制交换合并 x" + margeResult);
-            } else if (currentAction == InventoryAction.HOTBAR_SWAP) {
+            } else if (
+                Arrays.asList(
+                    InventoryAction.HOTBAR_SWAP,
+                    InventoryAction.HOTBAR_MOVE_AND_READD
+                ).contains(currentAction)
+            ) {
                 //强制合并&刷新（HOTBAR_SWAP）
                 int hotbarSlot = event.getHotbarButton();
                 //目标槽位与指针槽位不同，且目标槽位不是副手
@@ -274,7 +280,12 @@ public final class main extends JavaPlugin {
                         event.setCancelled(true);
                         if (showLog) plLogger(targetName + " 取消并强制快捷栏合并 x" + margeResult);
                     }
-                    if (targetItem != null && isForceStack(targetItem.getType())) new BukkitRunnable() {
+                    if (
+                        targetItem != null && (
+                            isForceStack(targetItem.getType()) ||
+                            isForceStack(currentType)
+                        )
+                    ) new BukkitRunnable() {
                         @Override
                         public void run() {
                             targetPlayer.updateInventory();
