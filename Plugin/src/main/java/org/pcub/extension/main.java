@@ -440,9 +440,50 @@ public final class main extends JavaPlugin {
                     //目标槽位没有任何物品，则触发此项
                     if (currentType == Material.AIR || currentType == null) {
                         event.setCancelled(true);
-                        event.setCurrentItem(moveFromCopy);
+                        //原槽位物品的数量
+                        int itemAmount = moveFromCopy.getAmount();
+                        //是否为玩家背包快捷栏内的移动
+                        boolean moveInPlayerInv = moveFormInvType == currentInvType && currentInvType == InventoryType.PLAYER;
+                        boolean moveFromHotBar = moveInPlayerInv && moveFormSlot < 9;
+                        boolean moveToHotBar = moveInPlayerInv && currentSlot < 9;
+                        //从目标容器中获取同物品
+                        ArrayList<ItemStack> itemList = new ArrayList<>();
+                        for (int i = (moveFromHotBar) ? 9 : 0; i < ((moveToHotBar) ? 9 : currentInv.getSize()); i ++) {
+                            ItemStack item = currentInv.getItem(i);
+                            if (item == null) continue;
+                            ItemMeta tempMeta = item.getItemMeta();
+                            if (
+                                (
+                                    i != moveFormSlot ||
+                                    moveFormInvType != currentInvType
+                                ) &&
+                                item.getType() == srcType && //相同物品ID
+                                srcMetaStr.equals((tempMeta != null) ? tempMeta.getAsString() : "{}") //相同物品标签
+                            ) {
+                                itemList.add(item);
+                            }
+                        }
+                        //将这些物品尽可能填满
+                        for (ItemStack itemStack : itemList) {
+                            //跳过已满的槽位
+                            if (itemStack.getAmount() >= 64) continue;
+                            //未满的槽位则利用原物品填满，直到其用尽
+                            int targetAmount = itemStack.getAmount();
+                            itemAmount -= 64 - targetAmount;
+                            itemStack.setAmount(64 + Math.min(itemAmount, 0)); //如果原物品透支，则在填满的基础上扣回
+                            if (itemAmount <= 0) {
+                                itemAmount = 0;
+                                break;
+                            }
+                        }
+                        //如果原物品还有剩，则将其放入目标槽位
+                        if (itemAmount > 0) {
+                            moveFromCopy.setAmount(itemAmount);
+                            event.setCurrentItem(moveFromCopy);
+                        }
+                        //清除指针
                         if (cursorItem != null) cursorItem.setAmount(0);
-                        //moveFrom.setAmount(0);
+                        //清除原槽位
                         ItemStack srcSlotItem = moveFormInv.getItem(moveFormSlot);
                         if (srcSlotItem != null) srcSlotItem.setAmount(0);
                         if (showLog) plLogger(targetName + " 取消并强制移动");
