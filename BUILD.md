@@ -2,7 +2,7 @@
 
 ## 构建插件
 
-**环境要求:** Java 17 JDK
+**环境要求:** Java 17 JDK、Maven
 
 1. 进入“Plugin”目录
 2. 通过命令 `mvn package` 构建（或者使用 IDEA）
@@ -18,7 +18,7 @@
 
 **环境要求:** Node.js
 
-由于数据满足条件 `uses < maxUses - 2147483647` 的村民交易项（`Offers.Recipes[x]`）无法在基岩版 1.21.30+ 中使用触屏或 Shift 键交易，需要对其进行修改以实现修复，修复原理是将数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。这部分的数据包代码结构高度重复 (但凡梦盘支持 1.20.2，直接上宏函数那叫一个方便)，故使用 JS 脚本批量生成。在当前目录下执行命令 `node make-functions.js` 即可，当村民被玩家交互时，由 PCUB 插件在交易界面加载前执行数据包中的函数，对其前 64 个交易项进行自动检查修复，当然也可更改此脚本中的变量 `maxLength` 以更改修复数量。
+由于数据满足条件 `uses < maxUses - 2147483647` 的村民交易项（`Offers.Recipes[x]`）无法在基岩版 1.21.30+ 中使用触屏或 Shift 键交易，需要对其进行修改以实现修复，修复原理是将数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。这部分的数据包代码结构高度重复 (但凡梦盘支持 1.20.2，直接上宏函数那叫一个方便)，故使用 JS 脚本批量生成。在当前目录下执行命令 `node make-functions.js` 即可，当村民被玩家交互时，由 PCUB 插件在交易界面加载前执行数据包中的函数，对其前 24 个交易项进行自动检查修复，当然也可更改此脚本中的变量 `maxLength` 以更改修复数量。
 
 脚本生成的函数位于 `DataPack/data/pcub/functions/bedrock_villager_fix/recipe` 目录下，如果不想麻烦也可以直接将成品包中的复制进去。
 
@@ -46,7 +46,7 @@
 
 ## 修改资源包
 
-资源包属于人工手动移植，且涉及到盘灵古域用户条款和资源包动画框架作者 [xz_seer](https://space.bilibili.com/449714964) 的权利，故不以仓库形式提供源代码，可以直接从发布了的成品中薅过来。您可以在 `PanGuContinentUnbounded-server/plugins/Geyser-Spigot/packs` 中找到它们，虽然是 zip 格式，但其内部是标准的基岩版资源包结构。
+资源包属于人工手动移植，且涉及到盘灵古域用户条款，和资源包动画框架作者 [xz_seer](https://space.bilibili.com/449714964) 的权利，故不以仓库形式提供源代码，可以直接从发布了的成品中薅过来。您可以在 `PanGuContinentUnbounded-server/plugins/Geyser-Spigot/packs` 中找到它们，虽然是 zip 格式，但其内部是标准的基岩版资源包结构。
 
 
 
