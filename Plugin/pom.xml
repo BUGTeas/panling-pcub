@@ -6,7 +6,7 @@
 
   <groupId>org.pcub.extension</groupId>
   <artifactId>PCUB</artifactId>
-  <version>1.4.1</version>
+  <version>1.4.2</version>
   <packaging>jar</packaging>
 
   <name>盘灵无界互通功能修复（插件）</name>
@@ -17,6 +17,7 @@
   </properties>
 
   <build>
+  <finalName>PCUB</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -27,7 +28,7 @@
           <target>17</target>
         </configuration>
       </plugin>
-      <plugin>
+      <!--<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.2.4</version>
@@ -39,7 +40,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
     </plugins>
     <resources>
       <resource>
