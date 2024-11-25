@@ -534,16 +534,36 @@ public final class main extends JavaPlugin {
                         }
                         //将双击处的物品设置成同类物品数量的总和，超出64的部分保持原样
                         if (itemAmount > 64) {
+                            //补满目标槽位，需要在同类物品中扣除的数量
+                            //指针物品+目标槽位物品数量>64，则会导致此值为负数
+                            //通常基岩版不会在这种情况下触发这一操作，但不代表不会发生
                             int remainderAmount = 64 - itemOriginAmount;
+                            //填满目标槽位
                             currentItem.setAmount(64);
+                            //从其它槽位倒扣
                             for (ItemStack itemStack : itemList) {
                                 if (itemStack.getAmount() < remainderAmount) {
                                     remainderAmount -= itemStack.getAmount();
                                     itemStack.setAmount(0);
                                 } else {
-                                    itemStack.setAmount(itemStack.getAmount() - remainderAmount);
+                                    //遍历物品被扣除后的剩余数量
+                                    //指针物品+目标槽位物品数量>64，则会导致其不减反增，甚至可能超过64
+                                    int finalAmount = itemStack.getAmount() - remainderAmount;
+                                    if(finalAmount > 64) { //如果遍历物品数量被反增超过了64
+                                        itemStack.setAmount(64);
+                                        remainderAmount = 64 - finalAmount;
+                                    } else {
+                                        itemStack.setAmount(finalAmount);
+                                        remainderAmount = 0;
+                                    }
                                     break;
                                 }
+                            }
+                            //指针物品+目标槽位物品数量>64
+                            if (remainderAmount < 0) {
+                                //多出的部分放回原拿起槽位
+                                moveFromCopy.setAmount(remainderAmount * -1);
+                                moveFromInv.setItem(moveFromSlot,moveFromCopy);
                             }
                         } else {
                             currentItem.setAmount(itemAmount);
