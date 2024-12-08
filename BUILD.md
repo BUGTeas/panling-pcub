@@ -6,7 +6,7 @@
 
 1. 进入“Plugin”目录
 2. 通过命令 `mvn package` 构建（或者使用 IDEA）
-3. 成品 jar 文件位于：`target/PCUB-x.x.x.jar`
+3. 成品 jar 文件位于：`target/PCUB.jar`
 
 注意：目前插件仍未定型，变动可能较大，且未来将会被拆分。
 
@@ -14,17 +14,17 @@
 
 ## 打包数据包
 
-### 生成交易修复所用到的函数文件
-
 **环境要求:** Node.js
 
-由于数据满足条件 `uses < maxUses - 2147483647` 的村民交易项（`Offers.Recipes[x]`）无法在基岩版 1.21.30+ 中使用触屏或 Shift 键交易，需要对其进行修改以实现修复，修复原理是将数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。这部分的数据包代码结构高度重复 (但凡梦盘支持 1.20.2，直接上宏函数那叫一个方便)，故使用 JS 脚本批量生成。在当前目录下执行命令 `node make-functions.js` 即可，当村民被玩家交互时，由 PCUB 插件在交易界面加载前执行数据包中的函数，对其前 24 个交易项进行自动检查修复，当然也可更改此脚本中的变量 `maxLength` 以更改修复数量。
+由于数据包中部分文件代码重复率高，为了提高开发效率，以下文件由脚本 `make-functions.js` 批量生成：
+- DataPack/data/pcub/functions/bedrock_villager_fix/recipe/*.mcfunction
+- DataPack/data/pcub/advancements/honor_head_fix/with_cmd/*.json
+- DataPack/data/pcub/functions/honor_head_fix/slot.mcfunction
+- DataPack/data/pcub/functions/honor_head_fix/slot/*.mcfunction
 
-脚本生成的函数位于 `DataPack/data/pcub/functions/bedrock_villager_fix/recipe` 目录下，如果不想麻烦也可以直接将成品包中的复制进去。
+如果您需要更改交易修复的检测范围，或者是忠烈祠头饰的修复范围，请将目光投向这个脚本。
 
-### 最后打包
-
-将“DataPack”目录中的数据包打包，命名为“pcub.zip”
+在打包前请先在当前目录下执行命令 `node make-functions.js`，之后再将“DataPack”目录中的所有文件打包，这就是成品的数据包，建议命名为“pcub.zip”。
 
 
 
@@ -34,7 +34,7 @@
 
 1. 进入“LangFile”目录，将梦回盘灵资源包解压到“resources/panling”目录下
 2. 安装依赖项：
-   - (必要) `npm install git+https://gitee.com/BugTeaON/pcub-locale#v1.0.1` 或 `npm install git+https://github.com/BUGTeas/pcub-locale#v1.0.1`
+   - (必要) `npm install git+https://gitee.com/BugTeaON/pcub-locale#v1` 或 `npm install git+https://github.com/BUGTeas/pcub-locale#v1`
    - (可选) 如果需要繁体转换，还需安装 [OpenCC](https://github.com/BYVoid/OpenCC) 转换器，否则输出的繁体文件（“zh_tw”及“zh_hk”）都将是简体内容：`npm install opencc`（由于对 `node-gyp` 的使用，安装条件较为苛刻，若无经验建议跳过）
 3. 执行命令 `node index.js` 开始生成
 4. 在“output/panling”目录下会出现以下文件夹：
