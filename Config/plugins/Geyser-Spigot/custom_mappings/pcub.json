@@ -410,6 +410,299 @@
 				"custom_model_data": 13,
 				"allow_offhand": false
 			}
+		],
+
+		//忠烈祠头颅图标
+		"minecraft:player_head": [
+			{
+				"name": "panling_honor_head_1",
+				"custom_model_data": 101,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_2",
+				"custom_model_data": 102,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_3",
+				"custom_model_data": 103,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_4",
+				"custom_model_data": 104,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_5",
+				"custom_model_data": 105,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_6",
+				"custom_model_data": 106,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_8",
+				"custom_model_data": 108,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_9",
+				"custom_model_data": 109,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_10",
+				"custom_model_data": 110,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_11",
+				"custom_model_data": 111,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_12",
+				"custom_model_data": 112,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			},{
+				"name": "panling_honor_head_13",
+				"custom_model_data": 113,
+				"allow_offhand": false,
+				"render_offsets": {
+					"main_hand": {
+						"first_person": {
+							"rotation": { "x": 75, "y": -30, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					},
+					"off_hand": {
+						"first_person": {
+							"rotation": { "x": 90, "y": 45, "z": 0 },
+							"scale": { "x": 0.006, "y": 0.001, "z": 0.006 }
+						},
+						"third_person": {
+							"scale": { "x": 0.015, "y": 0.015, "z": 0.015 }
+						}
+					}
+				}
+			}
 		]
 	},
 

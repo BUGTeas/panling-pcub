@@ -1,0 +1,18 @@
+{
+    "criteria": {
+        "pcub_honorHeadFix_all":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [ "minecraft:player_head" ],
+                        "nbt": "{id:\"panling:honor_head\"}"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "function": "pcub:honor_head_fix/all"
+    }
+}

@@ -28,5 +28,9 @@ scoreboard objectives add pcub_hide_talk_enable dummy
 scoreboard objectives add pcub_villagerFix_temp1 dummy
 scoreboard objectives add pcub_villagerFix_temp2 dummy
 
+#头饰修复计数器
+scoreboard objectives add pcub_honorHeadFix_count dummy
+scoreboard objectives add pcub_honorHeadFix_countCMD dummy
+
 #用于在基础必要组件加载后执行
 function #pcub:load
