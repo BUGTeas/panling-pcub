@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "pcub-locale": "git+https://gitee.com/BugTeaON/pcub-locale#v1.0.1"
+    "pcub-locale": "git+https://gitee.com/BugTeaON/pcub-locale#v1"
   }
 }
