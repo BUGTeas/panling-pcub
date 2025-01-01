@@ -770,21 +770,21 @@
 		"minecraft:hopper": {
 			"name": "plbe_hopper",
 			"state_overrides": {
-				"enabled=true,facing=down": {
+				"facing=down": {
 					"geometry": "geometry.plbe_hopper_down"
 				},
-				"enabled=true,facing=north": {
+				"facing=north": {
 					"geometry": "geometry.plbe_hopper_side"
 				},
-				"enabled=true,facing=south": {
+				"facing=south": {
 					"geometry": "geometry.plbe_hopper_side",
 					"transformation": { "rotation": [ 0, 180, 0 ] }
 				},
-				"enabled=true,facing=west": {
+				"facing=west": {
 					"geometry": "geometry.plbe_hopper_side",
 					"transformation": { "rotation": [ 0, 90, 0 ] }
 				},
-				"enabled=true,facing=east": {
+				"facing=east": {
 					"geometry": "geometry.plbe_hopper_side",
 					"transformation": { "rotation": [ 0, 270, 0 ] }
 				}
