@@ -1,11 +1,10 @@
 name: PCUB
 version: '${project.version}'
-main: org.pcub.extension.main
+main: org.pcub.extension.Main
 api-version: '1.20'
 softdepend:
   - Geyser-Spigot
   - floodgate
-load: POSTWORLD
 commands:
   pcub:
     description: 盘灵无界功能专用命令
