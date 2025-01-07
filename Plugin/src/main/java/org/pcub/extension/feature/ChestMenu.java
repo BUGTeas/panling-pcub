@@ -23,7 +23,7 @@ public class ChestMenu {
 
     public static void open(String targetName, String targetID, Common common) {
         if (common.getTempScore("inventory_opened", targetID) == 2) {
-            common.consoleExec("execute as " + targetID + " run function pld:system/chest_menu/open");
+            common.consoleExec("execute as " + targetID + " run function #pcub:chest_menu/open");
             if (common.debug) common.debugLogger(targetName + " 已打开末影箱");
         }
     }
@@ -33,7 +33,7 @@ public class ChestMenu {
     public static void close(Player targetPlayer, Common common) {
         String targetName = targetPlayer.getName();
         if (common.getScore("screen", targetName) >= 0) {
-            common.consoleExec("execute as " + targetName + " run function #pcub:chest_menu_leave");
+            common.consoleExec("execute as " + targetName + " run function #pcub:chest_menu/leave");
         }
     }
 
@@ -75,7 +75,7 @@ public class ChestMenu {
         new BukkitRunnable() {
             @Override
             public void run() {
-                common.consoleExec("execute as " + targetUUIDStr + " run function #pcub:chest_menu_click");
+                common.consoleExec("execute as " + targetUUIDStr + " run function #pcub:chest_menu/click");
                 common.setTempScore("clicked", targetUUIDStr, 0);
             }
         }.runTaskLater(common.main, 0L);

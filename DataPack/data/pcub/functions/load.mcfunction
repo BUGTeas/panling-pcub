@@ -14,9 +14,13 @@ scoreboard objectives add pcub_enable_fastskill dummy
 #发动技能所需时长
 scoreboard objectives add pcub_fastskill_duration dummy
 
-#API版本
+#当前API版本
 scoreboard objectives add pcub_api_version dummy
-scoreboard players set #system pcub_api_version 3
+scoreboard players set #system pcub_api_version 4
+
+#最低兼容API版本
+scoreboard objectives add pcub_api_minVersion dummy
+scoreboard players set #system pcub_api_minVersion 4
 
 #隐藏任务
 scoreboard objectives add pcub_hide_item dummy
