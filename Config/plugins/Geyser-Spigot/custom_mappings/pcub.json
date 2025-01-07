@@ -769,22 +769,35 @@
 		//漏斗-投放桶
 		"minecraft:hopper": {
 			"name": "plbe_hopper",
+			"geometry": "geometry.plbe_hopper_down",
 			"state_overrides": {
-				"facing=down": {
-					"geometry": "geometry.plbe_hopper_down"
-				},
-				"facing=north": {
+				"enabled=true,facing=north": {
 					"geometry": "geometry.plbe_hopper_side"
 				},
-				"facing=south": {
+				"enabled=true,facing=south": {
 					"geometry": "geometry.plbe_hopper_side",
 					"transformation": { "rotation": [ 0, 180, 0 ] }
 				},
-				"facing=west": {
+				"enabled=true,facing=west": {
 					"geometry": "geometry.plbe_hopper_side",
 					"transformation": { "rotation": [ 0, 90, 0 ] }
 				},
-				"facing=east": {
+				"enabled=true,facing=east": {
+					"geometry": "geometry.plbe_hopper_side",
+					"transformation": { "rotation": [ 0, 270, 0 ] }
+				},
+				"enabled=false,facing=north": {
+					"geometry": "geometry.plbe_hopper_side"
+				},
+				"enabled=false,facing=south": {
+					"geometry": "geometry.plbe_hopper_side",
+					"transformation": { "rotation": [ 0, 180, 0 ] }
+				},
+				"enabled=false,facing=west": {
+					"geometry": "geometry.plbe_hopper_side",
+					"transformation": { "rotation": [ 0, 90, 0 ] }
+				},
+				"enabled=false,facing=east": {
 					"geometry": "geometry.plbe_hopper_side",
 					"transformation": { "rotation": [ 0, 270, 0 ] }
 				}
