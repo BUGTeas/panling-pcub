@@ -1,40 +1,40 @@
-#基岩菜单书、成就
+# 基岩菜单书、成就
 scoreboard objectives add pcub_open_bedrock_menu dummy
-#基岩版主手物品展示优化
+# 基岩版主手物品展示优化
 scoreboard objectives add pcub_showitem dummy
-#手持物品交互事件
+# 手持物品交互事件
 scoreboard objectives add pcub_player_interact dummy
 
-#投掷速度限制
+# 投掷速度限制
 scoreboard objectives add pcub_drop_interval dummy
-#允许连续投掷
+# 允许连续投掷
 scoreboard objectives add pcub_enable_continuous dummy
-#按住潜行发动技能
+# 按住潜行发动技能
 scoreboard objectives add pcub_enable_fastskill dummy
-#发动技能所需时长
+# 发动技能所需时长
 scoreboard objectives add pcub_fastskill_duration dummy
 
-#当前API版本
+# 当前API版本
 scoreboard objectives add pcub_api_version dummy
 scoreboard players set #system pcub_api_version 4
 
-#最低兼容API版本
+# 最低兼容API版本
 scoreboard objectives add pcub_api_minVersion dummy
-scoreboard players set #system pcub_api_minVersion 4
+scoreboard players set #system pcub_api_minVersion 1
 
-#隐藏任务
+# 隐藏任务
 scoreboard objectives add pcub_hide_item dummy
 scoreboard objectives add pcub_hide_talk dummy
 scoreboard objectives add pcub_hide_item_enable dummy
 scoreboard objectives add pcub_hide_talk_enable dummy
 
-#修改部分交易项，以修复基岩版 1.20.30+ 的交易 Bug
+# 修改部分交易项，以修复基岩版 1.20.30+ 的交易 Bug
 scoreboard objectives add pcub_villagerFix_temp1 dummy
 scoreboard objectives add pcub_villagerFix_temp2 dummy
 
-#头饰修复计数器
+# 头饰修复计数器
 scoreboard objectives add pcub_honorHeadFix_count dummy
 scoreboard objectives add pcub_honorHeadFix_countCMD dummy
 
-#用于在基础必要组件加载后执行
+# 用于在梦盘互通套件加载后执行
 function #pcub:load

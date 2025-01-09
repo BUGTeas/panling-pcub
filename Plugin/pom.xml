@@ -6,10 +6,10 @@
 
   <groupId>org.pcub.extension</groupId>
   <artifactId>PCUB</artifactId>
-  <version>1.4.2</version>
+  <version>1.5.0</version>
   <packaging>jar</packaging>
 
-  <name>盘灵无界互通功能修复（插件）</name>
+  <name>梦盘互通套件 集成插件 - 盘灵无界</name>
 
   <properties>
     <java.version>17</java.version>
