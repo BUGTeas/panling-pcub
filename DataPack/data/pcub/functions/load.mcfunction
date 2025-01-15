@@ -38,3 +38,6 @@ scoreboard objectives add pcub_honorHeadFix_countCMD dummy
 
 # 用于在梦盘互通套件加载后执行
 function #pcub:load
+
+# 检测并禁用优化修改数据包，恢复相关 NPC
+schedule function pcub:uninst_pcub_mod/check 1s
