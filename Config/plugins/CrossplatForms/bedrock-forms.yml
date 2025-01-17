@@ -93,7 +93,7 @@ forms:
           - commands: "player; trigger menu set 12"
       #版本信息
       - text: "pcub.menubook.version"
-        image: "textures/menubook/pcub"
+        image: "textures/menubook/pangu_continent"
         actions:
           - form: version-be
   #版本信息
