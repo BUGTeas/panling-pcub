@@ -1,6 +1,7 @@
 # 技术性说明（梦回盘灵 Java - 基岩双端互通套件）
 请先阅读使用说明。
-<!--强烈建议使用支持 Markdown 的阅读器查看。-->
+<!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->
+<!-- 以下内容中所有命令均不包括`反引号 -->
 
 ## ⛏️ 服务端环境搭建
 
@@ -70,7 +71,9 @@ world-settings:
 
 ### 启动参数
 
-如果您使用 Spigot 核心且未安装 Floodgate 插件，基岩版玩家可能无法打开菜单书。这是 CrossPlatForms 的兼容性问题，可以在启动命令上添加此参数以解决：`-Djdk.util.jar.enableMultiRelease=force`
+如果您使用 Spigot 核心且未安装 Floodgate 插件，基岩版玩家可能无法打开菜单书。这是 CrossPlatForms 的兼容性问题，可以在启动命令上添加此参数以解决：  
+`-Djdk.util.jar.enableMultiRelease=force`
+
 
 
 ## 💿 将本套件安装到服务端中
@@ -99,9 +102,12 @@ world-settings:
 
 比如物品 `{id: "minecraft:player_head", tag: {id: "panling:honor_head", type: 4}}` 经过处理后就会变成 `{id: "minecraft:player_head", tag: {id: "panling:honor_head", type: 4, CustomModelData: 104}}`。该修复不会覆盖原数据包文件。
 
+
+
 ## ☢️ 选装包对游戏内容所造成的影响
 
-如果以下功能对某些 DLC 内容造成影响，请到交流社区反馈，或禁用选装包：`/datapack disable "file/pcub_mod.zip"`
+如果以下功能对某些 DLC 内容造成影响，请到交流社区反馈，或禁用选装包：  
+`/datapack disable "file/pcub_add.zip"`
 
 ### 钱庄末影箱系统
 
@@ -160,7 +166,8 @@ world-settings:
 
 可以创建带有标签 `{PublicBukkitValues: {"pcub:run_command": "<命令>"}}` 的空书（minecraft:book）实现基岩版玩家使用触发时，执行特定命令。
 
-（例）给予自己一本空书，使用时执行 `/help` 命令：`give @s minecraft:book{PublicBukkitValues: {"pcub:run_command": "help"}}`
+（例）给予自己一本空书，使用时执行 `/help` 命令：  
+`give @s minecraft:book{PublicBukkitValues: {"pcub:run_command": "help"}}`
 
 该功能仍在完善，请慎用（Java 版也即将支持敬请期待）
 
@@ -180,15 +187,19 @@ world-settings:
 
 关闭末影箱：`#pcub:chest_menu/leave`
 
-注：如果只是单纯需要适配选装包，请将 `pcub` 命名空间改为 `pcub_mod` 
+注：如果只是单纯需要适配选装包，请将 `pcub` 命名空间改为 `pcub_add` 
 
 ### 在携带版 UI 档案下强制使用经典箱子界面，防止布局错乱
 - 接口类型：容器（>=9 个槽位）标题
 
-该方案已经在末影箱界面中实装，此外对副本保底便捷钱庄（插件 DLC）做了特别适配，当容器标题中带有 `掌上钱庄` 或 `元素锻炉` 字样时就会生效。
+该方案已经在末影箱界面中实装，此外对副本保底便捷钱庄（插件 DLC）做了特别适配，当容器标题中带有 `掌上钱庄` 或 `元素锻炉` 字样（仅在显示为大箱的情况下），再或者带有 `Ender Chest` （仅在显示为小箱的情况下）时就会生效。
 
-而如果您也有这样的需求，只需要给容器的标题后面加上 `:force_desktop_ui:` 字段即可。该字段也可以用在 Geyser 自定义语言文件中，在容器标题中通过其本地化键名调用（注意是 Geyser 的语言文件，而不是客户端资源包的）。除非与个别第三方UI冲突，否则都能生效，且参数字段不会在界面中显示。
+而如果您也有这样的需求，只需要给容器的标题后面加上 `:force_desktop_ui:` 字段即可。除非与个别第三方UI冲突，否则都能生效，且参数字段不会在界面中显示。
 
 比如标题为 `测试容器:force_desktop_ui:` 的容器界面，在基岩版上将强制以经典 UI 布局呈现，标题显示为 `测试容器`。
 
-此外，发射器界面（装备锻造）也同样强制经典界面，暂不支持更改。
+该字段也可以用在 Geyser 自定义语言文件中，在容器标题中通过其本地化键名调用（注意是 Geyser 的语言文件，而不是客户端资源包的）。
+
+已知 Bug：当容器标题以等号 `=` 开头时，即使没有参数字段也会强制经典布局，若有参数字段还会直接显示。
+
+此外，发射器界面（装备锻造）也同样强制经典界面，不过暂不支持自定义。

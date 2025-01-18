@@ -1,6 +1,6 @@
 # 梦回盘灵 Java - 基岩双端互通套件
 v1.5.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）
-<!-- 强烈建议使用支持 Markdown 的阅读器查看此说明。 -->
+<!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->
 <!-- 以下内容中所有命令均不包括`反引号 -->
 
 ## 📖 简介
@@ -57,7 +57,8 @@ v1.5.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 - plugins/Geyser-Spigot/custom_mappings/pcub_mod.json
 - plugins/Geyser-Spigot/packs/PanlingModificationPack.zip
 
-注意是**先启动一遍再删除，否则将不会自动刷新 NPC**。此时可以使用命令 `/function pcub:uninst_pcub_mod/npc` 或者在游戏内挨个推出 NPC 以完成刷新。
+注意是**先启动一遍再删除**，否则将需要在游戏内手动推出 NPC，或使用此命令才能完成刷新：  
+`/function pcub:uninst_pcub_mod/npc`
 
 
 
@@ -77,7 +78,7 @@ v1.5.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 - 末影箱菜单系统改为纯事件监听，彻底优化提升其性能
 - 解决安装 Floodgate（基岩版登录优化）插件后，弓箭手武器技能【日落九天·落日】在基岩版使用异常
 
-如需禁用，请使用命令禁用选装包：`/datapack disable "file/pcub_mod.zip"`
+如需禁用，请使用命令禁用选装包：`/datapack disable "file/pcub_add.zip"`
 
 
 
@@ -85,9 +86,9 @@ v1.5.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 
 **本套件暂时内置魔改版 Geyser**。版本为 2.6.0-SNAPSHOT (git-pcub-temp-feature-da681f0)，魔改版本克隆自官方仓库，独立分支并同样开源：[BUGTeas/Geyser](https://github.com/BUGTeas/Geyser/tree/pcub-temp-feature)
 
-盘灵无界现正将部分修复和优化结合到 Geyser 底层上，我最近常通过 Issues 和 Pull Request 积极向 Geyser 官方反馈问题并提供帮助，助力改善所有互通服的游戏体验。例如部分音效修复以及药水效果显示，且
+盘灵无界现正将部分修复和优化结合到 Geyser 底层上，我最近常通过 Issues 和 Pull Request 积极向 Geyser 官方反馈问题并提供帮助，助力改善所有互通服的游戏体验。例如部分音效修复以及药水效果显示。
 
-在此前一直是通过**优化修改选装套件**，对梦盘数据包内容修改实现修复，然而这些问题的根源在于 Geyser，这样的做法不仅治标不治本，还影响了兼容性。近期盛行的“万通货斋” DLC 内容扩展也正是因此，迟迟未能支持互通套件。
+这些问题在此前一直是通过**原优化修改选装组件**对梦盘数据包内容修改实现修复，然而这些问题的根源在于 Geyser，这样的做法不仅治标不治本，还影响了兼容性。近期盛行的“万通货斋” DLC 内容扩展也正是因此，迟迟未能支持互通套件。
 
 计划摆脱对优化修改选装套件的依赖的，还有药水颜色和药水叠放实现。然而，此时 Geyser 官方正在开发新的[自定义物品映射接口 V2](https://github.com/GeyserMC/Geyser/pull/5189)，以跟进 Java 版 1.21.4 更高级的物品模型实现，因此由我提供的自定义叠放解决方案暂未被 Geyser 官方采纳：[GeyserMC/Geyser#5241](https://github.com/GeyserMC/Geyser/pull/5241)
 
@@ -131,7 +132,8 @@ v1.5.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 
 因 Geyser 的远古 Bug，基岩版玩家间无碰撞，**但可以推开 Java 版玩家，反之则不行**，这可能影响了 Java 版玩家的游戏体验。
 
-可以通过以下命令，禁用**所有玩家**之间的碰撞（仅进入盘古大陆后）：`/team modify normal collisionRule pushOwnTeam`
+可以通过以下命令，禁用**所有玩家**之间的碰撞（仅进入盘古大陆后）：  
+`/team modify normal collisionRule pushOwnTeam`
 
 恢复默认碰撞：`/team modify normal collisionRule always`
 
