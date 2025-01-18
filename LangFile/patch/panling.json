@@ -70,7 +70,7 @@
 			"pcub.ui_tips.hopper.touch":"§e§l友情提示： §r由于游戏限制，请§f§l双击丹药以将其放入背包， 或者丢出再捡回§r。",
 			"pcub.ui_tips.hopper.mouse":"§e§l友情提示： §r由于游戏限制，请§f§l使用shift+鼠标左键转移丹药， 或者丢出再捡回§r。",
 			"pcub.ui_tips.hopper.game_pad":"§e§l友情提示： §r由于游戏限制，请§f§l与丹炉保持距离， 然后将丹药丢出再捡回§r。",
-			"pcub.ui_tips.enderchest":"§e§l友情提示： §r触屏交互需双击（物品栏要有一格留空）或丢出图标，键鼠同 Java 版一样直接单击即可。 （详见游玩指南网页）",
+			"pcub.ui_tips.chest_interface.touch":"§e§l友情提示： §r交互需双击（物品栏要有一格留空）或丢出图标",
 			"pcub.title.menubook":"菜单",
 			"pcub.content.menubook":"游戏内常规功能选项都在这里 （有部分功能在钱庄服务箱子中）",
 		
