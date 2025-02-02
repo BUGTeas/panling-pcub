@@ -292,6 +292,7 @@
 		"minecraft:mushroom_stew": [
 			{
 				"name": "temp_stack_mushroom_stew",
+				"display_name": "item.mushroom_stew.name",
 				"icon": "mushroom_stew",
 				"custom_model_data": 0,
 				"texture_size": 26,
@@ -301,6 +302,7 @@
 		"minecraft:rabbit_stew": [
 			{
 				"name": "temp_stack_rabbit_stew",
+				"display_name": "item.rabbit_stew.name",
 				"icon": "rabbit_stew",
 				"custom_model_data": 0,
 				"texture_size": 26,
@@ -312,11 +314,13 @@
 		//玻璃板扁平化（挡板）
 		"minecraft:gray_stained_glass_pane": [ {
 			"custom_model_data": 0,
-			"name": "pcub_gray_glass"
+			"name": "pcub_gray_glass",
+			"display_name": "tile.stained_glass_pane.gray.name"
 		} ],
 		"minecraft:black_stained_glass_pane": [ {
 			"custom_model_data": 0,
-			"name": "pcub_black_glass"
+			"name": "pcub_black_glass",
+			"display_name": "tile.stained_glass_pane.black.name"
 		} ],
 		//木斧（UI按钮）
 		"minecraft:wooden_axe": [
@@ -346,6 +350,7 @@
 		"minecraft:nether_star": [ {
             "texture_size": 26,
 			"name": "nether_star",
+			"display_name": "item.netherStar.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
@@ -353,6 +358,7 @@
 		"minecraft:emerald": [ {
             "texture_size": 26,
 			"name": "emerald",
+			"display_name": "item.emerald.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
@@ -360,6 +366,7 @@
 		"minecraft:bone": [ {
 			"texture_size": 26,
 			"name": "bone",
+			"display_name": "item.bone.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
@@ -367,6 +374,7 @@
 		"minecraft:string": [ {
 			"texture_size": 26,
 			"name": "string",
+			"display_name": "item.string.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
@@ -374,6 +382,7 @@
 		"minecraft:blaze_rod": [ {
 			"texture_size": 26,
 			"name": "blaze_rod",
+			"display_name": "item.blaze_rod.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
@@ -381,6 +390,7 @@
 		"minecraft:magma_cream": [ {
 			"texture_size": 26,
 			"name": "magma_cream",
+			"display_name": "item.magma_cream.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		} ],
@@ -388,6 +398,7 @@
 		"minecraft:flint": [{
             "texture_size": 52,
 			"name": "flint",
+			"display_name": "item.flint.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
@@ -395,6 +406,7 @@
 		"minecraft:melon_seeds": [{
             "texture_size": 52,
 			"name": "seeds_melon",
+			"display_name": "item.melon_seeds.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
@@ -402,6 +414,7 @@
 		"minecraft:wheat_seeds": [{
             "texture_size": 52,
 			"name": "seeds_wheat",
+			"display_name": "item.wheat_seeds.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
@@ -409,6 +422,7 @@
 		"minecraft:charcoal": [{
             "texture_size": 52,
 			"name": "charcoal",
+			"display_name": "item.charcoal.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
@@ -416,6 +430,7 @@
 		"minecraft:pumpkin_seeds": [{
             "texture_size": 52,
 			"name": "seeds_pumpkin",
+			"display_name": "item.pumpkin_seeds.name",
 			"custom_model_data": 0,
 			"allow_offhand": true
 		}],
@@ -425,6 +440,7 @@
 		"minecraft:snowball": [ {
             "texture_size": 26,
 			"name": "temp_stack_snowball",
+			"display_name": "item.snowball.name",
 			"icon": "snowball",
 			"custom_model_data": 0,
 			"allow_offhand": false
@@ -433,6 +449,7 @@
 		"minecraft:warped_fungus_on_a_stick": [ {
             "texture_size": 52,
 			"name": "warped_fungus_on_a_stick",
+			"display_name": "item.warped_fungus_on_a_stick.name",
 			"custom_model_data": 0,
 			"allow_offhand": false
 		} ],
@@ -441,6 +458,7 @@
 		"minecraft:tripwire_hook": [ {
             "texture_size": 26,
 			"name": "pcub_tripwire_hook",
+			"display_name": "tile.tripwire_hook.name",
 			"custom_model_data": 0,
 			"allow_offhand": false
 		} ],
@@ -480,6 +498,7 @@
 			{
 				"custom_model_data": 0,
 				"name": "panling_enchant_stone_armor",
+				"display_name": "item.dye.blue_new.name",
 				"texture_size": 52,
 				"allow_offhand": true
 			},{
