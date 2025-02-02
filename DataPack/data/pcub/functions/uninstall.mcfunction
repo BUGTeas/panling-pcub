@@ -1,17 +1,38 @@
-#基岩菜单书、成就
+# 用于在梦盘互通套件卸载前执行
+function #pcub:uninstall
+
+# 基岩菜单书、成就
 scoreboard objectives remove pcub_open_bedrock_menu
-#基岩版主手物品展示优化
+# 基岩版主手物品展示优化
 scoreboard objectives remove pcub_showitem
-scoreboard objectives remove pcub_showitem_work
-#实验：漏斗投放后先走动后传送
-#监测移动
-scoreboard objectives remove pcub_moving
-#奈何桥
-scoreboard objectives remove pcub_relife_left
-scoreboard objectives remove pcub_relife_right
-#雨竹
-scoreboard objectives remove pcub_te17_target
-scoreboard objectives remove pcub_te32_target
-scoreboard objectives remove pcub_truth_xian5_target
-#人族支线
-scoreboard objectives remove pcub_exren_finish
+# 手持物品交互事件
+scoreboard objectives remove pcub_player_interact
+
+# 投掷速度限制
+scoreboard objectives remove pcub_drop_interval
+# 允许连续投掷
+scoreboard objectives remove pcub_enable_continuous
+# 按住潜行发动技能
+scoreboard objectives remove pcub_enable_fastskill
+# 发动技能所需时长
+scoreboard objectives remove pcub_fastskill_duration
+
+# 当前API版本
+scoreboard objectives remove pcub_api_version
+
+# 最低兼容API版本
+scoreboard objectives remove pcub_api_minVersion
+
+# 隐藏任务
+scoreboard objectives remove pcub_hide_item
+scoreboard objectives remove pcub_hide_talk
+scoreboard objectives remove pcub_hide_item_enable
+scoreboard objectives remove pcub_hide_talk_enable
+
+# 修改部分交易项，以修复基岩版 1.20.30+ 的交易 Bug
+scoreboard objectives remove pcub_villagerFix_temp1
+scoreboard objectives remove pcub_villagerFix_temp2
+
+# 头饰修复计数器
+scoreboard objectives remove pcub_honorHeadFix_count
+scoreboard objectives remove pcub_honorHeadFix_countCMD
