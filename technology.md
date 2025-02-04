@@ -1,6 +1,6 @@
-# 技术性说明（梦回盘灵 Java - 基岩双端互通套件）
-请先阅读使用说明。
-<!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->
+# 技术性说明（梦回盘灵专用 Java - 基岩双端互通套件）
+请先阅读使用说明。  
+<!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->  
 <!-- 以下内容中所有命令均不包括`反引号 -->
 
 ## ⛏️ 服务端环境搭建
@@ -30,8 +30,8 @@
 
 - [PotionStacker](https://www.spigotmc.org/resources/potion-stacker.66168/)：最简单易用，但只支持药水、喷溅药水和滞留药水的叠放
 - [StackableItems](https://dev.bukkit.org/projects/stackableitems)：支持配置任意物品叠放
-  - 在 Spigot 下使用漏斗可能会出现刷物品，甚至影响红石系统等 Bug，建议在 Leaves 下使用
-  - 物品移动过程不太完美，小概率会出现回弹等情况
+  - 物品移动过程不太完美，小概率会出现回弹等情况，在创造模式背包下操作甚至还可能导致物品被误吞
+  - 在 Spigot 下使用漏斗可能会出现刷物品，甚至影响红石系统等 Bug，经测试在 Leaves 下不会发生
 - [SimpleStack（兼容性差）](https://github.com/Mikedeejay2/SimpleStackPlugin)：同样支持任意物品，但上限 64，可自由配置白名单/黑名单模式。
 	- 请不要在 spigotmc.org 中下载它，提供的版本非常旧，不过上方的 GitHub 仓库现仍保持更新，提供了最新的 Dev 快照版本，可以在 Action 中找到。但多数版本存在无法加载的Bug，建议从服务端部署包中拿出经过我测试过的版本。
 	- 对于 Java 环境要求苛刻，需要使用 JDK 开服才能正常运行，不支持 JRE！
@@ -76,7 +76,7 @@ world-settings:
 
 
 
-## 💿 将本套件安装到服务端中
+## 💿 安装/更新本套件
 
 本套件的所有组成部分（包括但不限于专用的插件、数据包及配置文件），在压缩档中已按标准服务端根目录结构存放到 `PanGuContinentUnbounded-server` 文件夹中。
 
@@ -90,13 +90,13 @@ world-settings:
 
 ### 所有村民 NPC
 
-由于数据满足条件 `uses < maxUses - 2147483647` 的村民交易项（`Offers.Recipes[x]`）无法在基岩版 1.21.30+ 中使用触屏或 Shift 键交易，现在会对所有村民的前 24 个交易项进行自动检查修复。
+自基岩版 1.21.30 开始，当前可交易超过 2147483647 次的村民交易项，都将无法使用触屏或 Shift 键交易。在梦回盘灵中几乎所有的 NPC 都存在这种情况，故本套件会对所有村民的前 24 个交易项进行自动检查修复。
 
-修复原理是将数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。当村民被玩家交互时，由 PCUB 插件在交易界面加载前通过标签 `#pcub:interact_villager/villager` 执行 pcub 数据包中的修复函数。该修复不会覆盖原数据包文件。
+修复原理是将符合条件的数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。当村民被玩家交互时，由 PCUB 插件在交易界面加载前通过标签 `#pcub:interact_villager/villager` 执行 pcub 数据包中的修复函数。该修复不会覆盖原数据包文件。
 
 ### 忠烈祠头饰
 
-由于经过 Geyser 映射后的自定义头颅作为自定义方块，受制于基岩版特性无法直接装备（佩戴），现通过为这些头饰附加模型数据值（CustomModelData），并基于此值在 Geyser 中二次映射，使其成为正常物品可装备。
+由于经过 Geyser 映射后的自定义头颅作为自定义方块，受制于基岩版特性无法直接装备（佩戴），现通过为这些头饰附加模型数据值（CustomModelData），并基于此值在 Geyser 中二次映射，使其成为可装备的正常物品。
 
 修复仅限于带有值为 `panling:honor_head` 的自定义标签 `id` 的玩家头颅 `minecraft:player_head`，附加的数据值为 100 + 自定义标签 `type` 的数值。
 
@@ -104,16 +104,20 @@ world-settings:
 
 
 
-## ☢️ 选装包对游戏内容所造成的影响
+## ☢️ 选装数据包对游戏内容所造成的影响
 
-如果以下功能对某些 DLC 内容造成影响，请到交流社区反馈，或禁用选装包：  
+如果以下变动对某些 DLC 内容造成影响，请到交流社区反馈，或禁用选装包：  
 `/datapack disable "file/pcub_add.zip"`
 
 ### 钱庄末影箱系统
 
-基岩版触屏移动按钮的拿起、放下操作都是在同一游戏刻下请求，这导致原有的刻循环系统无法及时地检测到末影箱中的这些按钮被拿起，而使其可能被任意移动，由于部分按钮中储存有箱子中的所有数据（包括信件、仓库），一旦被挪动则可能因为数据读取异常导致其全被清空！
+选装包基于插件事件监听实现了更敏捷高效的按钮操作检测，覆盖取代掉原有的循环检测函数，从而优化游戏性能。
 
-本组件通过插件监听玩家事件实现了更敏捷的检测，并覆盖弃用掉原有的循环检测函数 `pld:system/chest_menu/tick_players`，从而避免此类问题的发生。
+如果您的游戏内容（DLC）对末影箱菜单功能有所修改，请不要使用选装包，或者将其中的以下文件或目录删除：  
+- `data/pcub/tags/functions/chest_menu/`
+- `data/pld/functions/system/chest_menu/tick_players.mcfunction`
+
+再或者，若您希望适配选装包，请在您自己的数据包中添加函数标签 `#pcub_add:chest_menu/<open|click|leave>` 并在其中定义相关函数。
 
 ### 针对 Floodgate 插件的修复
 
@@ -129,7 +133,7 @@ world-settings:
 
 如果您不能独立分析一些 Bug 的根源所在，请不要使用非 Spigot 核心，**尤其是 Paper 及其分支**。
 
-如果您希望将此套件用在非插件平台上（例如 Fabric 等模组端），则只能使用 `plugins/Geyser-Spigot` 文件夹中的内容，这里包含了 Geyser 所有版本通用的配置文件及资源包，除此之外的其它功能（包括数据包）均只为插件端设计，也就是说在这些平台上无法实现菜单书、基岩版丹药叠放（仅依靠JE叠放模组在基岩版下不能完美生效）等部分针对性优化。除此之外，所有的选装组件除非特殊说明外，均不支持非插件平台。
+如果您希望将此套件用在非插件平台上（例如 Fabric 等模组端），则只能使用 `plugins/Geyser-Spigot` 文件夹中的内容，这里包含了 Geyser 所有版本通用的配置文件及资源包，除此之外的其它功能（包括数据包）均只为插件端设计，也就是说在这些平台上无法实现菜单书、基岩版丹药叠放（仅依靠 Java 版叠放模组在基岩版下无效）等部分针对性优化。
 
 
 
@@ -181,11 +185,11 @@ world-settings:
 ### 末影箱交互事件（打开/点击/关闭）
 - 接口类型：函数标签
 
-打开末影箱（玩家交互末影箱并打开界面后）：`#pcub:chest_menu/open`
+打开末影箱（玩家交互末影箱并打开界面后）时触发：`#pcub:chest_menu/open`
 
-按下按钮（玩家记分项 `screen`>=0 且拿起/移动/丢出带有标签 `{clickable:1}` 的物品）：`#pcub:chest_menu/click`
+按下按钮（玩家记分项 `screen`>=0 且拿起/移动/丢出带有标签 `{clickable:1}` 的物品）时触发：`#pcub:chest_menu/click`
 
-关闭末影箱：`#pcub:chest_menu/leave`
+关闭末影箱时触发：`#pcub:chest_menu/leave`
 
 注：如果只是单纯需要适配选装包，请将 `pcub` 命名空间改为 `pcub_add` 
 
