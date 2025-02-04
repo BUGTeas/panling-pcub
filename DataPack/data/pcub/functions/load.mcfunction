@@ -16,7 +16,7 @@ scoreboard objectives add pcub_fastskill_duration dummy
 
 # 当前API版本
 scoreboard objectives add pcub_api_version dummy
-scoreboard players set #system pcub_api_version 4
+scoreboard players set #system pcub_api_version 5
 
 # 最低兼容API版本
 scoreboard objectives add pcub_api_minVersion dummy
