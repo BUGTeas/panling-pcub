@@ -66,7 +66,7 @@ public class EventListener implements Listener {
             new BukkitRunnable(){
                 @Override
                 public void run(){
-                    common.consoleExec("execute as " + playerUUIDStr + " run function #pcub:join_" + edition);
+                    common.consoleExec("execute as " + playerUUIDStr + " run function #pcub:player_join/" + edition);
                 }
             }.runTaskLater(main, 0L);
         }

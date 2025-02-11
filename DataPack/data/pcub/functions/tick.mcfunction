@@ -1,5 +1,5 @@
-execute as @a[tag=player_bedrock] run function #pcub:tick_bedrock
-execute as @a[tag=player_java] run function #pcub:tick_java
+execute as @a[tag=player_bedrock] run function #pcub:player_tick/bedrock
+execute as @a[tag=player_java] run function #pcub:player_tick/java
 
-# 用于在梦盘互通套件加载后执行
+# 向下兼容
 function #pcub:tick
