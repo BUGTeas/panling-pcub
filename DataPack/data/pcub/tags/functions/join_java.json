@@ -2,6 +2,7 @@
 	"replace": false,
 	"values": [
 		"pcub:common_join",
-		"pcub:java/join"
+		"pcub:java/join",
+		"#pcub:mainhand_check/java"
 	]
 }

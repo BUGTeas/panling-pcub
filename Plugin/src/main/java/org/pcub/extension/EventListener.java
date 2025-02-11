@@ -4,15 +4,14 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -30,6 +29,7 @@ public class EventListener implements Listener {
     private final FastSkill fastSkill;
     private final DropLimiter dropLimiter;
     private final Stacker stacker;
+    private final MainhandCheck mainhandCheck;
 
 
     // 玩家进服事件
@@ -131,6 +131,9 @@ public class EventListener implements Listener {
             int margeResult = new Stacker.MergeItem(current, cursor).checkWork();
             if (margeResult > 0 && common.debug) common.debugLogger(playerName + " 强制交换合并 x" + margeResult);
         }
+
+        // 主手检测
+        mainhandCheck.checkInventoryClick(player, currentSlot, currentAction);
     }
 
 
@@ -139,6 +142,36 @@ public class EventListener implements Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         ChestMenu.close((Player) event.getPlayer(), common);
+    }
+
+
+
+    // 实体捡起物品
+    @EventHandler
+    public void onEntityPickupItem(EntityPickupItemEvent event) {
+        LivingEntity livingEntity = event.getEntity();
+        // 主手检测
+        mainhandCheck.checkPickupItem(livingEntity);
+    }
+
+
+
+    // 玩家主手切换
+    @EventHandler
+    public void onPlayerItemHeld(PlayerItemHeldEvent event) {
+        Player player = event.getPlayer();
+        // 主手检测
+        mainhandCheck.work(player);
+    }
+
+
+
+    // 玩家丢出物品
+    @EventHandler
+    public void onPlayerDropItem(PlayerDropItemEvent event) {
+        Player player = event.getPlayer();
+        // 主手检测
+        mainhandCheck.checkDropItem(player);
     }
 
 
@@ -257,5 +290,6 @@ public class EventListener implements Listener {
         this.fastSkill = new FastSkill(common);
         this.dropLimiter = new DropLimiter(common);
         this.stacker = new Stacker(common);
+        this.mainhandCheck = new MainhandCheck();
     }
 }

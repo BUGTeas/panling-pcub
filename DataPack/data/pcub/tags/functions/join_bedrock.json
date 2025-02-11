@@ -2,6 +2,7 @@
 	"replace": false,
 	"values": [
 		"pcub:common_join",
-		"pcub:bedrock/join"
+		"pcub:bedrock/join",
+		"#pcub:mainhand_check/bedrock"
 	]
 }

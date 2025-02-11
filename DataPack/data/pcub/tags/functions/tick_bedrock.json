@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"pcub:bedrock/tick"
+		"pcub:bedrock/tick",
+		"pcub:mainhand_check/tick_bedrock"
 	]
 }
