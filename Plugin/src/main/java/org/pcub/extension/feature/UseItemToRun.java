@@ -13,19 +13,20 @@ import org.pcub.extension.Main;
 
 public class UseItemToRun {
     // 键名定义
-    private final NamespacedKey shortcutKey;
     private final NamespacedKey menuKey;
+    private final NamespacedKey runCommandKey;
+    private final NamespacedKey bedrockOnlyKey;
+    private final NamespacedKey blockUsageKey;
     private final Common common;
     private final Main main;
 
 
 
-    public State bedrockMenu(Player player, ItemMeta usedMeta){
+    public State checkCommandExecute(Player player, ItemMeta usedMeta, boolean isBedrock){
         String targetID = player.getUniqueId().toString();
         String targetName = player.getName();
         if(usedMeta == null) return State.FAIL;
         PersistentDataContainer dataCont = usedMeta.getPersistentDataContainer();
-        String shortcut = dataCont.get(shortcutKey, PersistentDataType.STRING);
         if (Boolean.TRUE.equals(dataCont.get(menuKey, PersistentDataType.BOOLEAN))) {
             // 打开菜单书
             common.setScore("pcub_open_bedrock_menu", targetName, 1);
@@ -47,13 +48,24 @@ public class UseItemToRun {
             }.runTaskLater(main, 2L);
             return State.SUCCESS;
         }
-        if (shortcut != null) {
-            // 命令捷径
-            if (!common.getOperationLimit("mb" + targetID, 1)) player.performCommand(shortcut);
-            common.setOperationLimit("mb" + targetID, 10L);
+        String runCommand = dataCont.get(runCommandKey, PersistentDataType.STRING);
+        // 未设置执行命令，或限定基岩版使用（默认）
+        if (    runCommand == null ||
+                !Boolean.FALSE.equals(dataCont.get(bedrockOnlyKey, PersistentDataType.BOOLEAN)) &&
+                        !isBedrock) {
+            return State.FAIL;
+        }
+        // 执行命令
+        boolean limit = common.getOperationLimit("mb" + targetID, 1);
+        common.setOperationLimit("mb" + targetID, 10L);
+        if (!limit) {
+            player.performCommand(runCommand);
+        }
+        // 阻止原物品功能（默认）
+        if (Boolean.FALSE.equals(dataCont.get(blockUsageKey, PersistentDataType.BOOLEAN))) {
             return State.SUCCESS;
         }
-        return State.FAIL;
+        return State.SUCCESS_AND_LIMIT;
     }
 
 
@@ -89,7 +101,9 @@ public class UseItemToRun {
         this.common = common;
         Main main = common.main;
         this.main = main;
-        this.shortcutKey = new NamespacedKey(main, "run_command");
+        this.runCommandKey = new NamespacedKey(main, "run_command");
+        this.bedrockOnlyKey = new NamespacedKey(main, "bedrock_only");
+        this.blockUsageKey = new NamespacedKey(main, "block_usage");
         this.menuKey = new NamespacedKey(main, "menubook");
     }
 }

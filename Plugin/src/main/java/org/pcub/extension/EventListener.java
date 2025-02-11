@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.geysermc.floodgate.util.DeviceOs;
+import org.pcub.extension.Common.State;
 import org.pcub.extension.feature.*;
 
 import java.util.Arrays;
@@ -240,14 +241,13 @@ public class EventListener implements Listener {
                         common.getTempScore("is_touch", targetID) == 1
                     ).limit
             ) event.setCancelled(true);
-
-            // 基岩版功能
-            if (isBedrock &&
-                (
-                    usedType != Material.BOOK ||
-                    !useItemToRun.bedrockMenu(targetPlayer, usedMeta).success
-                )
-            ) useItemToRun.bedrockOffhand(targetPlayer, targetName, usedType);
+            // 使用物品执行命令
+            State shortcutResult = useItemToRun.checkCommandExecute(targetPlayer, usedMeta, isBedrock);
+            if (shortcutResult.limit) event.setCancelled(true);
+            // 基岩版副手功能
+            if (!shortcutResult.success && isBedrock) {
+                useItemToRun.bedrockOffhand(targetPlayer, targetName, usedType);
+            }
         }
     }
 

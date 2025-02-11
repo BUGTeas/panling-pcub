@@ -24,6 +24,7 @@ public class Common {
     public enum State {
         FAIL(false, false),
         SUCCESS(true, false),
+        SUCCESS_AND_LIMIT(true, true),
         LIMIT(false, true);
 
         public final boolean success;
