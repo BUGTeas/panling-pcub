@@ -2,7 +2,8 @@
 	"geyser":{
 		"fallback":{},
 		"base":{
-			"container.enderchest": "container.enderchest:force_desktop_ui:"
+			"container.enderchest": "container.enderchest:force_desktop_ui:",
+			"item.pcub.bedrock_menubook": "§6菜单\n§7常规功能选项都在这里"
 		},
 		"conversion":{
 			"pl.info.resourcepack_version":"互通套件版本： v1.5.1 先行版",

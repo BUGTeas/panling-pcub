@@ -1,4 +1,5 @@
 {
+    "_comments": "将旧版的基岩菜单书刷新复原",
     "criteria": {
         "inventory_changed":{
             "trigger": "minecraft:inventory_changed",
@@ -8,10 +9,7 @@
                         "items": [ "minecraft:book" ],
                         "nbt": "{id:\"pcub:menubook\"}"
                     }
-                ],
-                "player": {
-                    "nbt": "{Tags:[\"player_java\"]}"
-                }
+                ]
             }
         }
     },

@@ -1,5 +1,6 @@
-# 基岩菜单书、成就
-scoreboard objectives add pcub_open_bedrock_menu dummy
+# 基岩菜单书、成就（弃用）
+scoreboard objectives remove pcub_open_bedrock_menu
+
 # 基岩版主手物品展示优化
 scoreboard objectives add pcub_showitem dummy
 # 手持物品交互事件

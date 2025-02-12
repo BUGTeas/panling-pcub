@@ -1,8 +1,6 @@
 # 用于在梦盘互通套件卸载前执行
 function #pcub:uninstall
 
-# 基岩菜单书、成就
-scoreboard objectives remove pcub_open_bedrock_menu
 # 基岩版主手物品展示优化
 scoreboard objectives remove pcub_showitem
 # 手持物品交互事件

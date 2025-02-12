@@ -12,8 +12,8 @@ global-permission-defaults:
 config-version: 5
 
 forms:
-  #主菜单
-  menubook-be:
+  # 主菜单
+  panling_menubook-0-0:
     type: simple_form
     title: "pcub.title.menubook"
     content: "pcub.content.menubook"
@@ -152,8 +152,8 @@ forms:
       text: "gui.back"
       actions:
         - form: test-bless-be
-  #隐藏任务界面
-  hide-task-be:
+  # 隐藏任务界面
+  panling_menubook-1-1:
     type: simple_form
     title: "pcub.title.menubook"
     content: "pcub.content.hide.talk"
@@ -170,7 +170,7 @@ forms:
         image: "textures/menubook/book"
         actions:
           - form: menubook-be
-  hide-talk-be:
+  panling_menubook-1-0:
     type: simple_form
     title: "pcub.title.menubook"
     content: "pcub.content.hide.talk"
@@ -183,7 +183,7 @@ forms:
         image: "textures/menubook/book"
         actions:
           - form: menubook-be
-  hide-item-be:
+  panling_menubook-0-1:
     type: simple_form
     title: "pcub.title.menubook"
     content: "pcub.content.hide.mission_item"

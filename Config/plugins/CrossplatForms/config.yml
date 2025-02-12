@@ -2,8 +2,16 @@
 
 # Commands can be dynamically defined here, to open specific forms.
 commands:
-  #菜单书条目
-  #切换试炼祝福
+  # 菜单书主命令
+  menubook-be:
+    method: register
+    command: menubook-be
+    actions:
+      - commands:
+        - execute as %player_uuid% run function pcub:hide/check
+      - form: "panling_menubook-%objective_score_{pcub_hide_talk_enable}%-%objective_score_{pcub_hide_item_enable}%"
+  # 菜单书条目
+  # 切换试炼祝福
   set-test-bless-be0:
     method: register
     command: set-test-bless-be0
@@ -16,7 +24,7 @@ commands:
     actions:
       - form: test-bless-be
     permission: crossplatforms.command.open
-  #女娲
+  # 女娲
   ren-test-bless-be0:
     method: register
     command: ren-test-bless-be0
@@ -29,7 +37,7 @@ commands:
     actions:
       - commands: "player; trigger test_bless set 14"
     permission: crossplatforms.command.open
-  #盘古
+  # 盘古
   shen-test-bless-be0:
     method: register
     command: shen-test-bless-be0
@@ -42,7 +50,7 @@ commands:
     actions:
       - commands: "player; trigger test_bless set 10"
     permission: crossplatforms.command.open
-  #蚩尤
+  # 蚩尤
   zhan-test-bless-be0:
     method: register
     command: zhan-test-bless-be0
@@ -55,7 +63,7 @@ commands:
     actions:
       - commands: "player; trigger test_bless set 13"
     permission: crossplatforms.command.open
-  #领取试炼祝福道具
+  # 领取试炼祝福道具
   get-test-bless-be0:
     method: register
     command: get-test-bless-be0
@@ -68,7 +76,7 @@ commands:
     actions:
       - commands: "player; trigger menu set 6"
     permission: crossplatforms.command.open
-  #箭袋选项
+  # 箭袋选项
   set-arrow-pack-be0:
     method: register
     command: set-arrow-pack-be0
@@ -81,7 +89,7 @@ commands:
     actions:
       - commands: "player; trigger menu set 2"
     permission: crossplatforms.command.open
-  #新芽之羽补领
+  # 新芽之羽补领
   get-feather-be0:
     method: register
     command: get-feather-be0
@@ -94,7 +102,7 @@ commands:
     actions:
       - commands: "player; trigger menu set 7"
     permission: crossplatforms.command.open
-  #重华晶补领
+  # 重华晶补领
   get-tp-stone-be0:
     method: register
     command: get-tp-stone-be0

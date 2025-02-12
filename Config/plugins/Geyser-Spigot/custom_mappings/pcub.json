@@ -1,15 +1,11 @@
 {
 	"format_version": "1",
 	"items": {
-		//命令捷径（书）
-		"minecraft:book": [
+		// 基岩版无法通过取消事件阻止原版书本界面打开，且会覆盖其它界面
+		// 将其映射为自定义物品后即可解决
+		"minecraft:written_book": [
 			{
 				"custom_model_data": 1,
-				"name": "book_normal",
-				"texture_size": 26,
-				"allow_offhand": false
-			}, {
-				"custom_model_data": 2,
 				"name": "book_written",
 				"texture_size": 26,
 				"allow_offhand": false

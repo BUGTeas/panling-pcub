@@ -1,0 +1,13 @@
+[
+    {
+        "function": "set_nbt",
+        "tag": "{PublicBukkitValues: {\"pcub:run_command\": \"menubook-be\"}, CustomModelData: 1, pcub_patch_ver: 0}"
+    }, {
+        "function": "set_name",
+        "_comments": "Java版下显示的是fallback文本",
+        "name": {
+            "translate": "item.pcub.bedrock_menubook",
+            "fallback": "§6菜单"
+        }
+    }
+]

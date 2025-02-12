@@ -13,7 +13,6 @@ import org.pcub.extension.Main;
 
 public class UseItemToRun {
     // 键名定义
-    private final NamespacedKey menuKey;
     private final NamespacedKey runCommandKey;
     private final NamespacedKey bedrockOnlyKey;
     private final NamespacedKey blockUsageKey;
@@ -27,27 +26,6 @@ public class UseItemToRun {
         String targetName = player.getName();
         if(usedMeta == null) return State.FAIL;
         PersistentDataContainer dataCont = usedMeta.getPersistentDataContainer();
-        if (Boolean.TRUE.equals(dataCont.get(menuKey, PersistentDataType.BOOLEAN))) {
-            // 打开菜单书
-            common.setScore("pcub_open_bedrock_menu", targetName, 1);
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if (!common.getOperationLimit("mb" + targetID, 1)) {
-                        // 隐藏物品》隐藏对话》菜单
-                        // 获取记分项
-                        boolean hideItem = common.getScore("pcub_hide_item_enable", targetName) == 1;
-                        boolean hideTalk = common.getScore("pcub_hide_talk_enable", targetName) == 1;
-                        if (hideItem && hideTalk) player.performCommand("forms open hide-task-be");
-                        else if (hideItem) player.performCommand("forms open hide-item-be");
-                        else if (hideTalk) player.performCommand("forms open hide-talk-be");
-                        else player.performCommand("forms open menubook-be");
-                    }
-                    common.setOperationLimit("mb" + targetID, 10L);
-                }
-            }.runTaskLater(main, 2L);
-            return State.SUCCESS;
-        }
         String runCommand = dataCont.get(runCommandKey, PersistentDataType.STRING);
         // 未设置执行命令，或限定基岩版使用（默认）
         if (    runCommand == null ||
@@ -104,6 +82,5 @@ public class UseItemToRun {
         this.runCommandKey = new NamespacedKey(main, "run_command");
         this.bedrockOnlyKey = new NamespacedKey(main, "bedrock_only");
         this.blockUsageKey = new NamespacedKey(main, "block_usage");
-        this.menuKey = new NamespacedKey(main, "menubook");
     }
 }
