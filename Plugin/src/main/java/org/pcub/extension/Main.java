@@ -17,6 +17,7 @@ public final class Main extends JavaPlugin {
     // 检查插件
     public boolean haveGeyser = false;
     public boolean haveFloodgate = false;
+    public boolean havePAPI = false;
 
 
 
@@ -25,6 +26,7 @@ public final class Main extends JavaPlugin {
         PluginManager pluginManager = server.getPluginManager();
         if (pluginManager.getPlugin("Geyser-Spigot") != null) this.haveGeyser = true;
         if (pluginManager.getPlugin("floodgate") != null) this.haveFloodgate = true;
+        if (pluginManager.getPlugin("PlaceholderAPI") != null) this.havePAPI = true;
     }
 
 

@@ -1,5 +1,6 @@
 package org.pcub.extension.feature;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ public class UseItemToRun {
     private final NamespacedKey runCommandKey;
     private final NamespacedKey bedrockOnlyKey;
     private final NamespacedKey blockUsageKey;
+    private final NamespacedKey placeholderKey;
     private final Common common;
     private final Main main;
 
@@ -37,6 +39,10 @@ public class UseItemToRun {
         boolean limit = common.getOperationLimit("mb" + targetID, 1);
         common.setOperationLimit("mb" + targetID, 10L);
         if (!limit) {
+            if (    Boolean.TRUE.equals(dataCont.get(placeholderKey, PersistentDataType.BOOLEAN)) &&
+                    main.havePAPI) {
+                runCommand = PlaceholderAPI.setPlaceholders(player, runCommand);
+            }
             player.performCommand(runCommand);
         }
         // 阻止原物品功能（默认）
@@ -82,5 +88,6 @@ public class UseItemToRun {
         this.runCommandKey = new NamespacedKey(main, "run_command");
         this.bedrockOnlyKey = new NamespacedKey(main, "bedrock_only");
         this.blockUsageKey = new NamespacedKey(main, "block_usage");
+        this.placeholderKey = new NamespacedKey(main, "use_placeholder");
     }
 }
