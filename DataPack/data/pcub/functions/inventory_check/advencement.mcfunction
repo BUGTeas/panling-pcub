@@ -1,0 +1,1 @@
+tag @s add pcub_inventory_check

@@ -1,0 +1,6 @@
+{
+	"replace": false,
+	"values": [
+		"pcub:inventory_check/request_clear"
+	]
+}

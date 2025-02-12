@@ -30,7 +30,6 @@ public class EventListener implements Listener {
     private final FastSkill fastSkill;
     private final DropLimiter dropLimiter;
     private final Stacker stacker;
-    private final MainhandCheck mainhandCheck;
 
 
     // 玩家进服事件
@@ -132,9 +131,6 @@ public class EventListener implements Listener {
             int margeResult = new Stacker.MergeItem(current, cursor).checkWork();
             if (margeResult > 0 && common.debug) common.debugLogger(playerName + " 强制交换合并 x" + margeResult);
         }
-
-        // 主手检测
-        mainhandCheck.checkInventoryClick(player, currentSlot, currentAction);
     }
 
 
@@ -147,32 +143,12 @@ public class EventListener implements Listener {
 
 
 
-    // 实体捡起物品
-    @EventHandler
-    public void onEntityPickupItem(EntityPickupItemEvent event) {
-        LivingEntity livingEntity = event.getEntity();
-        // 主手检测
-        mainhandCheck.checkPickupItem(livingEntity);
-    }
-
-
-
     // 玩家主手切换
     @EventHandler
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {
         Player player = event.getPlayer();
-        // 主手检测
-        mainhandCheck.work(player);
-    }
-
-
-
-    // 玩家丢出物品
-    @EventHandler
-    public void onPlayerDropItem(PlayerDropItemEvent event) {
-        Player player = event.getPlayer();
-        // 主手检测
-        mainhandCheck.checkDropItem(player);
+        // 触发数据包侧的物品检测接口
+        player.addScoreboardTag("pcub_inventory_check");
     }
 
 
@@ -290,6 +266,5 @@ public class EventListener implements Listener {
         this.fastSkill = new FastSkill(common);
         this.dropLimiter = new DropLimiter(common);
         this.stacker = new Stacker(common);
-        this.mainhandCheck = new MainhandCheck();
     }
 }

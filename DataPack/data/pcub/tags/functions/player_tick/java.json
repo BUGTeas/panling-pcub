@@ -1,7 +1,6 @@
 {
 	"replace": false,
 	"values": [
-		"pcub:java/tick",
-		"pcub:mainhand_check/tick_java"
+		"pcub:java/tick"
 	]
 }
