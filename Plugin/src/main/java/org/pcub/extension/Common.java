@@ -1,12 +1,7 @@
 package org.pcub.extension;
 
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.bukkit.scoreboard.*;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.geysermc.geyser.api.GeyserApi;
 
@@ -49,8 +44,6 @@ public class Common {
     }
 
 
-    // 获取计分板管理器
-    private final ScoreboardManager scoreboardManager;
 
     // 获取原版记分板
     private final Scoreboard mainScoreboard;
@@ -85,35 +78,8 @@ public class Common {
     // 设置临时记分板分数
     public void setTempScore(String objectiveName, String target, int score) {
         Objective objective = tempScoreboard.getObjective(objectiveName);
-        if (objective == null) objective = tempScoreboard.registerNewObjective(objectiveName, "dummy");
+        if (objective == null) objective = tempScoreboard.registerNewObjective(objectiveName, Criteria.DUMMY, "");
         objective.getScore(target).setScore(score);
-    }
-
-
-
-    // 频繁操作限制
-
-    // 创建专用记分板
-    private final Objective operationLimit;
-
-    // 设置状态
-    public void setOperationLimit(String target, long delay) {
-        Score score = operationLimit.getScore(target);
-        int clickCnt = score.getScore();
-        clickCnt++;
-        score.setScore(clickCnt);
-        int lastClickCnt = clickCnt;
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (score.getScore() == lastClickCnt) score.setScore(0);
-            }
-        }.runTaskLater(main, delay);
-    }
-
-    // 获取状态
-    public boolean getOperationLimit(String target, int when) {
-        return operationLimit.getScore(target).getScore() >= when;
     }
 
 
@@ -127,11 +93,8 @@ public class Common {
     public Common(Main main) {
         this.main = main;
         ScoreboardManager scoreboardManager = main.server.getScoreboardManager();
-        this.scoreboardManager = scoreboardManager;
         this.mainScoreboard = scoreboardManager.getMainScoreboard();
-        Scoreboard tempScoreboard = scoreboardManager.getNewScoreboard();
-        this.tempScoreboard = tempScoreboard;
-        this.operationLimit = tempScoreboard.registerNewObjective("operationLimit_count", "dummy");
+        this.tempScoreboard = scoreboardManager.getNewScoreboard();
 
         this.geyserApi = (main.haveGeyser) ? GeyserApi.api() : null;
         this.geyserValid = this.geyserApi != null;

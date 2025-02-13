@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.pcub.extension.Common;
 import org.pcub.extension.Main;
+import org.pcub.extension.common.OperationLimiter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -222,12 +223,14 @@ public class Stacker {
 
     private final Common common;
     private final Main main;
+    private final ChestMenu chestMenu;
     // 快速移动变量
     private Player moveUser = null;
     private ItemStack moveFromCopy = null;
     private Inventory moveFromInv = null;
     private InventoryType moveFromInvType = null;
     private int moveFromSlot = 0;
+    private final OperationLimiter legacyPickupLimit;
 
 
 
@@ -336,7 +339,7 @@ public class Stacker {
                 LEFT MERCHANT 2 PICKUP_ALL 指针:AIR 槽位:POTION - 取消 (该动作可能会重复数次)
 */
         //在间隔2刻前，始终取消拿起或交换
-        boolean notPickup = common.getOperationLimit("pu" + targetUUIDStr, 1);
+        boolean notPickup = legacyPickupLimit.get(targetPlayer) > 0;
         if (notPickup) {
             if (
                     pickupActions.contains(currentAction) ||
@@ -345,7 +348,7 @@ public class Stacker {
                 event.setCancelled(true);
                 if (common.debug) common.debugLogger(targetName + " 取消 - 拿起和交换受限");
             }
-            common.setOperationLimit("pu" + targetUUIDStr, 2L);
+            legacyPickupLimit.put(targetPlayer, 2L);
         }
 
         boolean buttonClicked = common.getTempScore("clicked", targetUUIDStr) == 1;
@@ -377,12 +380,12 @@ public class Stacker {
                 if (common.debug) common.debugLogger(targetName + " 强制交易归位 - 同一刻内多次触发且类型为右键拿起全部");
             }
             //第一次点击，则限制2刻内不能拿起
-            else if (!notPickup) common.setOperationLimit("pu" + targetUUIDStr, 2L);
+            else if (!notPickup) legacyPickupLimit.put(targetPlayer, 2L);
         }
         // 钱庄末影箱按钮点击
         else if (
                 common.getScore("screen", targetName) >= 0 &&
-                ChestMenu.checkWork(cursor, current, targetUUIDStr, common).limit
+                chestMenu.checkWork(cursor, current, targetPlayer).limit
         ) event.setCancelled(true);
 
         // 放置/交换非常规叠放物品
@@ -470,7 +473,7 @@ public class Stacker {
                     if (srcSlotItem != null) srcSlotItem.setAmount(0);
                     if (common.debug) common.debugLogger(targetName + " 取消并强制移动");
                     //限制2刻内不能拿起
-                    common.setOperationLimit("pu" + targetUUIDStr, 2L);
+                    legacyPickupLimit.put(targetPlayer, 2L);
                 }
                 // 双击合并
                 // 目标已有物品与源物品相同，且未触发合并两组，则触发此项
@@ -550,7 +553,7 @@ public class Stacker {
                     if (cursor.item != null) cursor.item.setAmount(0);
                     if (common.debug) common.debugLogger(targetName + " 取消并强制双击合并");
                     // 限制2刻内不能拿起
-                    common.setOperationLimit("pu" + targetUUIDStr, 2L);
+                    legacyPickupLimit.put(targetPlayer, 2L);
                 }
             }
             //交易（触屏单击/Shift）同一刻内任意触发，且指针不为空，则开始自动归位
@@ -576,8 +579,10 @@ public class Stacker {
 
 
 
-    public Stacker(Common common){
+    public Stacker(Common common, ChestMenu chestMenu){
         this.common = common;
         this.main = common.main;
+        this.chestMenu = chestMenu;
+        this.legacyPickupLimit = new OperationLimiter(common.main);
     }
 }

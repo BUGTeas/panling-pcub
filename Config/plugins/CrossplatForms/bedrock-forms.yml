@@ -48,11 +48,7 @@ forms:
       #主手物品展示
       - text: "pcub.menubook.13"
         actions:
-          - commands:
-              #- "execute as %player_uuid% run trigger menu set 13"
-              - "execute as %player_uuid% run scoreboard players set @s pcub_showitem 1"
-              - "execute as %player_uuid% run title @s subtitle {\"translate\":\"pcub.showitem.subtitle\"}"
-              - "execute as %player_uuid% run title @s title {\"translate\":\"pcub.showitem.title\"}"
+          - commands: "execute as %player_uuid% run function pcub:bedrock/showitem/start"
       #副手物品展示
       - text: "pcub.menubook.14"
         actions:

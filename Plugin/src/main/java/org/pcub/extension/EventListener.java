@@ -4,12 +4,11 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
@@ -30,6 +29,7 @@ public class EventListener implements Listener {
     private final FastSkill fastSkill;
     private final DropLimiter dropLimiter;
     private final Stacker stacker;
+    private final ChestMenu chestMenu;
 
 
     // 玩家进服事件
@@ -57,10 +57,8 @@ public class EventListener implements Listener {
                 !common.floodgateValid && isGeyser
             ) ? 1 : 0);
             common.setTempScore("login_status", playerUUIDStr, (isFloodgate || isGeyser) ? 2 : 1);
-            common.setTempScore("operating_limit_count", playerUUIDStr, 0);
             common.setTempScore("clicked", playerUUIDStr, 0);
             common.setTempScore("inventory_opened", playerUUIDStr, 0);
-            common.setTempScore("pot_clicked", playerUUIDStr, 0);
             fastSkill.cancelSneak(player);
             String edition = (isFloodgate || isGeyser) ? "bedrock" : "java";
             new BukkitRunnable(){
@@ -78,7 +76,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
         Player player = (Player) event.getPlayer();
-        ChestMenu.open(player.getName(), player.getUniqueId().toString(), common);
+        chestMenu.open(player.getName(), player.getUniqueId().toString());
     }
 
 
@@ -122,10 +120,8 @@ public class EventListener implements Listener {
         }
 
         // 末影箱菜单
-        if (
-                common.getScore("screen", playerName) >= 0 &&
-                ChestMenu.checkWork(cursor, current, playerUUIDStr, common).limit
-        ) event.setCancelled(true);
+        if (    common.getScore("screen", playerName) >= 0 &&
+                chestMenu.checkWork(cursor, current, player).limit) event.setCancelled(true);
         // 强制合并（常规交换）
         else if (currentAction == InventoryAction.SWAP_WITH_CURSOR) {
             int margeResult = new Stacker.MergeItem(current, cursor).checkWork();
@@ -138,7 +134,10 @@ public class EventListener implements Listener {
     // 容器关闭事件
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        ChestMenu.close((Player) event.getPlayer(), common);
+        HumanEntity humanEntity = event.getPlayer();
+        if (humanEntity instanceof Player) {
+            chestMenu.close(humanEntity.getName(), humanEntity.getUniqueId().toString());
+        }
     }
 
 
@@ -196,7 +195,7 @@ public class EventListener implements Listener {
                     targetStr.endsWith("SIGN")
                 );
                 // 开启钱庄箱子
-                if (targetMat == Material.ENDER_CHEST) ChestMenu.readyOpen(targetName, targetID, common);
+                if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
             }
         }
         if (action == Action.RIGHT_CLICK_AIR || !blockFunction && action == Action.RIGHT_CLICK_BLOCK) {
@@ -210,8 +209,8 @@ public class EventListener implements Listener {
                     usedType == Material.SNOWBALL ||
                     usedType == Material.SPLASH_POTION
                 ) && dropLimiter.check(
+                        targetPlayer,
                         targetName,
-                        targetID,
                         usedItem,
                         isBedrock,
                         common.getTempScore("is_touch", targetID) == 1
@@ -222,7 +221,8 @@ public class EventListener implements Listener {
             if (shortcutResult.limit) event.setCancelled(true);
             // 基岩版副手功能
             if (!shortcutResult.success && isBedrock) {
-                useItemToRun.bedrockOffhand(targetPlayer, targetName, usedType);
+                boolean offhandWork = useItemToRun.bedrockOffhand(targetPlayer, usedType);
+                if (common.debug) common.debugLogger(targetName + (offhandWork ? " 通过计分板向数据包请求" : " 主副手物品不满足条件/请求频率过高"));
             }
         }
     }
@@ -265,6 +265,7 @@ public class EventListener implements Listener {
         this.useItemToRun = new UseItemToRun(common);
         this.fastSkill = new FastSkill(common);
         this.dropLimiter = new DropLimiter(common);
-        this.stacker = new Stacker(common);
+        this.chestMenu = new ChestMenu(common);
+        this.stacker = new Stacker(common, this.chestMenu);
     }
 }

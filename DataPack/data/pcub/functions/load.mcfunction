@@ -1,10 +1,7 @@
-# 基岩菜单书、成就（弃用）
+# 弃用的记分项
 scoreboard objectives remove pcub_open_bedrock_menu
-
-# 基岩版主手物品展示优化
-scoreboard objectives add pcub_showitem dummy
-# 手持物品交互事件
-scoreboard objectives add pcub_player_interact dummy
+scoreboard objectives remove pcub_showitem
+scoreboard objectives remove pcub_player_interact
 
 # 投掷速度限制
 scoreboard objectives add pcub_drop_interval dummy

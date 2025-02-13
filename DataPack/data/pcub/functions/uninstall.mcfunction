@@ -1,11 +1,6 @@
 # 用于在梦盘互通套件卸载前执行
 function #pcub:uninstall
 
-# 基岩版主手物品展示优化
-scoreboard objectives remove pcub_showitem
-# 手持物品交互事件
-scoreboard objectives remove pcub_player_interact
-
 # 投掷速度限制
 scoreboard objectives remove pcub_drop_interval
 # 允许连续投掷
