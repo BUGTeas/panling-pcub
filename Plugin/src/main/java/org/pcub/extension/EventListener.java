@@ -19,7 +19,7 @@ import org.geysermc.floodgate.util.DeviceOs;
 import org.pcub.extension.Common.State;
 import org.pcub.extension.feature.*;
 
-import java.util.Arrays;
+import java.util.Set;
 import java.util.UUID;
 
 public class EventListener implements Listener {
@@ -48,7 +48,7 @@ public class EventListener implements Listener {
             common.setTempScore("login_status", playerUUIDStr, 0);
         } else {
             common.setTempScore("is_touch", playerUUIDStr, (
-                isFloodgate && Arrays.asList(
+                isFloodgate && Set.of(
                     DeviceOs.GOOGLE,
                     DeviceOs.IOS,
                     DeviceOs.WINDOWS_PHONE,

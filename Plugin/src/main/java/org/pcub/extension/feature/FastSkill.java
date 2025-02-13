@@ -5,19 +5,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.geysermc.floodgate.api.FloodgateApi;
-import org.geysermc.geyser.api.GeyserApi;
 import org.pcub.extension.Common;
 import org.pcub.extension.Main;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class FastSkill {
     private final Common common;
     private final Main main;
-    private final ArrayList<BukkitRunnable> sneakSkill = new ArrayList<>();
-    private final ArrayList<Player> sneakSkillPlayer = new ArrayList<>();
+    private final Map<Player, BukkitRunnable> sneakSkill = new HashMap<>();
 
 
 
@@ -48,7 +46,6 @@ public class FastSkill {
         ItemStack currentItem = player.getInventory().getItemInMainHand();
         ItemMeta currentMeta = currentItem.getItemMeta();
         if (currentItem.getType() == Material.CARROT_ON_A_STICK && currentMeta != null) {
-            sneakSkillPlayer.add(player);
             BukkitRunnable runnable = new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -59,7 +56,7 @@ public class FastSkill {
                     }
                 }
             };
-            sneakSkill.add(runnable);
+            sneakSkill.put(player, runnable);
             runnable.runTaskLaterAsynchronously(main, duration);
         }
     }
@@ -67,17 +64,9 @@ public class FastSkill {
 
 
     // 取消潜行
-    public void cancelSneak(Player target){
-        int targetIndex = -1;
-        for (int i = 0; i < sneakSkillPlayer.size(); i ++) if (sneakSkillPlayer.get(i) == target) {
-            targetIndex = i;
-            break;
-        }
-        if(targetIndex != -1) {
-            sneakSkillPlayer.remove(targetIndex);
-            sneakSkill.get(targetIndex).cancel();
-            sneakSkill.remove(targetIndex);
-        }
+    public void cancelSneak(Player player){
+        BukkitRunnable runnable = sneakSkill.remove(player);
+        if (runnable != null) runnable.cancel();
     }
 
 

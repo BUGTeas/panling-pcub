@@ -194,7 +194,7 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                         .closedResultHandler(() -> new BukkitRunnable(){
                                 @Override
                                 public void run() {
-                                    targetPlayer.performCommand("forms open menubook-be");
+                                    targetPlayer.performCommand("forms open panling_menubook-0-0");
                                 }
                             }.runTask(main)
                         )
