@@ -12,6 +12,8 @@ import org.pcub.extension.Common;
 import org.pcub.extension.Common.State;
 import org.pcub.extension.Main;
 
+import java.util.UUID;
+
 public class UseItemToRun {
     // 键名定义
     private final NamespacedKey runCommandKey;
@@ -24,28 +26,35 @@ public class UseItemToRun {
 
 
     public State checkCommandExecute(Player player, ItemMeta usedMeta, boolean isBedrock){
-        String targetID = player.getUniqueId().toString();
-        String targetName = player.getName();
         if(usedMeta == null) return State.FAIL;
         PersistentDataContainer dataCont = usedMeta.getPersistentDataContainer();
+        // 限定基岩版使用（默认启用）
+        if (    !Boolean.FALSE.equals(dataCont.get(bedrockOnlyKey, PersistentDataType.BOOLEAN)) &&
+                !isBedrock) return State.FAIL;
+        // 检查命令
         String runCommand = dataCont.get(runCommandKey, PersistentDataType.STRING);
-        // 未设置执行命令，或限定基岩版使用（默认）
-        if (    runCommand == null ||
-                !Boolean.FALSE.equals(dataCont.get(bedrockOnlyKey, PersistentDataType.BOOLEAN)) &&
-                        !isBedrock) {
+        if (runCommand == null) {
+            // 阻止原物品功能（默认禁用）
+            if (Boolean.TRUE.equals(dataCont.get(blockUsageKey, PersistentDataType.BOOLEAN))) {
+                return State.LIMIT;
+            }
             return State.FAIL;
         }
         // 执行命令
-        boolean limit = common.getOperationLimit("mb" + targetID, 1);
-        common.setOperationLimit("mb" + targetID, 10L);
-        if (!limit) {
+        UUID playerUUID = player.getUniqueId();
+        boolean runLimit = common.getOperationLimit("mb" + playerUUID, 1);
+        common.setOperationLimit("mb" + playerUUID, 10L);
+        if (!runLimit) {
+            // 过滤斜杠开头
+            if (runCommand.startsWith("/")) runCommand = runCommand.substring(1);
+            // 启用 PlaceholderAPI
             if (    Boolean.TRUE.equals(dataCont.get(placeholderKey, PersistentDataType.BOOLEAN)) &&
                     main.havePAPI) {
                 runCommand = PlaceholderAPI.setPlaceholders(player, runCommand);
             }
             player.performCommand(runCommand);
         }
-        // 阻止原物品功能（默认）
+        // 阻止原物品功能（默认启用）
         if (Boolean.FALSE.equals(dataCont.get(blockUsageKey, PersistentDataType.BOOLEAN))) {
             return State.SUCCESS;
         }
