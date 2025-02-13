@@ -111,7 +111,7 @@ forms:
       - text: "gui.back"
         image: "textures/panling/items/arrow_left"
         actions:
-          - form: menubook-be
+          - form: panling_menubook-0-0
   #切换试炼祝福
   test-bless-be:
     type: simple_form
@@ -136,7 +136,7 @@ forms:
       - text: "gui.back"
         image: "textures/panling/items/arrow_left"
         actions:
-          - form: menubook-be
+          - form: panling_menubook-0-0
   #条目未开启
   test-bless-disabled:
     type: modal_form
@@ -165,7 +165,7 @@ forms:
       - text: "pcub.forms.menubook"
         image: "textures/menubook/book"
         actions:
-          - form: menubook-be
+          - form: panling_menubook-0-0
   panling_menubook-1-0:
     type: simple_form
     title: "pcub.title.menubook"
@@ -178,7 +178,7 @@ forms:
       - text: "pcub.forms.menubook"
         image: "textures/menubook/book"
         actions:
-          - form: menubook-be
+          - form: panling_menubook-0-0
   panling_menubook-0-1:
     type: simple_form
     title: "pcub.title.menubook"
@@ -191,7 +191,7 @@ forms:
       - text: "pcub.forms.menubook"
         image: "textures/menubook/book"
         actions:
-          - form: menubook-be
+          - form: panling_menubook-0-0
   #条目未开启
   option-disabled:
     type: modal_form
@@ -202,4 +202,4 @@ forms:
     button2:
       text: "gui.back"
       actions:
-        - form: menubook-be
+        - form: panling_menubook-0-0
