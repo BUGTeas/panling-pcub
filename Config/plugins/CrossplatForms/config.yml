@@ -10,6 +10,7 @@ commands:
       - commands:
         - execute as %player_uuid% run function pcub:hide/check
       - form: "panling_menubook-%objective_score_{pcub_hide_talk_enable}%-%objective_score_{pcub_hide_item_enable}%"
+    permission: crossplatforms.command.open
   # 菜单书条目
   # 切换试炼祝福
   set-test-bless-be0:
