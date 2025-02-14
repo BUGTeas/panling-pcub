@@ -222,7 +222,7 @@ public class EventListener implements Listener {
             // 基岩版副手功能
             if (!shortcutResult.success && isBedrock) {
                 boolean offhandWork = useItemToRun.bedrockOffhand(targetPlayer, usedType);
-                if (common.debug) common.debugLogger(targetName + (offhandWork ? " 通过计分板向数据包请求" : " 主副手物品不满足条件/请求频率过高"));
+                if (!offhandWork && common.debug) common.debugLogger(targetName + " 主副手物品不满足条件/请求频率过高");
             }
         }
     }

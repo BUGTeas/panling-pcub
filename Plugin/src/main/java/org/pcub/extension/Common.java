@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.*;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.geysermc.geyser.api.GeyserApi;
+import org.pcub.extension.common.ScoreboardTool;
 
 public class Common {
     // 获取主类
@@ -84,6 +85,11 @@ public class Common {
 
 
 
+    // 潜行/使用胡萝卜钓竿记分板管理
+    public final ScoreboardTool scoreboardTool;
+
+
+
     // (实验性) 弃用强制堆叠 & 交易伪叠放功能
     public boolean legacyStack = false;
 
@@ -95,6 +101,8 @@ public class Common {
         ScoreboardManager scoreboardManager = main.server.getScoreboardManager();
         this.mainScoreboard = scoreboardManager.getMainScoreboard();
         this.tempScoreboard = scoreboardManager.getNewScoreboard();
+
+        this.scoreboardTool = new ScoreboardTool(this, this.mainScoreboard);
 
         this.geyserApi = (main.haveGeyser) ? GeyserApi.api() : null;
         this.geyserValid = this.geyserApi != null;

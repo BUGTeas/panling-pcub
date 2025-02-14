@@ -51,8 +51,8 @@ public class FastSkill {
                 public void run() {
                     ItemMeta afterMeta = player.getInventory().getItemInMainHand().getItemMeta();
                     if (afterMeta != null && afterMeta.getAsString().equals(currentMeta.getAsString())) {
-                        common.setScore("right_click_check", targetName, 1);
-                        if (common.getScore("sneak_check", targetName) < 1) common.setScore("sneak_check", targetName, 1);
+                        common.scoreboardTool.useCarrotOnStick(targetName, 1);
+                        common.scoreboardTool.addSneakWhen0(targetName, 1);
                     }
                 }
             };

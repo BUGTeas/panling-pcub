@@ -22,7 +22,7 @@ public class UseItemToRun {
 
     private final OperationLimiter bedrockOffhandLimit;
     private final OperationLimiter commandExecuteLimit;
-
+    private final Common common;
 
 
     public State checkCommandExecute(Player player, ItemMeta usedMeta, boolean isBedrock){
@@ -70,7 +70,7 @@ public class UseItemToRun {
                 !Stacker.isForceStack(usedType) &&
                 bedrockOffhandLimit.get(player) < 1) {
             // 发出执行请求
-            player.addScoreboardTag("pcub_player_interact");
+            common.scoreboardTool.useCarrotOnStick(player.getName(), 1);
             // 0.1秒CD
             bedrockOffhandLimit.put(player, 2L);
             return true;
@@ -82,6 +82,7 @@ public class UseItemToRun {
 
     // 构造
     public UseItemToRun(Common common) {
+        this.common = common;
         Main main = common.main;
         this.main = main;
         this.bedrockOffhandLimit = new OperationLimiter(main);
