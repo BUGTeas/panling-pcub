@@ -18,7 +18,7 @@ scoreboard players set #system pcub_api_version 6
 
 # 最低兼容API版本
 scoreboard objectives add pcub_api_minVersion dummy
-scoreboard players set #system pcub_api_minVersion 1
+scoreboard players set #system pcub_api_minVersion 6
 
 # 隐藏任务
 scoreboard objectives add pcub_hide_item dummy
