@@ -140,7 +140,7 @@ world-settings:
 ## 🧩 接口支持
 
 本套件对外开放了以下接口，以便开发者适配：
-### 获取接口版本号（当前接口版本为 5，最低向下兼容到 1，即 v1.1.0）
+### 获取接口版本号（当前接口和最低向下兼容版本为 6）
 - 接口类型：记分板（`<记分对象或玩家> <记分项>`）
 
 当前接口版本号：`#system pcub_api_version`
@@ -165,29 +165,41 @@ world-settings:
 ### 以玩家身份执行
 - 接口类型：函数标签
 
-- Java 版玩家进入：`#pcub:join_java`
-- 基岩版玩家进入：`#pcub:join_bedrock`
-- Java 版玩家每刻：`#pcub:tick_java`
-- 基岩版玩家每刻：`#pcub:tick_bedrock`
+- Java 版玩家进入：`#pcub:player_join/java`
+- 基岩版玩家进入：`#pcub:player_join/bedrock`
+- Java 版玩家每刻：`#pcub:player_tick/java`
+- 基岩版玩家每刻：`#pcub:player_tick/bedrock`
+
+- 原先旧版的标签路径现仍然兼容，在不久后将失效
 
 注：进入执行由插件实现，比梦盘数据包提供的接口反应更快。每刻执行可能会在将来的更新中被弃用。
 
-### 副手触发
+### 背包物品变动 / 主手槽位切换检测
 - 接口类型：函数标签
 
-基岩版副手持胡萝卜钓竿，通过键鼠右键或触屏短长按使用不能正常触发，本套件通过事件监听实现了折中的解决方法。可以在标签 `#pcub:bedrock_right_click` 中附加需要在基岩版胡萝卜钓竿副手使用触发时执行的函数。
+在主手槽位切换、背包物品发生变化（包括但不限于移动位置、增减物品）以及打开容器界面（Bug）时触发，避免通过循环检测物品，减少占用。
 
-建议使用梦回盘灵自带的接口 `#pld:right_click/check` 或 `#pld:right_click/do` 实现胡萝卜钓竿使用时触发，无需专门为互通适配。
+- Java 版玩家：`#pcub:inventory_check/java`
+- 基岩版玩家：`#pcub:inventory_check/bedrock`
 
-### 手持物品执行命令（实验性）
-- 接口类型：函数标签
+注：这是一个异步执行接口，具有一定的延迟（目前内部实现方式是通过进度和插件事件监听，给予玩家实体标签，最后由每刻循环检测到此标签后触发）
 
-可以创建带有标签 `{PublicBukkitValues: {"pcub:run_command": "<命令>"}}` 的空书（minecraft:book）实现基岩版玩家使用触发时，执行特定命令。
+### 使用物品执行命令 / 禁用原物品功能
+- 接口类型：自定义物品 NBT
 
-（例）给予自己一本空书，使用时执行 `/help` 命令：  
-`give @s minecraft:book{PublicBukkitValues: {"pcub:run_command": "help"}}`
+**示例**：给予自己一张纸，基岩版玩家使用时执行 `/help` 命令：  
+`give @s minecraft:paper{PublicBukkitValues: {"pcub:run_command": "help"}}`
 
-该功能仍在完善，请慎用（Java 版也即将支持敬请期待）
+以下为标签详细用法，若无特殊说明均为可选项：
+```
+tag
+  └─PublicBukkitValues
+      ├─"pcub:run_command" 以玩家身份执行命令，所有权限和在聊天栏输入命令一致（类似书本/聊天栏中的 ClickEvent，但开头的斜杠 “/” 不是必需的）
+      ├─"pcub:use_placeholder" 默认为 false，当值为 true 时，通过 PlaceholderAPI 插件实时解析执行命令中的占位符
+      ├─"pcub:block_usage" 禁用物品原先的功能（比如书本、食物、钓竿），当提供执行命令后，默认为 true，否则默认为 false
+      └─"pcub:bedrock_only" 默认为 true，当值为 false 时，以上功能在 Java 版上同样生效
+```
+注意：基岩版无法阻止书本打开，且会覆盖掉通过命令打开的其它界面！将其映射为 Geyser 自定义物品，即可避免此问题发生。
 
 ### 村民交互事件
 - 接口类型：函数标签
