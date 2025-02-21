@@ -61,53 +61,63 @@
 			}, {
 				"custom_model_data": 21,
 				"name": "panling_sword1",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 22,
 				"name": "panling_sword2",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 23,
 				"name": "panling_sword3",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 24,
 				"name": "panling_sword4",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 25,
 				"name": "panling_sword5",
-                "texture_size": 52,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 52
 			}, {
 				"custom_model_data": 26,
 				"name": "panling_stick",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 32,
 				"name": "panling_axe2",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 33,
 				"name": "panling_axe3",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 34,
 				"name": "panling_axe4",
-                "texture_size": 26,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 26
 			}, {
 				"custom_model_data": 35,
 				"name": "panling_axe5",
-                "texture_size": 52,
-				"allow_offhand": false
+				"allow_offhand": false,
+				"tags": ["pcub:animated_tools"],
+                "texture_size": 52
 			}
 		],
 		//木稿
@@ -241,46 +251,53 @@
 		],
 		"minecraft:splash_potion": [
 			{
-				"name": "splash_potion_5149489",
 				"custom_model_data": 5149489,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_5149489",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			},
 			{
-				"name": "splash_potion_2293580",
 				"custom_model_data": 2293580,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_2293580",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			},
 			{
-				"name": "splash_potion_4393481",
 				"custom_model_data": 4393481,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_4393481",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			},
 			{
-				"name": "splash_potion_5578058",
 				"custom_model_data": 5578058,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_5578058",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			},
 			{
-				"name": "splash_potion_9643043",
 				"custom_model_data": 9643043,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_9643043",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			},
 			{
-				"name": "splash_potion_16262179",
 				"custom_model_data": 16262179,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_16262179",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			},
 			{
-				"name": "splash_potion_14981690",
 				"custom_model_data": 14981690,
-				"texture_size": 26,
-				"allow_offhand": false
+				"name": "splash_potion_14981690",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"],
+				"texture_size": 26
 			}
 		],
 
@@ -508,57 +525,70 @@
 		//纪念版限定玩偶
 		"minecraft:echo_shard": [
 			{
-				"name": "panling_figurines_1",
 				"custom_model_data": 1,
-				"allow_offhand": false
+				"name": "panling_figurines_1",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_2",
 				"custom_model_data": 2,
-				"allow_offhand": false
+				"name": "panling_figurines_2",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_3",
 				"custom_model_data": 3,
-				"allow_offhand": false
+				"name": "panling_figurines_3",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_4",
 				"custom_model_data": 4,
-				"allow_offhand": false
+				"name": "panling_figurines_4",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_5",
 				"custom_model_data": 5,
-				"allow_offhand": false
+				"name": "panling_figurines_5",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_6",
 				"custom_model_data": 6,
-				"allow_offhand": false
+				"name": "panling_figurines_6",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_7",
 				"custom_model_data": 7,
-				"allow_offhand": false
+				"name": "panling_figurines_7",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_8",
 				"custom_model_data": 8,
-				"allow_offhand": false
+				"name": "panling_figurines_8",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_9",
 				"custom_model_data": 9,
-				"allow_offhand": false
+				"name": "panling_figurines_9",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_10",
 				"custom_model_data": 10,
-				"allow_offhand": false
+				"name": "panling_figurines_10",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_11",
 				"custom_model_data": 11,
-				"allow_offhand": false
+				"name": "panling_figurines_11",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_12",
 				"custom_model_data": 12,
-				"allow_offhand": false
+				"name": "panling_figurines_12",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			},{
-				"name": "panling_figurines_13",
 				"custom_model_data": 13,
-				"allow_offhand": false
+				"name": "panling_figurines_13",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_items"]
 			}
 		],
 
