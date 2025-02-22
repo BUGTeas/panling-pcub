@@ -46,6 +46,7 @@ public class FastSkill {
         ItemStack currentItem = player.getInventory().getItemInMainHand();
         ItemMeta currentMeta = currentItem.getItemMeta();
         if (currentItem.getType() == Material.CARROT_ON_A_STICK && currentMeta != null) {
+            cancelSneak(player); // 异步可能导致 setSneak 在取消潜行前触发，在这里同步取消一遍，以免上一任务被覆盖无法取消导致反复潜行切换可能误判
             BukkitRunnable runnable = new BukkitRunnable() {
                 @Override
                 public void run() {

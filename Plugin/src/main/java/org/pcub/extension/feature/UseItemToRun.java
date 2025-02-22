@@ -71,8 +71,8 @@ public class UseItemToRun {
                 bedrockOffhandLimit.get(player) < 1) {
             // 发出执行请求
             common.scoreboardTool.useCarrotOnStick(player.getName(), 1);
-            // 0.1秒CD
-            bedrockOffhandLimit.put(player, 2L);
+            // 0.15秒CD
+            bedrockOffhandLimit.put(player, 3L);
             return true;
         }
         return false;

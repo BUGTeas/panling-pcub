@@ -24,7 +24,7 @@ public class OperationLimiter {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (map.get(player) == count) map.remove(player);
+                if (get(player) == count) map.remove(player);
             }
         }.runTaskLaterAsynchronously(plugin, delay);
         // 增加后的值

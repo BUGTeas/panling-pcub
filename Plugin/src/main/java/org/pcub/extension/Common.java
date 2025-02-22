@@ -79,7 +79,7 @@ public class Common {
     // 设置临时记分板分数
     public void setTempScore(String objectiveName, String target, int score) {
         Objective objective = tempScoreboard.getObjective(objectiveName);
-        if (objective == null) objective = tempScoreboard.registerNewObjective(objectiveName, Criteria.DUMMY, "");
+        if (objective == null) objective = tempScoreboard.registerNewObjective(objectiveName, Criteria.DUMMY, "-");
         objective.getScore(target).setScore(score);
     }
 
