@@ -1,5 +1,5 @@
 # 梦回盘灵专用 Java - 基岩双端互通套件
-v1.6.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）  
+v1.6.1 先行版（适用于梦回盘灵扩展包 v1.1.0b）  
 <!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->  
 <!-- 以下内容中所有命令均不包括`反引号 -->
 
@@ -135,6 +135,16 @@ v1.6.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 `/team modify normal collisionRule pushOwnTeam`
 
 恢复默认碰撞：`/team modify normal collisionRule always`
+
+
+
+## 🎆 特别鸣谢
+
+盘灵无界项目的发展，离不开他们的大力支持和帮助！
+
+- **xzseerl / xz_seer**：为基岩端资源包提供了物品模型、武器动画方面的帮助和技术支持 [bilibili](https://space.bilibili.com/449714964)
+
+这个名单并非一成不变，不知到何时，这里会多出新的几行 )
 
 
 
