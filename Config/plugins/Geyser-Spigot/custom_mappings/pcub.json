@@ -120,63 +120,134 @@
                 "texture_size": 52
 			}
 		],
+		// 弓箭
+		// "minecraft:arrow": [
+		// 	{
+		// 		"custom_model_data": 0,
+		// 		"name": "arrow",
+		// 		"allow_offhand": true,
+        //         "texture_size": 26
+		// 	}
+		// ],
+		"minecraft:bow": [
+			{
+				"custom_model_data": 1,
+				"name": "panling_bow",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow"],
+				"icon": "bow_standby",
+                "texture_size": 26
+			}, {
+				"custom_model_data": 20,
+				"name": "panling_bow2",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow"],
+                "texture_size": 26
+			}, {
+				"custom_model_data": 30,
+				"name": "panling_bow3",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow"],
+                "texture_size": 26
+			}, {
+				"custom_model_data": 40,
+				"name": "panling_bow4",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow"],
+                "texture_size": 26
+			}, {
+				"custom_model_data": 50,
+				"name": "panling_bow5",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow"],
+                "texture_size": 26
+			}, {
+				"custom_model_data": 60,
+				"name": "panling_bow6",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow"],
+                "texture_size": 26
+			}
+		],
 		//木稿
 		"minecraft:wooden_pickaxe": [
 			{
 				"custom_model_data": 1,
-				"name": "panling_bow_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_bow_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+				"icon": "bow_standby",
+                "texture_size": 26
 			},{
 				"custom_model_data": 2,
-				"name": "panling_crossbow_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_crossbow_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+				"icon": "crossbow_standby",
+                "texture_size": 26
 			},{
 				"custom_model_data": 20,
-				"name": "panling_bow2_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_bow2_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+				"icon": "panling_bow2",
+                "texture_size": 26
 			},{
 				"custom_model_data": 21,
-				"name": "panling_crossbow2_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_crossbow2_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+				"icon": "panling_crossbow2",
+                "texture_size": 26
 			},{
 				"custom_model_data": 30,
-				"name": "panling_bow3_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_bow3_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+				"icon": "panling_bow3",
+                "texture_size": 26
 			},{
 				"custom_model_data": 31,
-				"name": "panling_crossbow3_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_crossbow3_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+				"icon": "panling_crossbow3",
+                "texture_size": 26
 			},{
 				"custom_model_data": 40,
-				"name": "panling_bow4_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_bow4_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+				"icon": "panling_bow4",
+                "texture_size": 26
 			},{
 				"custom_model_data": 41,
-				"name": "panling_crossbow4_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_crossbow4_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+				"icon": "panling_crossbow4",
+                "texture_size": 26
 			},{
 				"custom_model_data": 50,
-				"name": "panling_bow5_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_bow5_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+				"icon": "panling_bow5",
+                "texture_size": 26
 			},{
 				"custom_model_data": 51,
-				"name": "panling_crossbow5_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_crossbow5_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+				"icon": "panling_crossbow5",
+                "texture_size": 26
 			},{
 				"custom_model_data": 60,
-				"name": "panling_bow6_invalid",
-                "texture_size": 26,
-				"allow_offhand": false
+				"name": "panling_bow6_disabled",
+				"allow_offhand": false,
+				"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+				"icon": "panling_bow6",
+                "texture_size": 26
 			}
 		],
 
