@@ -129,46 +129,46 @@
         //         "texture_size": 26
 		// 	}
 		// ],
-		"minecraft:bow": [
-			{
-				"custom_model_data": 1,
-				"name": "panling_bow",
-				"allow_offhand": false,
-				"tags": ["pcub:animated_bow"],
-				"icon": "bow_standby",
-                "texture_size": 26
-			}, {
-				"custom_model_data": 20,
-				"name": "panling_bow2",
-				"allow_offhand": false,
-				"tags": ["pcub:animated_bow"],
-                "texture_size": 26
-			}, {
-				"custom_model_data": 30,
-				"name": "panling_bow3",
-				"allow_offhand": false,
-				"tags": ["pcub:animated_bow"],
-                "texture_size": 26
-			}, {
-				"custom_model_data": 40,
-				"name": "panling_bow4",
-				"allow_offhand": false,
-				"tags": ["pcub:animated_bow"],
-                "texture_size": 26
-			}, {
-				"custom_model_data": 50,
-				"name": "panling_bow5",
-				"allow_offhand": false,
-				"tags": ["pcub:animated_bow"],
-                "texture_size": 26
-			}, {
-				"custom_model_data": 60,
-				"name": "panling_bow6",
-				"allow_offhand": false,
-				"tags": ["pcub:animated_bow"],
-                "texture_size": 26
-			}
-		],
+		// "minecraft:bow": [
+		// 	{
+		// 		"custom_model_data": 1,
+		// 		"name": "panling_bow",
+		// 		"allow_offhand": false,
+		// 		"tags": ["pcub:animated_bow"],
+		// 		"icon": "bow_standby",
+        //         "texture_size": 26
+		// 	}, {
+		// 		"custom_model_data": 20,
+		// 		"name": "panling_bow2",
+		// 		"allow_offhand": false,
+		// 		"tags": ["pcub:animated_bow"],
+        //         "texture_size": 26
+		// 	}, {
+		// 		"custom_model_data": 30,
+		// 		"name": "panling_bow3",
+		// 		"allow_offhand": false,
+		// 		"tags": ["pcub:animated_bow"],
+        //         "texture_size": 26
+		// 	}, {
+		// 		"custom_model_data": 40,
+		// 		"name": "panling_bow4",
+		// 		"allow_offhand": false,
+		// 		"tags": ["pcub:animated_bow"],
+        //         "texture_size": 26
+		// 	}, {
+		// 		"custom_model_data": 50,
+		// 		"name": "panling_bow5",
+		// 		"allow_offhand": false,
+		// 		"tags": ["pcub:animated_bow"],
+        //         "texture_size": 26
+		// 	}, {
+		// 		"custom_model_data": 60,
+		// 		"name": "panling_bow6",
+		// 		"allow_offhand": false,
+		// 		"tags": ["pcub:animated_bow"],
+        //         "texture_size": 26
+		// 	}
+		// ],
 		//木稿
 		"minecraft:wooden_pickaxe": [
 			{
