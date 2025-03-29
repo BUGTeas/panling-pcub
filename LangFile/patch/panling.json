@@ -6,6 +6,7 @@
 			"item.pcub.bedrock_menubook": "§6菜单\n§7常规功能选项都在这里"
 		},
 		"conversion":{
+			"please.use.right.resourcepack": "§6基岩版不支持聊天栏按钮，\n请在聊天栏输入此命令， 开始加载： §a§l/trigger begin set 1\n§7§o互通套件已为基岩版提供了专用资源包支持， 若您能看到此提示， 说明已经正常配置",
 			"pl.info.resourcepack_version":"互通套件版本：1.6.1 先行版",
 			"pl.info.newest_version":"§6当前互通套件版本：1.6.1 先行版",
 			"pl.sign.training_job2_15.1.text1":" ",
