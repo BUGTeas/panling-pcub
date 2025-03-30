@@ -1,8 +1,3 @@
-# 梦回盘灵专用 Java - 基岩双端互通套件
-v1.6.2 先行版（适用于梦回盘灵扩展包 v1.1.0b）  
-<!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->  
-<!-- 以下内容中所有命令均不包括`反引号 -->
-
 ## 📖 简介
 
 本套件隶属于盘灵无界项目，以 GeyserMC（间歇泉）为基础，集成基岩版专用资源包以及一系列深度优化适配，为希望在基岩版体验「盘灵古域」地图及其一系列内容的玩家开启一道大门。
@@ -62,15 +57,12 @@ v1.6.2 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 
 ## 💿 安装使用
 
-本套件依赖于插件服务端环境运行。最简单的方法便是使用现成的服务端部署包，**配合本套件使用**：
-
-- [123 云盘](https://www.123pan.com/s/0nHvjv-5TjHh.html)
-- [百度网盘](https://pan.baidu.com/s/1gK1qgdgUyXBuYXvRCRV2ug?pwd=m6i7)
-
+本套件依赖于插件服务端环境运行。最简单的方法便是使用现成的服务端部署包，**配合本套件使用**，它和本套件放在了同一个下载链接中，很容易被找到。
 若您希望自行搭建服务端环境，**详见同一目录下的技术性说明**。
 
 ### 通用视频教程
-- [B 站视频](https://www.bilibili.com/video/BV1V7QVY8E4t/)
+
+<iframe src="//player.bilibili.com/player.html?bvid=BV1V7QVY8E4t&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 
 
@@ -132,7 +124,8 @@ v1.6.2 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 
 ### 基岩版常见问题解决方法
 
-已经整理为视频并发布至 B 站，涵盖了 UI 错乱、交易项查看、乱跳等常见的一系列问题及解决方法：[观看视频](https://www.bilibili.com/video/BV16WQWYKE6V/)
+已经整理为视频并发布至 B 站，涵盖了 UI 错乱、交易项查看、乱跳等常见的一系列问题及解决方法：
+<iframe src="//player.bilibili.com/player.html?bvid=BV16WQWYKE6V&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 ### 玩家间碰撞修复
 

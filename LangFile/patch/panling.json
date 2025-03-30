@@ -7,8 +7,8 @@
 		},
 		"conversion":{
 			"please.use.right.resourcepack": "§6基岩版不支持聊天栏按钮，\n请在聊天栏输入此命令， 开始加载： §a§l/trigger begin set 1\n§7§o互通套件已为基岩版提供了专用资源包支持， 若您能看到此提示， 说明已经正常配置",
-			"pl.info.resourcepack_version":"互通套件版本：1.6.1 先行版",
-			"pl.info.newest_version":"§6当前互通套件版本：1.6.1 先行版",
+			"pl.info.resourcepack_version":"互通套件版本：1.6.2 先行版",
+			"pl.info.newest_version":"§6当前互通套件版本：1.6.2 先行版",
 			"pl.sign.training_job2_15.1.text1":" ",
 			"pl.sign.training_job2_15.1.text2":" ",
 			"pl.sign.training_job2_15.1.text3":" ",
@@ -29,7 +29,7 @@
 	},
 	"bedrock":{
 		"fallback":{
-			"pack.name":"§6梦回盘灵互通§h 基岩端资源包 v1.6.1",
+			"pack.name":"§6梦回盘灵互通§h 基岩端资源包 v1.6.2",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通套件使用！"
 		},
 		"base":{
@@ -38,7 +38,7 @@
 			"potion.empty":" "
 		},
 		"conversion":{
-			"pack.name":"§6梦回盘灵互通§h 基岩端资源包 v1.6.1",
+			"pack.name":"§6梦回盘灵互通§h 基岩端资源包 v1.6.2",
 			"pack.description":"§c§l禁止用于其他地图！ §r仅限盘灵无界互通套件使用！",
 			"disconnectionScreen.disconnected":"不知在何时， 你和盘古大陆之间失去了通讯......",
 			"item.gold_ingot.name":"§7破败的金元宝(不可使用)",
@@ -103,7 +103,7 @@
 			"pcub.combat_option.enable_mobile":"仅 Android/iOS/WP 启用",
 
 			"pcub.title.version":"§4版本信息",
-			"pcub.content.version":"当前资源包版本： 1.6.1 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
+			"pcub.content.version":"当前资源包版本： 1.6.2 （基于梦回盘灵 Java 版 v1.1.0 资源包）。 由 BugTea 进行移植适配， 感谢 xzseerl （xz_seer） 提供物品模型及武器动画技术支持！",
 
 			"pcub.title.test_bless":"切换试炼祝福",
 			"pcub.content.test_bless":"可以在这里切换已获得的试炼祝福。",
