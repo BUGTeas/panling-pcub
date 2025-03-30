@@ -61,8 +61,7 @@
 若您希望自行搭建服务端环境，**详见同一目录下的技术性说明**。
 
 ### 通用视频教程
-
-<iframe src="//player.bilibili.com/player.html?bvid=BV1V7QVY8E4t&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+- [B 站视频](https://www.bilibili.com/video/BV1V7QVY8E4t/)
 
 
 
@@ -124,8 +123,7 @@
 
 ### 基岩版常见问题解决方法
 
-已经整理为视频并发布至 B 站，涵盖了 UI 错乱、交易项查看、乱跳等常见的一系列问题及解决方法：
-<iframe src="//player.bilibili.com/player.html?bvid=BV16WQWYKE6V&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+已经整理为视频并发布至 B 站，涵盖了 UI 错乱、交易项查看、乱跳等常见的一系列问题及解决方法：[观看视频](https://www.bilibili.com/video/BV16WQWYKE6V/)
 
 ### 玩家间碰撞修复
 
