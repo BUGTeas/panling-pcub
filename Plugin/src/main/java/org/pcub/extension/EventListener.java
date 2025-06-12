@@ -177,14 +177,14 @@ public class EventListener implements Listener {
         // 右键方块检测
         if (action == Action.RIGHT_CLICK_BLOCK) {
             Material targetMat = (clickedBlock != null) ? clickedBlock.getType() : Material.AIR;
-            String targetStr = targetMat.toString();
+            String targetStr = targetMat.name();
             // 取消冒险玩家的食用蛋糕、破坏花盆操作
+            // TODO: 不再内置
             if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
             // 检查方块是否可操作
             else if ((!targetPlayer.isSneaking() || usedItem == null) && !targetMat.isAir()) {
                 blockFunction = (
                     targetMat == Material.DISPENSER ||
-                    targetMat == Material.LEVER ||
                     targetMat == Material.NOTE_BLOCK ||
                     targetMat == Material.DROPPER ||
                     targetMat == Material.JUKEBOX ||
@@ -192,9 +192,8 @@ public class EventListener implements Listener {
                     targetMat == Material.CHEST ||
                     targetMat == Material.ENDER_CHEST ||
                     targetMat == Material.TRAPPED_CHEST ||
-                    targetStr.endsWith("BUTTON")||
-                    targetStr.endsWith("DOOR") ||
-                    targetStr.endsWith("GATE") ||
+                    targetMat.data == Switch.class ||
+                    Openable.class.isAssignableFrom(targetMat.data) ||
                     targetStr.endsWith("SIGN")
                 );
                 // 开启钱庄箱子
