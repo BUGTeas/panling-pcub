@@ -2,6 +2,9 @@ package org.pcub.extension;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.Container;
+import org.bukkit.block.data.Openable;
+import org.bukkit.block.data.type.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.HumanEntity;
@@ -196,6 +199,15 @@ public class EventListener implements Listener {
                 );
                 // 开启钱庄箱子
                 if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
+                // 经过 Geyser 方块映射后的漏斗，打开手持书本的优先级高于打开漏斗
+                // 在基础 API 中，解决方法唯有取消原版行为，并通过非原版方式打开漏斗
+                // 当然这会对一些依赖原版特性的功能造成影响，如进度准则 block_state_property 不被触发
+                // TODO: 在 Geyser 中修复映射后的方块的交互事件
+                else if (isBedrock && usedItem != null && usedItem.getType() == Material.WRITTEN_BOOK && targetMat == Material.HOPPER) {
+                    targetPlayer.openInventory(((Container) clickedBlock.getState()).getInventory());
+                    event.setCancelled(true);
+                    if (common.debug) common.debugLogger(targetName + " 通过非原版方式打开漏斗");
+                }
             }
         }
         if (action == Action.RIGHT_CLICK_AIR || !blockFunction && action == Action.RIGHT_CLICK_BLOCK) {
