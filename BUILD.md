@@ -34,7 +34,7 @@
 
 1. 进入“LangFile”目录，将梦回盘灵资源包解压到“resources/panling”目录下
 2. 安装依赖项：
-   - (必要) `npm install git+https://gitee.com/BugTeaON/pcub-locale#v1` 或 `npm install git+https://github.com/BUGTeas/pcub-locale#v1`
+   - (必要) `npm install git+https://gitee.com/BugTeaON/pcub-locale#v2` 或 `npm install git+https://github.com/BUGTeas/pcub-locale#v2`
    - (可选) 如果需要繁体转换，还需安装 [OpenCC](https://github.com/BYVoid/OpenCC) 转换器，否则输出的繁体文件（“zh_tw”及“zh_hk”）都将是简体内容：`npm install git+https://github.com/BYVoid/OpenCC`
 3. 执行命令 `node index.js` 开始生成
 4. 在“output/panling”目录下会出现以下文件夹：
