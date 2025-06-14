@@ -39,9 +39,15 @@ public class Common {
 
     // 调试日志
     public boolean debug = false; // 输出开关
+    private long debugLastTime = -1;
+    private int debugHeadSymbolIndex = 0;
     public void debugLogger(String info) {
-        int worldTime = (int) Bukkit.getWorlds().get(0).getFullTime() % 1000;
-        main.console.sendMessage("PCUB调试" + new char[]{'/','\\'}[worldTime % 2] + worldTime + " " + info);
+        long worldTime = Bukkit.getWorlds().get(0).getFullTime();
+        if (worldTime != debugLastTime) {
+            debugHeadSymbolIndex = (debugHeadSymbolIndex + 1) % 2;
+            debugLastTime = worldTime;
+        }
+        main.console.sendMessage("PCUB调试" + new char[]{'/','\\'}[debugHeadSymbolIndex] + (worldTime % 1000) + " " + info);
     }
 
 
