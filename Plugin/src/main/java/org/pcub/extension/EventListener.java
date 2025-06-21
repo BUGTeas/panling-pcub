@@ -2,7 +2,6 @@ package org.pcub.extension;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.Container;
 import org.bukkit.block.data.Openable;
 import org.bukkit.block.data.type.*;
 import org.bukkit.entity.Entity;
@@ -188,7 +187,9 @@ public class EventListener implements Listener {
                     targetMat == Material.NOTE_BLOCK ||
                     targetMat == Material.DROPPER ||
                     targetMat == Material.JUKEBOX ||
-                    targetMat == Material.HOPPER ||
+                    // 漏斗经 Geyser 方块映射后，打开手持书本的优先级更高，故暂不绕过漏斗
+                    // TODO: 在 Geyser 中修复映射后的方块的交互事件
+                    // targetMat == Material.HOPPER ||
                     targetMat == Material.CHEST ||
                     targetMat == Material.ENDER_CHEST ||
                     targetMat == Material.TRAPPED_CHEST ||
@@ -198,14 +199,15 @@ public class EventListener implements Listener {
                 );
                 // 开启钱庄箱子
                 if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
-                // 经过 Geyser 方块映射后的漏斗，打开手持书本的优先级高于打开漏斗
-                // 在基础 API 中，解决方法唯有取消原版行为，并通过非原版方式打开漏斗
-                // 当然这会对一些依赖原版特性的功能造成影响，如进度准则 block_state_property 不被触发
+                // 阻止漏斗打开，避免和书本冲突（同时弹出两个界面，严重时无法打开任何容器）
                 // TODO: 在 Geyser 中修复映射后的方块的交互事件
-                else if (isBedrock && usedItem != null && usedItem.getType() == Material.WRITTEN_BOOK && targetMat == Material.HOPPER) {
-                    targetPlayer.openInventory(((Container) clickedBlock.getState()).getInventory());
-                    event.setCancelled(true);
-                    if (common.debug) common.debugLogger(targetName + " 通过非原版方式打开漏斗");
+                else if (isBedrock && !blockFunction &&
+                        switch (event.getMaterial()) {case WRITTEN_BOOK, SNOWBALL, SPLASH_POTION, BOW, CROSSBOW -> true; default -> false;} &&
+                        targetMat == Material.HOPPER
+                ) {
+                    targetPlayer.sendMessage("§7暂不支持手持书本、雪球、药水、弓打开漏斗。");
+                    event.setCancelled(true); // 基岩版普通书本，以及使用物品执行命令，不受事件取消影响
+                    if (common.debug) common.debugLogger(targetName + " 阻止手持书本/雪球/药水/弓打开漏斗，避免冲突");
                 }
             }
         }
