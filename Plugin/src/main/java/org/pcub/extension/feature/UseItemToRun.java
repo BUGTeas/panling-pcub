@@ -13,16 +13,17 @@ import org.pcub.extension.Main;
 import org.pcub.extension.common.OperationLimiter;
 
 public class UseItemToRun {
-    // 键名定义
-    private final NamespacedKey runCommandKey;
-    private final NamespacedKey bedrockOnlyKey;
-    private final NamespacedKey blockUsageKey;
-    private final NamespacedKey placeholderKey;
-    private final Main main;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
 
-    private final OperationLimiter bedrockOffhandLimit;
-    private final OperationLimiter commandExecuteLimit;
-    private final Common common;
+    // 键名定义
+    private final NamespacedKey runCommandKey = new NamespacedKey(main, "run_command");
+    private final NamespacedKey bedrockOnlyKey = new NamespacedKey(main, "bedrock_only");
+    private final NamespacedKey blockUsageKey = new NamespacedKey(main, "block_usage");
+    private final NamespacedKey placeholderKey = new NamespacedKey(main, "use_placeholder");
+
+    private final OperationLimiter<Player> bedrockOffhandLimit = new OperationLimiter<>();
+    private final OperationLimiter<Player> commandExecuteLimit = new OperationLimiter<>();
 
 
     public State checkCommandExecute(Player player, ItemMeta usedMeta, boolean isBedrock){
@@ -76,20 +77,5 @@ public class UseItemToRun {
             return true;
         }
         return false;
-    }
-
-
-
-    // 构造
-    public UseItemToRun(Common common) {
-        this.common = common;
-        Main main = common.main;
-        this.main = main;
-        this.bedrockOffhandLimit = new OperationLimiter(main);
-        this.commandExecuteLimit = new OperationLimiter(main);
-        this.runCommandKey = new NamespacedKey(main, "run_command");
-        this.bedrockOnlyKey = new NamespacedKey(main, "bedrock_only");
-        this.blockUsageKey = new NamespacedKey(main, "block_usage");
-        this.placeholderKey = new NamespacedKey(main, "use_placeholder");
     }
 }

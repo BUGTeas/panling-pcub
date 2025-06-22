@@ -221,8 +221,8 @@ public class Stacker {
 
 
 
-    private final Common common;
-    private final Main main;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
     private final ChestMenu chestMenu;
     // 快速移动变量
     private Player moveUser = null;
@@ -230,7 +230,7 @@ public class Stacker {
     private Inventory moveFromInv = null;
     private InventoryType moveFromInvType = null;
     private int moveFromSlot = 0;
-    private final OperationLimiter legacyPickupLimit;
+    private final OperationLimiter<Player> legacyPickupLimit = new OperationLimiter<>();
 
 
 
@@ -579,10 +579,7 @@ public class Stacker {
 
 
 
-    public Stacker(Common common, ChestMenu chestMenu){
-        this.common = common;
-        this.main = common.main;
+    public Stacker(ChestMenu chestMenu){
         this.chestMenu = chestMenu;
-        this.legacyPickupLimit = new OperationLimiter(common.main);
     }
 }

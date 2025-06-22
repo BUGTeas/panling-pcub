@@ -25,13 +25,13 @@ import java.util.Set;
 import java.util.UUID;
 
 public class EventListener implements Listener {
-    private final Common common;
-    private final Main main;
-    private final UseItemToRun useItemToRun;
-    private final FastSkill fastSkill;
-    private final DropLimiter dropLimiter;
-    private final Stacker stacker;
-    private final ChestMenu chestMenu;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
+    private final UseItemToRun useItemToRun = new UseItemToRun();
+    private final FastSkill fastSkill = new FastSkill();
+    private final DropLimiter dropLimiter = new DropLimiter();
+    private final ChestMenu chestMenu = new ChestMenu();
+    private final Stacker stacker = new Stacker(chestMenu);
 
 
     // 玩家进服事件
@@ -212,10 +212,8 @@ public class EventListener implements Listener {
             }
         }
         if (action == Action.RIGHT_CLICK_AIR || !blockFunction && action == Action.RIGHT_CLICK_BLOCK) {
-            ItemMeta usedMeta = null;
-            if (usedItem != null) usedMeta = usedItem.getItemMeta();
-            Material usedType = null;
-            if (usedItem != null) usedType = usedItem.getType();
+            ItemMeta usedMeta = (usedItem != null) ? usedItem.getItemMeta() : null;
+            Material usedType = (usedItem != null) ? usedItem.getType() : null;
             // 雪球、丹药投掷限制
             if (
                 (
@@ -234,13 +232,10 @@ public class EventListener implements Listener {
             if (shortcutResult.limit) event.setCancelled(true);
             // 基岩版副手功能
             if (!shortcutResult.success && isBedrock) {
-                Material finalUsedType = usedType;
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        boolean offhandWork = useItemToRun.bedrockOffhand(targetPlayer, finalUsedType);
-                        if (!offhandWork && common.debug)
-                            common.debugLogger(targetName + " 主副手物品不满足条件/请求频率过高");
+                        useItemToRun.bedrockOffhand(targetPlayer, usedType);
                     }
                 }.runTaskAsynchronously(main);
             }
@@ -270,27 +265,5 @@ public class EventListener implements Listener {
                 fastSkill.check(event.getPlayer(), event.isSneaking());
             }
         }.runTaskAsynchronously(main);
-    }
-
-    // 玩家钓鱼
-    //@EventHandler
-    //public void onPlayerFish(PlayerFishEvent event) {
-        //Player targetPlayer = event.getPlayer();
-        //UUID targetIDN = targetPlayer.getUniqueId();
-        //FloodgateApi fgInstance = FloodgateApi.getInstance();
-        //boolean isBedrock = fgInstance.isFloodgatePlayer(targetIDN);
-        // 基岩鱼竿菜单（实验）
-        /// 该方案暂不能应用于***副手功能***，因为将物品转化为鱼竿会改变原有的物品标签
-        //if(isBedrock) event.setCancelled(bedrockMenu(targetPlayer.getInventory().getItemInMainHand(), targetPlayer));
-    //}
-
-    public EventListener(Common common) {
-        this.common = common;
-        this.main = common.main;
-        this.useItemToRun = new UseItemToRun(common);
-        this.fastSkill = new FastSkill(common);
-        this.dropLimiter = new DropLimiter(common);
-        this.chestMenu = new ChestMenu(common);
-        this.stacker = new Stacker(common, this.chestMenu);
     }
 }

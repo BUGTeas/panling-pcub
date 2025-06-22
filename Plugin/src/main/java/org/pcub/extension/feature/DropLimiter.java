@@ -9,9 +9,9 @@ import org.pcub.extension.Common.State;
 import org.pcub.extension.common.OperationLimiter;
 
 public class DropLimiter {
-    private final Common common;
-    private final Main main;
-    private final OperationLimiter dropLimit;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
+    private final OperationLimiter<Player> dropLimit = new OperationLimiter<>();
     // 连续投掷变量
     private int dropLastAmount = -1;
 
@@ -52,13 +52,5 @@ public class DropLimiter {
         // 如果当前未限制，且投掷间隔大于 0 刻（MC原版投掷间隔约4刻），则设置限制
         if (!needCancel && dropSpeed > 0) dropLimit.put(player, dropSpeed);
         return limited;
-    }
-
-
-
-    public DropLimiter(Common common){
-        this.common = common;
-        this.main = common.main;
-        this.dropLimit = new OperationLimiter(common.main);
     }
 }

@@ -13,9 +13,9 @@ import org.pcub.extension.Main;
 import java.util.Set;
 
 public class ScoreboardTool {
-    private final Main main;
-    private final Common common;
-    private final Scoreboard scoreboard;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
+    private final Scoreboard scoreboard = common.mainScoreboard;
 
     private Set<Objective> useCarrotOnStickObj;
     private boolean useCarrotOnStickExpired;
@@ -110,13 +110,5 @@ public class ScoreboardTool {
             if (score.getScore() == 0) score.setScore(count);
         }
         if (common.debug) common.debugLogger(targetName + " 的所有潜行时长记分项加 " + count + " 分");
-    }
-
-
-
-    public ScoreboardTool(Common common, Scoreboard scoreboard) {
-        this.common = common;
-        this.main = common.main;
-        this.scoreboard = scoreboard;
     }
 }

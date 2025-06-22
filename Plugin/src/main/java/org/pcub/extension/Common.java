@@ -7,6 +7,9 @@ import org.geysermc.geyser.api.GeyserApi;
 import org.pcub.extension.common.ScoreboardTool;
 
 public class Common {
+    // 一次性实例
+    private static Common instance;
+
     // 获取主类
     public final Main main;
 
@@ -53,7 +56,7 @@ public class Common {
 
 
     // 获取原版记分板
-    private final Scoreboard mainScoreboard;
+    public final Scoreboard mainScoreboard;
 
     // 获取原版记分板分数
     public int getScore(String objectiveName, String target) {
@@ -73,7 +76,7 @@ public class Common {
     }
 
     // 创建临时记分板
-    private final Scoreboard tempScoreboard;
+    public final Scoreboard tempScoreboard;
 
     // 获取临时记分板分数
     public int getTempScore(String objectiveName, String target) {
@@ -102,13 +105,14 @@ public class Common {
 
 
     // 构造
-    public Common(Main main) {
+    private Common(Main main) {
+        instance = this;
         this.main = main;
         ScoreboardManager scoreboardManager = main.server.getScoreboardManager();
         this.mainScoreboard = scoreboardManager.getMainScoreboard();
         this.tempScoreboard = scoreboardManager.getNewScoreboard();
 
-        this.scoreboardTool = new ScoreboardTool(this, this.mainScoreboard);
+        this.scoreboardTool = new ScoreboardTool();
 
         this.geyserApi = (main.haveGeyser) ? GeyserApi.api() : null;
         this.geyserValid = this.geyserApi != null;
@@ -117,5 +121,15 @@ public class Common {
         this.floodgateApi = (main.haveFloodgate) ? FloodgateApi.getInstance() : null;
         this.floodgateValid = this.floodgateApi != null;
         if (this.floodgateValid) main.logger.info("已加载 Floodgate API");
+    }
+
+    public static void load(Main main) {
+        if (instance == null) {
+            new Common(main);
+        }
+    }
+
+    public static Common getInstance() {
+        return instance;
     }
 }

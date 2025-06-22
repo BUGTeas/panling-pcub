@@ -32,9 +32,9 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Common common = new Common(this);
-        server.getPluginManager().registerEvents(new EventListener(common), this);
-        CommandExecuter commandExec = new CommandExecuter(common);
+        Common.load(this);
+        server.getPluginManager().registerEvents(new EventListener(), this);
+        CommandExecuter commandExec = new CommandExecuter();
         PluginCommand pluginCommand = Bukkit.getPluginCommand("pcub");
         pluginCommand.setExecutor(commandExec);
         pluginCommand.setTabCompleter(commandExec);

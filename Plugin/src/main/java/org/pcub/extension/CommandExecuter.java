@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class CommandExecuter implements CommandExecutor, TabExecutor {
-    private final Common common;
-    private final Main main;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
 
     //用户命令
     @Override
@@ -304,13 +304,5 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
             }
         }
         return null;
-    }
-
-
-
-    // 构造
-    public CommandExecuter(Common common) {
-        this.common = common;
-        this.main = common.main;
     }
 }

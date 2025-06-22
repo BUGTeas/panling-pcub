@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class FastSkill {
-    private final Common common;
-    private final Main main;
+    private final Common common = Common.getInstance();
+    private final Main main = common.main;
     private final Map<Player, BukkitRunnable> sneakSkill = new HashMap<>();
 
 
@@ -68,12 +68,5 @@ public class FastSkill {
     public void cancelSneak(Player player){
         BukkitRunnable runnable = sneakSkill.remove(player);
         if (runnable != null) runnable.cancel();
-    }
-
-
-
-    public FastSkill(Common common) {
-        this.common = common;
-        this.main = common.main;
     }
 }

@@ -9,8 +9,8 @@ import org.pcub.extension.common.OperationLimiter;
 import org.pcub.extension.feature.Stacker.StackerCommon;
 
 public class ChestMenu {
-    private final Common common;
-    private final OperationLimiter clickLimit;
+    private final Common common = Common.getInstance();
+    private final OperationLimiter<Player> clickLimit = new OperationLimiter<>();
 
 
 
@@ -86,10 +86,5 @@ public class ChestMenu {
             }
         }.runTaskLater(common.main, 0L);
         return State.SUCCESS;
-    }
-
-    public ChestMenu(Common common) {
-        this.common = common;
-        this.clickLimit = new OperationLimiter(common.main);
     }
 }
