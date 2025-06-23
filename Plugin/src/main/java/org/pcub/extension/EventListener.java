@@ -20,6 +20,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.geysermc.floodgate.util.DeviceOs;
 import org.pcub.extension.Common.State;
 import org.pcub.extension.common.CheckPlayerCrosshair;
+import org.pcub.extension.common.OperationLimiter;
 import org.pcub.extension.feature.*;
 
 import java.util.Set;
@@ -32,6 +33,7 @@ public class EventListener implements Listener {
     private final UseItemToRun useItemToRun = new UseItemToRun();
     private final FastSkill fastSkill = new FastSkill();
     private final DropLimiter dropLimiter = new DropLimiter();
+    private final OperationLimiter<Player> leftClickLimiter = new OperationLimiter<>();
     private final ChestMenu chestMenu = new ChestMenu();
     private final Stacker stacker = new Stacker(chestMenu);
 
@@ -172,35 +174,75 @@ public class EventListener implements Listener {
         ItemStack usedItem = event.getItem();
         Action action = event.getAction();
         Block clickedBlock = event.getClickedBlock();
+
         // 调试
         if (common.debug) common.debugLogger(targetName + " " + action + " " + ((usedItem != null) ? usedItem.getType() : "") + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
-        boolean blockFunction = false;
-        boolean clickInTarget = true;
-        // 右键方块检测
+
+        /* 触发 RIGHT_CLICK_BLOCK 的操作：
+            圆环 长按空气（目标居画面中心）
+            准星 右键方块（目标居画面中心）
+            准星 空 右键方块（目标居画面中心）
+          以下类型随后还会触发 LEFT_CLICK_*：
+            圆环 短按方块（目标居点击处）
+            圆环 空 短按方块（目标居点击处）
+            圆环 长按方块（目标居画面中心）
+            准星 空 右键方块（仅交互类；目标居画面中心）
+            准星 右键方块（仅交互类；目标居画面中心）
+        */
+        /* 触发 RIGHT_CLICK_AIR 的操作：
+            圆环 长按空气
+            准星 右键空气
+          以下类型随后还会触发 LEFT_CLICK_*：
+            圆环 长按方块
+        */
+        /* 触发 LEFT_CLICK_BLOCK 的操作：
+            圆环 空/小概率 长按方块（目标为 AIR 或居画面中心）
+            准星 左键方块（目标居画面中心）
+            准星 空 左键方块（目标居画面中心）
+        */
+        /* 触发 LEFT_CLICK_AIR 的操作：
+            圆环 空 长按方块
+            圆环 短按空气
+            圆环 空 短按空气
+            准星 左键空气
+            准星 空 左键空气
+        */
+
+        boolean canUseItem = action == Action.RIGHT_CLICK_AIR;
+
         if (action == Action.RIGHT_CLICK_BLOCK) {
+            boolean clickInTarget = true;
             Material targetMat = (clickedBlock != null) ? clickedBlock.getType() : Material.AIR;
             String targetStr = targetMat.name();
+            // 限制可能紧跟其后的 LEFT_CLICK_* 动作
+            if (isBedrock) {
+                leftClickLimiter.put(targetPlayer, 4L);
+            }
+            // 判断是否为准星模式
             if (isBedrock && clickedBlock != null) {
                 clickInTarget = clickedBlock.getLocation().equals(targetPlayer.getTargetBlock(null, 5).getLocation());
                 if (clickInTarget) {
-                    checkCross.setCrosshairWhenReach(targetIDN);
+                    checkCross.setCrosshairWhenReach(targetIDN, 4);
                 } else {
                     checkCross.cancelCrosshairWhenReach(targetIDN, 4);
                 }
             }
             // 取消冒险玩家的食用蛋糕、破坏花盆操作
             // TODO: 不再内置
-            if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
+            if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) {
+                event.setCancelled(true);
+            }
             // 检查方块是否可操作
             else if ((!targetPlayer.isSneaking() || usedItem == null) && !targetMat.isAir()) {
-                blockFunction = (isBedrock && checkCross.notCrosshair(targetIDN)) ? !clickInTarget : (
+                boolean notCrosshair = isBedrock && checkCross.not(targetIDN);
+                canUseItem = notCrosshair && clickInTarget || !(
                     targetMat == Material.DISPENSER ||
                     targetMat == Material.NOTE_BLOCK ||
                     targetMat == Material.DROPPER ||
                     targetMat == Material.JUKEBOX ||
-                    // 漏斗经 Geyser 方块映射后，打开手持书本的优先级更高，故暂不绕过漏斗
+                    // 漏斗经 Geyser 方块映射后，打开手持书本的优先级更高，故暂不在准星状态下绕过漏斗
                     // TODO: 在 Geyser 中修复映射后的方块的交互事件
-                    // targetMat == Material.HOPPER ||
+                    notCrosshair && targetMat == Material.HOPPER ||
                     targetMat == Material.CHEST ||
                     targetMat == Material.ENDER_CHEST ||
                     targetMat == Material.TRAPPED_CHEST ||
@@ -210,9 +252,9 @@ public class EventListener implements Listener {
                 );
                 // 开启钱庄箱子
                 if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
-                // 阻止漏斗打开，避免和书本冲突（同时弹出两个界面，严重时无法打开任何容器）
+                // 阻止漏斗打开，避免和物品冲突（同时弹出两个界面，严重时无法打开任何容器）
                 // TODO: 在 Geyser 中修复映射后的方块的交互事件
-                else if (isBedrock && targetMat == Material.HOPPER && checkCross.isCrosshair(targetIDN) &&
+                else if (isBedrock && !notCrosshair && targetMat == Material.HOPPER &&
                         switch (event.getMaterial()) {
                             case WRITTEN_BOOK, SNOWBALL, SPLASH_POTION, BOW, CROSSBOW -> true;
                             default -> false;
@@ -223,13 +265,17 @@ public class EventListener implements Listener {
                     if (common.debug) common.debugLogger(targetName + " 阻止手持书本/雪球/药水/弓打开漏斗，避免冲突");
                 }
             }
+        } else if (action == Action.LEFT_CLICK_BLOCK || action == Action.LEFT_CLICK_AIR) {
+            // 仅限圆环长按
+            canUseItem = isBedrock && leftClickLimiter.get(targetPlayer) < 1 && checkCross.not(targetIDN);
         }
-        if (action == Action.RIGHT_CLICK_AIR || !blockFunction && action == Action.RIGHT_CLICK_BLOCK) {
+
+        // 物品使用相关
+        if (canUseItem) {
             ItemMeta usedMeta = (usedItem != null) ? usedItem.getItemMeta() : null;
             Material usedType = (usedItem != null) ? usedItem.getType() : null;
             // 雪球、丹药投掷限制
-            if (
-                (
+            if (action != Action.LEFT_CLICK_AIR && (
                     usedType == Material.SNOWBALL ||
                     usedType == Material.SPLASH_POTION
                 ) && dropLimiter.check(
