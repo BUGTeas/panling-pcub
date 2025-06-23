@@ -19,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.geysermc.floodgate.util.DeviceOs;
 import org.pcub.extension.Common.State;
+import org.pcub.extension.common.CheckPlayerCrosshair;
 import org.pcub.extension.feature.*;
 
 import java.util.Set;
@@ -27,6 +28,7 @@ import java.util.UUID;
 public class EventListener implements Listener {
     private final Common common = Common.getInstance();
     private final Main main = common.main;
+    private final CheckPlayerCrosshair checkCross = new CheckPlayerCrosshair();
     private final UseItemToRun useItemToRun = new UseItemToRun();
     private final FastSkill fastSkill = new FastSkill();
     private final DropLimiter dropLimiter = new DropLimiter();
@@ -173,16 +175,25 @@ public class EventListener implements Listener {
         // 调试
         if (common.debug) common.debugLogger(targetName + " " + action + " " + ((usedItem != null) ? usedItem.getType() : "") + " " + ((clickedBlock != null) ? clickedBlock.getType() : ""));
         boolean blockFunction = false;
+        boolean clickInTarget = true;
         // 右键方块检测
         if (action == Action.RIGHT_CLICK_BLOCK) {
             Material targetMat = (clickedBlock != null) ? clickedBlock.getType() : Material.AIR;
             String targetStr = targetMat.name();
+            if (isBedrock && clickedBlock != null) {
+                clickInTarget = clickedBlock.getLocation().equals(targetPlayer.getTargetBlock(null, 5).getLocation());
+                if (clickInTarget) {
+                    checkCross.setCrosshairWhenReach(targetIDN);
+                } else {
+                    checkCross.cancelCrosshairWhenReach(targetIDN, 4);
+                }
+            }
             // 取消冒险玩家的食用蛋糕、破坏花盆操作
             // TODO: 不再内置
             if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) event.setCancelled(true);
             // 检查方块是否可操作
             else if ((!targetPlayer.isSneaking() || usedItem == null) && !targetMat.isAir()) {
-                blockFunction = (
+                blockFunction = (isBedrock && checkCross.notCrosshair(targetIDN)) ? !clickInTarget : (
                     targetMat == Material.DISPENSER ||
                     targetMat == Material.NOTE_BLOCK ||
                     targetMat == Material.DROPPER ||
@@ -201,9 +212,11 @@ public class EventListener implements Listener {
                 if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
                 // 阻止漏斗打开，避免和书本冲突（同时弹出两个界面，严重时无法打开任何容器）
                 // TODO: 在 Geyser 中修复映射后的方块的交互事件
-                else if (isBedrock && !blockFunction &&
-                        switch (event.getMaterial()) {case WRITTEN_BOOK, SNOWBALL, SPLASH_POTION, BOW, CROSSBOW -> true; default -> false;} &&
-                        targetMat == Material.HOPPER
+                else if (isBedrock && targetMat == Material.HOPPER && checkCross.isCrosshair(targetIDN) &&
+                        switch (event.getMaterial()) {
+                            case WRITTEN_BOOK, SNOWBALL, SPLASH_POTION, BOW, CROSSBOW -> true;
+                            default -> false;
+                        }
                 ) {
                     targetPlayer.sendMessage("§7暂不支持手持书本、雪球、药水、弓打开漏斗。");
                     event.setCancelled(true); // 基岩版普通书本，以及使用物品执行命令，不受事件取消影响
