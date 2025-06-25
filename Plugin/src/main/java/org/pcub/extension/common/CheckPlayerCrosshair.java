@@ -14,17 +14,31 @@ public class CheckPlayerCrosshair {
     private final HashMap<UUID, Integer> readySet = new HashMap<>();
     private final OperationLimiter<UUID> operationLimiter = new OperationLimiter<>();
 
-    // 获取玩家当前是否为准星模式
+    // 获取判断结果，玩家是否为圆环模式
     public boolean not(UUID player) {
         return playersWithoutCrosshair.contains(player);
     }
 
-    // 设为准星模式
-    public void setCrosshairWhenReach(UUID player, int targetCount) {
-        // 已经是准星模式
+    // 判断为准星模式
+    public void determineTrue(UUID player) {
+        resetCondition(player);
+        playersWithoutCrosshair.remove(player);
+        if (common.debug) common.debugLogger("判断为准星模式");
+    }
+
+    // 判断为圆环模式（直接点击，非准星）
+    public void determineFalse(UUID player) {
+        resetCondition(player);
+        playersWithoutCrosshair.add(player);
+        if (common.debug) common.debugLogger("判断为圆环模式");
+    }
+
+    // 累计达到次数，则判断为准星模式
+    public void determineTrueWhenReach(UUID player, int targetCount) {
+        // 已判断为准星
         if (!not(player)) {
-            // 打断未完成的取消累计
-            readySet.remove(player);
+            // 打断未达到的次数条件
+            resetCondition(player);
             return;
         }
         // 限制连续频繁触发
@@ -32,38 +46,39 @@ public class CheckPlayerCrosshair {
         // 次数累计
         Integer currentCount = readySet.get(player);
         int result = (currentCount == null ? targetCount : currentCount) - 1;
-        // 满足累计条件则切换
+        // 是否达到次数
         if (result <= 0) {
-            readySet.remove(player);
-            playersWithoutCrosshair.remove(player);
-            if (common.debug) common.debugLogger("切换至准星模式");
+            determineTrue(player);
         } else {
             readySet.put(player, result);
-            if (common.debug) common.debugLogger("再按 " + result + " 次将切换至准星模式");
+            if (common.debug) common.debugLogger("再按 " + result + " 次判断为准星");
         }
     }
 
-    // 取消准星模式
-    public void cancelCrosshairWhenReach(UUID player, int targetCount) {
-        // 已经取消准星模式
+    // 累计达到次数，则判断为圆环模式
+    public void determineFalseWhenReach(UUID player, int targetCounts) {
+        // 已判断为圆环
         if (not(player)) {
-            // 打断未完成的设定累计
-            readySet.remove(player);
+            // 打断未达到的次数条件
+            resetCondition(player);
             return;
         }
         // 限制连续频繁触发
         if (operationLimiter.put(player, 5L) > 1) return;
         // 次数累计
-        Integer currentCount = readySet.get(player);
-        int result = (currentCount == null ? targetCount : currentCount) - 1;
-        // 满足累计条件则切换
+        Integer currentCounts = readySet.get(player);
+        int result = (currentCounts == null ? targetCounts : currentCounts) - 1;
+        // 是否达到次数
         if (result <= 0) {
-            readySet.remove(player);
-            playersWithoutCrosshair.add(player);
-            if (common.debug) common.debugLogger("切换至圆环模式");
+            determineFalse(player);
         } else {
             readySet.put(player, result);
-            if (common.debug) common.debugLogger("再按 " + result + " 次将切换至圆环模式");
+            if (common.debug) common.debugLogger("再按 " + result + " 次判断为圆环");
         }
+    }
+
+    // 重置次数条件
+    public void resetCondition(UUID player) {
+        readySet.remove(player);
     }
 }

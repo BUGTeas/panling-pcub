@@ -218,13 +218,13 @@ public class EventListener implements Listener {
             if (isBedrock) {
                 leftClickLimiter.put(targetPlayer, 4L);
             }
-            // 判断是否为准星模式
+            // 交互模式判断（准星/圆环）
             if (isBedrock && clickedBlock != null) {
                 clickInTarget = clickedBlock.getLocation().equals(targetPlayer.getTargetBlock(null, 5).getLocation());
                 if (clickInTarget) {
-                    checkCross.setCrosshairWhenReach(targetIDN, 4);
+                    checkCross.resetCondition(targetIDN);
                 } else {
-                    checkCross.cancelCrosshairWhenReach(targetIDN, 4);
+                    checkCross.determineFalseWhenReach(targetIDN, 4);
                 }
             }
             // 取消冒险玩家的食用蛋糕、破坏花盆操作
@@ -299,6 +299,15 @@ public class EventListener implements Listener {
                 }.runTaskAsynchronously(main);
             }
         }
+    }
+
+
+
+    // 玩家退出
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        // 重置交互模式判断
+        checkCross.determineTrue(event.getPlayer().getUniqueId());
     }
 
 
