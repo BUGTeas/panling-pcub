@@ -40,23 +40,7 @@ v1.6.2 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 ## ♻️ 前置 / 依赖关系
 
 - 梦回盘灵：灵域破晓 1.1.0b
-  - 适用于 Minecraft 1.8.3 的「盘灵古域」地图 v1.2.x  
-
-
-
-## 🚫 不再兼容原“盘灵无界-优化修改选装组件”
-
-本套件此次更新已经在 Geyser 底层上实现了不少修复，原优化修改组件至此被弃用。仍有用处的功能**已作为选装数据包整合到本套件**。
-
-若您正在现有服务端上更新，此前安装过优化修改组件，请在**更新后先启动一次服务端，等待 NPC 刷新复原完毕后关闭**，之后删除以下文件以将其卸载：
-
-- pcub_mod_merge
-- world/datapacks/pcub_mod.zip
-- plugins/Geyser-Spigot/custom_mappings/pcub_mod.json
-- plugins/Geyser-Spigot/packs/PanlingModificationPack.zip
-
-注意是**先启动一遍再删除**，否则将需要在游戏内手动推出 NPC，或使用此命令才能完成刷新：  
-`/function pcub:uninst_pcub_mod/npc`
+  - 适用于 Minecraft 1.8.3 的「盘灵古域」地图 v1.2.x
 
 
 
