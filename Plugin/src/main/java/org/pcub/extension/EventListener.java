@@ -208,6 +208,7 @@ public class EventListener implements Listener {
             准星 空 左键空气
         */
 
+        // 是否为使用物品
         boolean canUseItem = action == Action.RIGHT_CLICK_AIR;
 
         if (action == Action.RIGHT_CLICK_BLOCK) {
@@ -228,30 +229,30 @@ public class EventListener implements Listener {
                 }
             }
             boolean notCrosshair = isBedrock && checkCross.not(targetIDN);
+            // 潜行 / 非准星点击画面中心 / 目标方块不可交互
             canUseItem = targetPlayer.isSneaking() || notCrosshair && clickInTarget || !(
                     targetMat == Material.DISPENSER ||
                     targetMat == Material.NOTE_BLOCK ||
                     targetMat == Material.DROPPER ||
                     targetMat == Material.JUKEBOX ||
-                    // 漏斗经 Geyser 方块映射后，打开手持书本的优先级更高，故暂不在准星状态下绕过漏斗
-                    // TODO: 在 Geyser 中修复映射后的方块的交互事件
-                    notCrosshair && targetMat == Material.HOPPER ||
+                    targetMat == Material.HOPPER ||
                     targetMat == Material.CHEST ||
                     targetMat == Material.ENDER_CHEST ||
                     targetMat == Material.TRAPPED_CHEST ||
                     targetMat.data == Switch.class ||
                     Openable.class.isAssignableFrom(targetMat.data) ||
                     targetStr.endsWith("SIGN"));
-            // 取消冒险玩家的食用蛋糕、破坏花盆操作
-            // TODO: 不再内置
-            if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) {
-                event.setCancelled(true);
-            }
-            // 检查方块是否可操作
-            else if (!targetPlayer.isSneaking() || usedItem == null) {
+            // 方块交互相关
+            if (!targetPlayer.isSneaking() || usedItem == null) {
+                // 取消冒险玩家的食用蛋糕、破坏花盆操作
+                // TODO: 不再内置
+                if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) {
+                    event.setCancelled(true);
+                }
                 // 开启钱庄箱子
-                if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
-                // 阻止漏斗打开，避免和物品冲突（同时弹出两个界面，严重时无法打开任何容器）
+                else if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
+                // 漏斗经 Geyser 方块映射后，准星模式下打开漏斗和使用物品会同时触发
+                // 例如手持书本点击漏斗，会同时弹出两个界面，严重时将无法打开任何容器
                 // TODO: 在 Geyser 中修复映射后的方块的交互事件
                 else if (isBedrock && !notCrosshair && targetMat == Material.HOPPER &&
                         switch (event.getMaterial()) {
