@@ -227,15 +227,8 @@ public class EventListener implements Listener {
                     checkCross.determineFalseWhenReach(targetIDN, 4);
                 }
             }
-            // 取消冒险玩家的食用蛋糕、破坏花盆操作
-            // TODO: 不再内置
-            if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) {
-                event.setCancelled(true);
-            }
-            // 检查方块是否可操作
-            else if ((!targetPlayer.isSneaking() || usedItem == null) && !targetMat.isAir()) {
-                boolean notCrosshair = isBedrock && checkCross.not(targetIDN);
-                canUseItem = notCrosshair && clickInTarget || !(
+            boolean notCrosshair = isBedrock && checkCross.not(targetIDN);
+            canUseItem = targetPlayer.isSneaking() || notCrosshair && clickInTarget || !(
                     targetMat == Material.DISPENSER ||
                     targetMat == Material.NOTE_BLOCK ||
                     targetMat == Material.DROPPER ||
@@ -248,8 +241,14 @@ public class EventListener implements Listener {
                     targetMat == Material.TRAPPED_CHEST ||
                     targetMat.data == Switch.class ||
                     Openable.class.isAssignableFrom(targetMat.data) ||
-                    targetStr.endsWith("SIGN")
-                );
+                    targetStr.endsWith("SIGN"));
+            // 取消冒险玩家的食用蛋糕、破坏花盆操作
+            // TODO: 不再内置
+            if ((targetStr.startsWith("POTTED_") || targetMat == Material.CAKE) && targetPlayer.getGameMode() == GameMode.ADVENTURE) {
+                event.setCancelled(true);
+            }
+            // 检查方块是否可操作
+            else if (!targetPlayer.isSneaking() || usedItem == null) {
                 // 开启钱庄箱子
                 if (targetMat == Material.ENDER_CHEST) chestMenu.readyOpen(targetName, targetID);
                 // 阻止漏斗打开，避免和物品冲突（同时弹出两个界面，严重时无法打开任何容器）
