@@ -1,9 +1,9 @@
 # 技术性说明（梦回盘灵专用 Java - 基岩双端互通套件）
-请先阅读使用说明。  
+作为套件使用说明的技术性问题补充，请先阅读使用说明。  
 <!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->  
 <!-- 以下内容中所有命令均不包括`反引号 -->
 
-## ⛏️ 服务端环境搭建
+## ⛏️ 配置服务端环境
 
 ### 核心配置
 
@@ -22,21 +22,31 @@
 
 以下插件为必需：
 
-- [CrossPlatForms](https://www.spigotmc.org/resources/crossplatforms.101043/)：原先在基岩版不支持的菜单书，通过此插件的 Form 表单界面重新制作
-- [PlaceHolderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)：为 Form 表单界面的动态内容提供重要支持，
+- [CrossPlatForms](https://www.spigotmc.org/resources/crossplatforms.101043/)：原先在基岩版不支持的交互书（如菜单书），通过此插件的 Form 表单界面重新制作
+- [PlaceHolderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)：为 Form 表单界面的动态内容提供重要支持
   - 此外还需要安装子组件 `player`、`scoreboardobjectives`
 
-为了使基岩版正常叠放丹药，你还需要准备一个自定义物品叠放插件，并设置药水、喷溅药水的叠放上限为 64。以下为经过测试的插件：
+为了使基岩版正常叠放丹药，至少需要能将药水 `potion`、喷溅药水 `splash_potion` 的叠放上限提高至 64 的自定义物品叠放插件。以下**仅为推荐插件**，而非指定要求。
 
-- [PotionStacker](https://www.spigotmc.org/resources/potion-stacker.66168/)：最简单易用，但只支持药水、喷溅药水和滞留药水的叠放
-- [StackableItems](https://dev.bukkit.org/projects/stackableitems)：支持配置任意物品叠放
-  - 物品移动过程不太完美，小概率会出现回弹等情况，在创造模式背包下操作甚至还可能导致物品被误吞
-  - 在 Spigot 下使用漏斗可能会出现刷物品，甚至影响红石系统等 Bug，经测试在 Leaves 下不会发生
-- [SimpleStack（兼容性差）](https://github.com/Mikedeejay2/SimpleStackPlugin)：同样支持任意物品，但上限 64，可自由配置白名单/黑名单模式。
-	- 请不要在 spigotmc.org 中下载它，提供的版本非常旧，不过上方的 GitHub 仓库现仍保持更新，提供了最新的 Dev 快照版本，可以在 Action 中找到。但多数版本存在无法加载的Bug，建议从服务端部署包中拿出经过我测试过的版本。
-	- 对于 Java 环境要求苛刻，需要使用 JDK 开服才能正常运行，不支持 JRE！
+经过测试的药水叠放插件：[PotionStacker v0.1.0](https://www.spigotmc.org/resources/potion-stacker.66168/)
 
-建议为以下物品设置叠放（不建议超过 64 个）：
+如需自定义其它物品的叠放，也同样需要服务端的叠放插件支持。经过测试的，支持自定义叠放任何物品的插件：
+
+[SimpleStack v1.3.8](https://www.spigotmc.org/resources/simple-stack-stack-any-items-to-64.83044/)
+- 设置叠放数量后的物品在 Java 版无法双击合并
+- 基岩版或 Java 版数字键，在快捷栏中移动物品，自定义叠放会失效
+- 在 Spigot 下使用漏斗可能会出现刷物品，甚至影响红石系统等 Bug，经测试在 Paper / Leaves 下不会发生
+
+SimpleStack v2.0.0#91 / 8d7d6dd 测试版
+- 相比 v1.3.8，物品移动暂未发现有任何问题
+- 请从本套件和服务端部署包的下载链接（见使用说明）中获取，或自行构建，因为在官方唯一下载途径 —— [仓库的 Action](https://github.com/Mikedeejay2/SimpleStackPlugin/actions) 中只能下载近期的版本
+- 对于 Java 环境较为挑剔，部分 Java 环境下无法加载。且需要使用 JDK 开服才能正常运行，不支持 JRE！
+
+[StackableItems v1.3.0](https://dev.bukkit.org/projects/stackableitems)：
+- 和 SimpleStack v1.3.8 存在同样问题，但 Java 版可以双击合并物品
+- 小概率会出现回弹等情况 (如交换槽位)，在创造模式背包下操作甚至还可能导致物品被误吞
+
+本套件默认支持基岩版将以下物品最高叠放至 64 个：
 - 药水：`POTION`
 - 喷溅药水：`SPLASH_POTION`
 - 雪球：`SNOWBALL`
@@ -44,8 +54,6 @@
 - 兔肉煲：`RABBIT_STEW`
 
 如果未通过插件配置叠放蘑菇煲（佛跳墙、万春羹）、兔肉煲，请不要将这些食物强制叠放后食用， **会一次性吃光！且只有食用一个的饱和度！**
-
-其他的插件我暂未测试，可以自行尝试，若出现Bug请在交流社区反馈。
 
 ### 配置文件
 
@@ -111,7 +119,7 @@ world-settings:
 
 ### 钱庄末影箱系统
 
-选装包基于插件事件监听实现了更敏捷高效的按钮操作检测，覆盖取代掉原有的循环检测函数，从而优化游戏性能。
+选装包基于插件事件监听实现了更敏捷高效的按钮操作检测，覆盖取代掉原有的循环检测函数，从而优化游戏性能。这并不属于 Bug 修复。
 
 如果您的游戏内容（DLC）对末影箱菜单功能有所修改，请不要使用选装包，或者将其中的以下文件或目录删除：  
 - `data/pcub/tags/functions/chest_menu/`
@@ -125,7 +133,7 @@ world-settings:
 
 由于前段值都为 0，而梦回盘灵数据包中弓箭手武器技能【日落九天·落日】的运行正是通过检测前段 UUID，这就意味着，所有通过 Floodgate 登录且未绑定 Java 版账户的基岩版玩家，都将无法正常使用这个技能。
 
-选装包通过覆盖数据包相关函数，将检测 UUID 改为末端以修复此问题。
+选装包通过覆盖数据包相关函数，将检测 UUID 改为末端以修复此问题。具体修改详见选装包中的 `data/pcub/system/archer_damage/weapon_skill/bow6/fall_sun` 目录。
 
 
 
