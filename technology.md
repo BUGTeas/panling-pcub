@@ -68,7 +68,14 @@ enable-command-block=true
 gamemode=adventure
 pvp=true
 ```
-（非必需）由于插件端默认配置的掉落物/经验值合并机制与原版略有不同，可能会影响游戏体验。建议到 `spigot.yml` 中作如下修改，使其恢复原版机制：
+### 启动参数
+
+如果您使用 Spigot 核心且未安装 Floodgate 插件，基岩版玩家可能无法打开菜单书。这是 CrossPlatForms 的兼容性问题，可以在启动命令上添加此参数以解决：  
+`-Djdk.util.jar.enableMultiRelease=force`
+
+### 额外优化 - 掉落物 / 经验值合并（可选）
+
+由于插件端默认配置的掉落物 / 经验值合并机制与原版略有不同，可能会影响游戏体验。建议到 `spigot.yml` 中作如下修改，使其恢复原版机制：
 ```yml
 world-settings:
   default:
@@ -76,11 +83,20 @@ world-settings:
       item: -1.0
       exp: -1.0
 ```
+### 额外优化 - 玩家碰撞（可选）
 
-### 启动参数
+因 Geyser 的远古 Bug，基岩版玩家间无碰撞，**但可以推开 Java 版玩家，反之则不行**，这可能影响了 Java 版玩家的游戏体验。
 
-如果您使用 Spigot 核心且未安装 Floodgate 插件，基岩版玩家可能无法打开菜单书。这是 CrossPlatForms 的兼容性问题，可以在启动命令上添加此参数以解决：  
-`-Djdk.util.jar.enableMultiRelease=force`
+可以通过以下命令，禁用**所有玩家**之间的碰撞（仅进入盘古大陆后）：  
+- 禁用：`/team modify normal collisionRule pushOwnTeam`
+- 恢复默认：`/team modify normal collisionRule always`
+
+需要注意，上述命令并不能解决战役场景下的玩家碰撞问题。因为战役使用另外的两个队伍 `attack` 和 `defence` 有特殊的碰撞规则，直接修改会影响玩法。若使用 Paper 或在其基础上再开发的服务端核心，可以在服务端根目录下的 `config/paper-global.yml` 中作如下修改：
+```yaml
+collisions:
+  enable-player-collisions: false
+```
+这是 Paper 提供的禁用玩家间碰撞功能，不影响现有队伍原有的设置，以及队伍中其它生物碰撞
 
 
 

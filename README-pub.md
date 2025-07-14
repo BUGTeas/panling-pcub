@@ -41,11 +41,12 @@
 
 ## 💿 安装使用
 
-本套件依赖于插件服务端环境运行。最简单的方法便是使用现成的服务端部署包，**配合本套件使用**，它和本套件放在了同一个下载链接中，很容易被找到。
-若您希望自行搭建服务端环境，**详见同一目录下的技术性说明**。
+由于授权问题和模块化需要，本套件**不集成服务端**，需要自行配置插件服务端环境。
 
-### 通用视频教程
-- [B 站视频](https://www.bilibili.com/video/BV1V7QVY8E4t/)
+但本套件额外提供了一个服务端部署包，帮助您简单快速地配置环境，可在本套件下载链接中找到。
+**若您不会配置服务端，请直接使用服务端部署包**。在服务端部署包的使用说明中有详细的零基础配置步骤。也有全平台通用的视频教程：[B 站视频](https://www.bilibili.com/video/BV1V7QVY8E4t/)
+
+若您需要使用自备的服务端环境，请参考**下载链接中的技术性说明**。
 
 
 
@@ -87,9 +88,6 @@
 
 ## 🔗 友情链接
 
-梦回盘灵官方 KOOK
-- [扩展包及相关 DLC 下载，可能满员，但正常浏览](https://www.kookapp.cn/app/channels/5787377656427081)
-
 梦回盘灵扩展包 v1.1.0b 下载
 - [蓝奏云](https://wwrc.lanzoub.com/iZYK8149zyod)
 - [百度网盘](https://pan.baidu.com/s/1y5NuvDD6APhsDcx10VkDBQ?pwd=plgy)
@@ -101,6 +99,9 @@
 - [官方网站（魔法访问）](http://pan-gu-continent.blogspot.tw/)
 - [贴吧补档](https://tieba.baidu.com/p/6132497097)
 
+梦回盘灵官方 KOOK
+- [可能满员，但正常浏览](https://www.kookapp.cn/app/channels/5787377656427081)
+
 
 
 ## ❓ 疑难解答
@@ -108,15 +109,6 @@
 ### 基岩版常见问题解决方法
 
 已经整理为视频并发布至 B 站，涵盖了 UI 错乱、交易项查看、乱跳等常见的一系列问题及解决方法：[观看视频](https://www.bilibili.com/video/BV16WQWYKE6V/)
-
-### 玩家间碰撞修复
-
-因 Geyser 的远古 Bug，基岩版玩家间无碰撞，**但可以推开 Java 版玩家，反之则不行**，这可能影响了 Java 版玩家的游戏体验。
-
-可以通过以下命令，禁用**所有玩家**之间的碰撞（仅进入盘古大陆后）：  
-`/team modify normal collisionRule pushOwnTeam`
-
-恢复默认碰撞：`/team modify normal collisionRule always`
 
 
 
