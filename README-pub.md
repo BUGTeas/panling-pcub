@@ -63,7 +63,7 @@
 
 ## ⚠️ 本套件暂时内置魔改版 Geyser
 
-**支持 1.21.40 - 1.21.7x 的基岩版客户端**，版本为 2.6.2-SNAPSHOT (git-pcub-temp-feature-cc1a6d4)。
+**支持 1.21.70 - 1.21.93 的基岩版客户端**，版本为 2.8.2-SNAPSHOT (git-pcub-temp-feature-b00ff2d)。
 
 魔改版本克隆自官方仓库，独立分支并同样开源：[BUGTeas/Geyser](https://github.com/BUGTeas/Geyser/tree/pcub-temp-feature)
 

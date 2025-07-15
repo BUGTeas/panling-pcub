@@ -1,5 +1,5 @@
 # 梦回盘灵专用 Java - 基岩双端互通套件
-v1.6.2 先行版（适用于梦回盘灵扩展包 v1.1.0b）  
+v1.7.0 先行版（适用于梦回盘灵扩展包 v1.1.0b）  
 <!-- 强烈建议使用支持 Markdown 的阅读器查看此说明 -->  
 <!-- 以下内容中所有命令均不包括`反引号 -->
 
@@ -72,7 +72,7 @@ v1.6.2 先行版（适用于梦回盘灵扩展包 v1.1.0b）
 
 ## ⚠️ 本套件暂时内置魔改版 Geyser
 
-**支持 1.21.40 - 1.21.7x 的基岩版客户端**，版本为 2.6.2-SNAPSHOT (git-pcub-temp-feature-cc1a6d4)。
+**支持 1.21.70 - 1.21.93 的基岩版客户端**，版本为 2.8.2-SNAPSHOT (git-pcub-temp-feature-b00ff2d)。
 
 魔改版本克隆自官方仓库，独立分支并同样开源：[BUGTeas/Geyser](https://github.com/BUGTeas/Geyser/tree/pcub-temp-feature)
 
