@@ -30,9 +30,9 @@ scoreboard objectives add pcub_hide_talk_enable dummy
 scoreboard objectives add pcub_villagerFix_temp1 dummy
 scoreboard objectives add pcub_villagerFix_temp2 dummy
 
-# 头饰修复计数器
-scoreboard objectives add pcub_honorHeadFix_count dummy
-scoreboard objectives add pcub_honorHeadFix_countCMD dummy
+# 移除原头饰修复计数器
+scoreboard objectives remove pcub_honorHeadFix_count
+scoreboard objectives remove pcub_honorHeadFix_countCMD
 
 # 用于在梦盘互通套件加载后执行
 function #pcub:load

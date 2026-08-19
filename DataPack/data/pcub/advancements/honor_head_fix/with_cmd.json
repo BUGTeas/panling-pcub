@@ -1,7 +1,0 @@
-{
-    "criteria": {
-        "pcub_honorHeadFix_withCMD":{
-            "trigger": "minecraft:impossible"
-        }
-    }
-}

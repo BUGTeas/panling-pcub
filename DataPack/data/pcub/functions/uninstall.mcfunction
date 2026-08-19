@@ -25,7 +25,3 @@ scoreboard objectives remove pcub_hide_talk_enable
 # 修改部分交易项，以修复基岩版 1.20.30+ 的交易 Bug
 scoreboard objectives remove pcub_villagerFix_temp1
 scoreboard objectives remove pcub_villagerFix_temp2
-
-# 头饰修复计数器
-scoreboard objectives remove pcub_honorHeadFix_count
-scoreboard objectives remove pcub_honorHeadFix_countCMD
