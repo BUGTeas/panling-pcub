@@ -1,0 +1,533 @@
+{
+	"format_version": 2,
+	"items": {
+		// 胡萝卜钓竿
+		"minecraft:carrot_on_a_stick": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:ldl",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:arrowpack",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 3,
+				"bedrock_identifier": "panling:back_stone",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 4,
+				"bedrock_identifier": "panling:furnace4",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 5,
+				"bedrock_identifier": "panling:furnace5",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 6,
+				"bedrock_identifier": "panling:furnace6",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 10,
+				"bedrock_identifier": "panling:shen_test",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 13,
+				"bedrock_identifier": "panling:zhan_test",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 14,
+				"bedrock_identifier": "panling:ren_test",
+				"bedrock_options": { "allow_offhand": true }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 21,
+				"bedrock_identifier": "panling:sword1",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 22,
+				"bedrock_identifier": "panling:sword2",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 23,
+				"bedrock_identifier": "panling:sword3",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 24,
+				"bedrock_identifier": "panling:sword4",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 25,
+				"bedrock_identifier": "panling:sword5",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 26,
+				"bedrock_identifier": "panling:stick",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 32,
+				"bedrock_identifier": "panling:axe2",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 33,
+				"bedrock_identifier": "panling:axe3",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 34,
+				"bedrock_identifier": "panling:axe4",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 35,
+				"bedrock_identifier": "panling:axe5",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}
+		],
+
+		// 弓箭
+		"minecraft:bow": [
+		// 	{
+		// 		"type": "legacy",
+		// 		"custom_model_data": 1,
+		// 		"bedrock_identifier": "panling:bow",
+		// 		"bedrock_options": {
+		// 			"allow_offhand": false,
+		// 			"tags": ["pcub:animated_bow"],
+		// 			"icon": "bow_standby"
+		// 		}
+		// 	}, {
+		// 		"type": "legacy",
+		// 		"custom_model_data": 20,
+		// 		"bedrock_identifier": "panling:bow2",
+		// 		"bedrock_options": {
+		// 			"allow_offhand": false,
+		// 			"tags": ["pcub:animated_bow"]
+		// 		}
+		// 	}, {
+		// 		"type": "legacy",
+		// 		"custom_model_data": 30,
+		// 		"bedrock_identifier": "panling:bow3",
+		// 		"bedrock_options": {
+		// 			"allow_offhand": false,
+		// 			"tags": ["pcub:animated_bow"]
+		// 		}
+		// 	}, {
+		// 		"type": "legacy",
+		// 		"custom_model_data": 40,
+		// 		"bedrock_identifier": "panling:bow4",
+		// 		"bedrock_options": {
+		// 			"allow_offhand": false,
+		// 			"tags": ["pcub:animated_bow"]
+		// 		}
+		// 	}, {
+		// 		"type": "legacy",
+		// 		"custom_model_data": 50,
+		// 		"bedrock_identifier": "panling:bow5",
+		// 		"bedrock_options": {
+		// 			"allow_offhand": false,
+		// 			"tags": ["pcub:animated_bow"]
+		// 		}
+		// 	}, {
+		// 		"type": "legacy",
+		// 		"custom_model_data": 60,
+		// 		"bedrock_identifier": "panling:bow6",
+		// 		"bedrock_options": {
+		// 			"allow_offhand": false,
+		// 			"tags": ["pcub:animated_bow"]
+		// 		}
+		// 	}
+		],
+		"minecraft:crossbow": [
+			// TODO: 自定义弩实现
+		],
+		// 未激活
+		"minecraft:wooden_pickaxe": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:bow_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+					"icon": "bow_standby"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:crossbow_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+					"icon": "crossbow_standby"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 20,
+				"bedrock_identifier": "panling:bow2_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+					"icon": "panling.bow2"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 21,
+				"bedrock_identifier": "panling:crossbow2_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+					"icon": "panling.crossbow2"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 30,
+				"bedrock_identifier": "panling:bow3_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+					"icon": "panling.bow3"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 31,
+				"bedrock_identifier": "panling:crossbow3_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+					"icon": "panling.crossbow3"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 40,
+				"bedrock_identifier": "panling:bow4_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+					"icon": "panling.bow4"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 41,
+				"bedrock_identifier": "panling:crossbow4_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+					"icon": "panling.crossbow4"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 50,
+				"bedrock_identifier": "panling:bow5_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+					"icon": "panling.bow5"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 51,
+				"bedrock_identifier": "panling:crossbow5_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_crossbow", "pcub:disabled_crossbow"],
+					"icon": "panling.crossbow5"
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 60,
+				"bedrock_identifier": "panling:bow6_disabled",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_bow", "pcub:disabled_bow"],
+					"icon": "panling.bow6"
+				}
+			}
+		],
+		
+		// 钱庄末影箱 UI 按钮
+		"minecraft:wooden_axe": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:gui_arrow_left"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:gui_arrow_right"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 3,
+				"bedrock_identifier": "panling:gui_bow_up"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 4,
+				"bedrock_identifier": "panling:gui_sword_up"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 5,
+				"bedrock_identifier": "panling:gui_arrow_up"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 6,
+				"bedrock_identifier": "panling:gui_arrow_down"
+			}
+		],
+		// ?
+		"minecraft:bone_meal": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:gui_chest_ui"
+			}
+		],
+
+		// 种族补给品
+		"minecraft:brick": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:money0"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:money1"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 3,
+				"bedrock_identifier": "panling:money2"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 4,
+				"bedrock_identifier": "panling:money3"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 5,
+				"bedrock_identifier": "panling:money4"
+			}
+		],
+
+		// 附灵石
+		"minecraft:blue_dye": [
+			{
+				// TODO: 着重测试，游戏内可能不满足此条件
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:enchant_stone_armor"
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:enchant_stone_weapon"
+			}
+		],
+
+		// 飞仙剑技能
+		"minecraft:diamond_sword": [
+			{
+			// 	"type": "legacy",
+			// 	"custom_model_data": 0,
+			// 	"bedrock_identifier": "panling:sword5"
+			// }, {
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:sword5_skill"
+			}
+		],
+
+		// 归偶阴阳剑
+		"minecraft:iron_axe": [
+			{
+			// 此物映射后贴图不同
+			// 	"type": "legacy",
+			// 	"custom_model_data": 0,
+			// 	"bedrock_identifier": "panling:axe3"
+			// }, {
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:in3_axe3_skill"
+			}
+		],
+		"minecraft:stone_sword": [
+			{
+			// 此物映射后贴图不同
+			// 	"type": "legacy",
+			// 	"custom_model_data": 0,
+			// 	"bedrock_identifier": "panling:sword2"
+			// }, {
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:in3_sword2_skill"
+			}
+		],
+
+		// 纪念版限定玩偶
+		"minecraft:echo_shard": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:figurines_1",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:figurines_2",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 3,
+				"bedrock_identifier": "panling:figurines_3",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 4,
+				"bedrock_identifier": "panling:figurines_4",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 5,
+				"bedrock_identifier": "panling:figurines_5",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 6,
+				"bedrock_identifier": "panling:figurines_6",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 7,
+				"bedrock_identifier": "panling:figurines_7",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 8,
+				"bedrock_identifier": "panling:figurines_8",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 9,
+				"bedrock_identifier": "panling:figurines_9",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 10,
+				"bedrock_identifier": "panling:figurines_10",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 11,
+				"bedrock_identifier": "panling:figurines_11",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 12,
+				"bedrock_identifier": "panling:figurines_12",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}, {
+				"type": "legacy",
+				"custom_model_data": 13,
+				"bedrock_identifier": "panling:figurines_13",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				}
+			}
+		],
+
+		// 旧定海神针
+		"minecraft:wooden_sword": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "panling:legacy_stick",
+				"bedrock_options": { "icon": "panling.stick" }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 2,
+				"bedrock_identifier": "panling:legacy_stick2",
+				"bedrock_options": { "icon": "panling.stick" }
+			}
+		]
+	}
+}

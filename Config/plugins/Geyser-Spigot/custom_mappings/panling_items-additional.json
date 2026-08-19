@@ -1,0 +1,434 @@
+{
+	"format_version": "2",
+	"items": {
+		// 基岩版无法通过取消事件阻止原版书本界面打开，且会覆盖其它界面
+		// 将其映射为自定义物品后即可解决
+		"minecraft:written_book": [
+			{
+				"type": "legacy",
+				"custom_model_data": 1,
+				"bedrock_identifier": "pcub:book_written",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"icon": "book_written"
+				}
+			}
+		],
+
+		// 丹药颜色实现
+		"minecraft:potion": [
+			{
+				"type": "definition",
+				"model": "pcub:potion_8227",
+				"bedrock_identifier": "pcub:potion_8227",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_16426",
+				"bedrock_identifier": "pcub:potion_16426",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_5149489",
+				"bedrock_identifier": "pcub:potion_5149489",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_2293580",
+				"bedrock_identifier": "pcub:potion_2293580",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_4393481",
+				"bedrock_identifier": "pcub:potion_4393481",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_9643043",
+				"bedrock_identifier": "pcub:potion_9643043",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_10044730",
+				"bedrock_identifier": "pcub:potion_10044730",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_16262179",
+				"bedrock_identifier": "pcub:potion_16262179",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_16711680",
+				"bedrock_identifier": "pcub:potion_16711680",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_14270531",
+				"bedrock_identifier": "pcub:potion_14270531",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_2039713",
+				"bedrock_identifier": "pcub:potion_2039713",
+				"bedrock_options": { "allow_offhand": false },
+				"components": { "minecraft:max_stack_size": 64 }
+			}
+		],
+		"minecraft:splash_potion": [
+			{
+				"type": "definition",
+				"model": "pcub:potion_5149489",
+				"bedrock_identifier": "pcub:splash_potion_5149489",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_2293580",
+				"bedrock_identifier": "pcub:splash_potion_2293580",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_4393481",
+				"bedrock_identifier": "pcub:splash_potion_4393481",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_5578058",
+				"bedrock_identifier": "pcub:splash_potion_5578058",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_9643043",
+				"bedrock_identifier": "pcub:splash_potion_9643043",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_16262179",
+				"bedrock_identifier": "pcub:splash_potion_16262179",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}, {
+				"type": "definition",
+				"model": "pcub:potion_14981690",
+				"bedrock_identifier": "pcub:splash_potion_14981690",
+				"bedrock_options": {
+					"allow_offhand": false,
+					"tags": ["pcub:animated_items"]
+				},
+				"components": { "minecraft:max_stack_size": 64 }
+			}
+		],
+
+		// 叠放实现
+		"minecraft:mushroom_stew": [ {
+			"type": "definition",
+			"model": "minecraft:mushroom_stew",
+			"bedrock_identifier": "pcub:mushroom_stew",
+			"display_name": "item.mushroom_stew.name",
+			"bedrock_options": {
+				"allow_offhand": false,
+				"icon": "mushroom_stew"
+			},
+			"components": { "minecraft:max_stack_size": 64 }
+		} ],
+		"minecraft:rabbit_stew": [ {
+			"type": "definition",
+			"model": "minecraft:rabbit_stew",
+			"bedrock_identifier": "pcub:rabbit_stew",
+			"display_name": "item.rabbit_stew.name",
+			"bedrock_options": {
+				"allow_offhand": false,
+				"icon": "rabbit_stew"
+			},
+			"components": { "minecraft:max_stack_size": 64 }
+		} ],
+		// 雪球
+		"minecraft:snowball": [ {
+			"type": "definition",
+			"model": "minecraft:snowball",
+			"bedrock_identifier": "pcub:snowball",
+			"display_name": "item.snowball.name",
+			"bedrock_options": {
+				"allow_offhand": false,
+				"icon": "snowball"
+			},
+			"components": { "minecraft:max_stack_size": 64 }
+		} ],
+
+		// 钱庄末影箱界面 扁平挡板
+		"minecraft:gray_stained_glass_pane": [ {
+			"type": "definition",
+			"model": "minecraft:gray_stained_glass_pane",
+			"bedrock_identifier": "pcub:gray_glass",
+			"display_name": "tile.stained_glass_pane.gray.name"
+		} ],
+		"minecraft:black_stained_glass_pane": [ {
+			"type": "definition",
+			"model": "minecraft:black_stained_glass_pane",
+			"bedrock_identifier": "pcub:black_glass",
+			"display_name": "tile.stained_glass_pane.black.name"
+		} ],
+
+		// 原生副手实现
+		// 重生石（下界之星）
+		"minecraft:nether_star": [ {
+			"type": "definition",
+			"model": "minecraft:nether_star",
+			"bedrock_identifier": "pcub:nether_star",
+			"display_name": "item.netherStar.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "nether_star"
+			}
+		} ],
+		// 金元素
+		"minecraft:emerald": [ {
+			"type": "definition",
+			"model": "minecraft:emerald",
+			"bedrock_identifier": "pcub:emerald",
+			"display_name": "item.emerald.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "emerald"
+			}
+		} ],
+		// 木元素
+		"minecraft:bone": [ {
+			"type": "definition",
+			"model": "minecraft:bone",
+			"bedrock_identifier": "pcub:bone",
+			"display_name": "item.bone.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "bone"
+			}
+		} ],
+		// 水元素
+		"minecraft:string": [ {
+			"type": "definition",
+			"model": "minecraft:string",
+			"bedrock_identifier": "pcub:string",
+			"display_name": "item.string.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "string"
+			}
+		} ],
+		// 火元素
+		"minecraft:blaze_rod": [ {
+			"type": "definition",
+			"model": "minecraft:blaze_rod",
+			"bedrock_identifier": "pcub:blaze_rod",
+			"display_name": "item.blaze_rod.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "blaze_rod"
+			}
+		} ],
+		// 土元素
+		"minecraft:magma_cream": [ {
+			"type": "definition",
+			"model": "minecraft:magma_cream",
+			"bedrock_identifier": "pcub:magma_cream",
+			"display_name": "item.magma_cream.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "magma_cream"
+			}
+		} ],
+		// 浓缩金元素
+		"minecraft:flint": [ {
+			"type": "definition",
+			"model": "minecraft:flint",
+			"bedrock_identifier": "pcub:flint",
+			"display_name": "item.flint.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "flint"
+			}
+		} ],
+		// 浓缩木元素
+		"minecraft:melon_seeds": [ {
+			"type": "definition",
+			"model": "minecraft:melon_seeds",
+			"bedrock_identifier": "pcub:melon_seeds",
+			"display_name": "item.melon_seeds.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "seeds_melon"
+			}
+		} ],
+		// 浓缩水元素
+		"minecraft:wheat_seeds": [ {
+			"type": "definition",
+			"model": "minecraft:wheat_seeds",
+			"bedrock_identifier": "pcub:wheat_seeds",
+			"display_name": "item.wheat_seeds.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "seeds_wheat"
+			}
+		} ],
+		// 浓缩火元素
+		"minecraft:charcoal": [ {
+			"type": "definition",
+			"model": "minecraft:charcoal",
+			"bedrock_identifier": "pcub:charcoal",
+			"display_name": "item.charcoal.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "charcoal"
+			}
+		} ],
+		// 浓缩土元素
+		"minecraft:pumpkin_seeds": [ {
+			"type": "definition",
+			"model": "minecraft:pumpkin_seeds",
+			"bedrock_identifier": "pcub:pumpkin_seeds",
+			"display_name": "item.pumpkin_seeds.name",
+			"bedrock_options": {
+				"allow_offhand": true,
+				"icon": "seeds_pumpkin"
+			}
+		} ],
+
+		// 贴图缩小（解决部分版本贴图缩放异常）
+		// 箭矢
+		// "minecraft:arrow": [ {
+		// 	"type": "definition",
+		// 	"model": "minecraft:arrow",
+		// 	"bedrock_identifier": "pcub:arrow",
+		// 	"bedrock_options": {
+		// 		"allow_offhand": true,
+		// 		"icon": "arrow"
+		// 	}
+		// } ],
+		// 重华晶（诡异真菌钓竿）
+		"minecraft:warped_fungus_on_a_stick": [ {
+			"type": "definition",
+			"model": "minecraft:warped_fungus_on_a_stick",
+			"bedrock_identifier": "pcub:warped_fungus_on_a_stick",
+			"display_name": "item.warped_fungus_on_a_stick.name",
+			"bedrock_options": {
+				"allow_offhand": false,
+				"icon": "warped_fungus_on_a_stick"
+			}
+		} ],
+		// 附灵石
+		// "minecraft:blue_dye": [ {
+		// 	"type": "definition",
+		// 	"model": "minecraft:blue_dye",
+		// 	"bedrock_identifier": "pcub:blue_dye",
+		// 	"display_name": "item.dye.blue_new.name",
+		// 	"bedrock_options": {
+		// 		"allow_offhand": true
+		// 	}
+		// } ],
+
+		// 绊线钩钥匙
+		"minecraft:tripwire_hook": [ {
+			"type": "definition",
+			"model": "minecraft:tripwire_hook",
+			"bedrock_identifier": "pcub:tripwire_hook",
+			"display_name": "tile.tripwire_hook.name"
+		} ],
+
+		// 忠烈祠头颅图标
+		"minecraft:player_head": [
+			{
+				"type": "legacy",
+				"custom_model_data": 101,
+				"bedrock_identifier": "panling:honor_head_1",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 102,
+				"bedrock_identifier": "panling:honor_head_2",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 103,
+				"bedrock_identifier": "panling:honor_head_3",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 104,
+				"bedrock_identifier": "panling:honor_head_4",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 105,
+				"bedrock_identifier": "panling:honor_head_5",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 106,
+				"bedrock_identifier": "panling:honor_head_6",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 108,
+				"bedrock_identifier": "panling:honor_head_8",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 109,
+				"bedrock_identifier": "panling:honor_head_9",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 110,
+				"bedrock_identifier": "panling:honor_head_10",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 111,
+				"bedrock_identifier": "panling:honor_head_11",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 112,
+				"bedrock_identifier": "panling:honor_head_12",
+				"bedrock_options": { "allow_offhand": false }
+			}, {
+				"type": "legacy",
+				"custom_model_data": 113,
+				"bedrock_identifier": "panling:honor_head_13",
+				"bedrock_options": { "allow_offhand": false }
+			}
+		]
+	}
+}
