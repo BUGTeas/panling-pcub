@@ -109,7 +109,7 @@ forms:
           - commands:
               - "player; trigger menu set 10"
       - text: "gui.back"
-        image: "textures/panling/items/arrow_left"
+        image: "textures/panling/items/gui/arrow_left"
         actions:
           - form: panling_menubook-0-0
   #切换试炼祝福
@@ -134,7 +134,7 @@ forms:
         actions:
           - commands: "player; zhan-test-bless-be%objective_score_{zhan_test_all}%"
       - text: "gui.back"
-        image: "textures/panling/items/arrow_left"
+        image: "textures/panling/items/gui/arrow_left"
         actions:
           - form: panling_menubook-0-0
   #条目未开启
