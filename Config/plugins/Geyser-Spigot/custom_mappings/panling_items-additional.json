@@ -18,137 +18,167 @@
 		// 丹药颜色实现
 		"minecraft:potion": [
 			{
-				"type": "definition",
-				"model": "pcub:potion_8227",
-				"bedrock_identifier": "pcub:potion_8227",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_16426",
-				"bedrock_identifier": "pcub:potion_16426",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_5149489",
-				"bedrock_identifier": "pcub:potion_5149489",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_2293580",
-				"bedrock_identifier": "pcub:potion_2293580",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_4393481",
-				"bedrock_identifier": "pcub:potion_4393481",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_9643043",
-				"bedrock_identifier": "pcub:potion_9643043",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_10044730",
-				"bedrock_identifier": "pcub:potion_10044730",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_16262179",
-				"bedrock_identifier": "pcub:potion_16262179",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_16711680",
-				"bedrock_identifier": "pcub:potion_16711680",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_14270531",
-				"bedrock_identifier": "pcub:potion_14270531",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_2039713",
-				"bedrock_identifier": "pcub:potion_2039713",
-				"bedrock_options": { "allow_offhand": false },
-				"components": { "minecraft:max_stack_size": 64 }
+				"type": "group",
+				"model": "minecraft:potion",
+				"definitions": [
+					{
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_8227" },
+						"bedrock_identifier": "pcub:potion_8227",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_16426" },
+						"bedrock_identifier": "pcub:potion_16426",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_5149489" },
+						"bedrock_identifier": "pcub:potion_5149489",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_2293580" },
+						"bedrock_identifier": "pcub:potion_2293580",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_4393481" },
+						"bedrock_identifier": "pcub:potion_4393481",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_9643043" },
+						"bedrock_identifier": "pcub:potion_9643043",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_10044730" },
+						"bedrock_identifier": "pcub:potion_10044730",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_16262179" },
+						"bedrock_identifier": "pcub:potion_16262179",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_16711680" },
+						"bedrock_identifier": "pcub:potion_16711680",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_14270531" },
+						"bedrock_identifier": "pcub:potion_14270531",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_2039713" },
+						"bedrock_identifier": "pcub:potion_2039713",
+						"bedrock_options": { "allow_offhand": false },
+						"components": { "minecraft:max_stack_size": 64 }
+					}
+				]
 			}
 		],
 		"minecraft:splash_potion": [
 			{
-				"type": "definition",
-				"model": "pcub:potion_5149489",
-				"bedrock_identifier": "pcub:splash_potion_5149489",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_2293580",
-				"bedrock_identifier": "pcub:splash_potion_2293580",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_4393481",
-				"bedrock_identifier": "pcub:splash_potion_4393481",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_5578058",
-				"bedrock_identifier": "pcub:splash_potion_5578058",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_9643043",
-				"bedrock_identifier": "pcub:splash_potion_9643043",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_16262179",
-				"bedrock_identifier": "pcub:splash_potion_16262179",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
-			}, {
-				"type": "definition",
-				"model": "pcub:potion_14981690",
-				"bedrock_identifier": "pcub:splash_potion_14981690",
-				"bedrock_options": {
-					"allow_offhand": false,
-					"tags": ["pcub:animated_items"]
-				},
-				"components": { "minecraft:max_stack_size": 64 }
+				"type": "group",
+				"model": "minecraft:splash_potion",
+				"definitions": [
+					{
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_5149489" },
+						"bedrock_identifier": "pcub:splash_potion_5149489",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_2293580" },
+						"bedrock_identifier": "pcub:splash_potion_2293580",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_4393481" },
+						"bedrock_identifier": "pcub:splash_potion_4393481",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_5578058" },
+						"bedrock_identifier": "pcub:splash_potion_5578058",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_9643043" },
+						"bedrock_identifier": "pcub:splash_potion_9643043",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_16262179" },
+						"bedrock_identifier": "pcub:splash_potion_16262179",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						"predicate": {
+							"type": "match", "property": "custom_model_data",
+							"value": "pcubc_potion_color_14981690" },
+						"bedrock_identifier": "pcub:splash_potion_14981690",
+						"bedrock_options": {
+							"allow_offhand": false,
+							"tags": ["pcub:animated_items"]
+						},
+						"components": { "minecraft:max_stack_size": 64 }
+					}
+				]
 			}
 		],
 
