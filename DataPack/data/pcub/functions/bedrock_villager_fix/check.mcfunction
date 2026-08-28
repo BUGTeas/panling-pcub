@@ -1,1 +1,0 @@
-execute unless entity @s[tag=bedrock_fixed_134] run function pcub:bedrock_villager_fix/main

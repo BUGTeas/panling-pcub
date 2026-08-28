@@ -14,17 +14,7 @@
 
 ## 打包数据包
 
-**环境要求:** Node.js
-
-由于数据包中部分文件代码重复率高，为了提高开发效率，以下文件由脚本 `make-functions.js` 批量生成：
-- DataPack/data/pcub/functions/bedrock_villager_fix/recipe/*.mcfunction
-- DataPack/data/pcub/advancements/honor_head_fix/with_cmd/*.json
-- DataPack/data/pcub/functions/honor_head_fix/slot.mcfunction
-- DataPack/data/pcub/functions/honor_head_fix/slot/*.mcfunction
-
-如果您需要更改交易修复的检测范围，或者是忠烈祠头饰的修复范围，请将目光投向这个脚本。
-
-在打包前请先在当前目录下执行命令 `node make-functions.js`，之后再将“DataPack”目录中的所有文件打包，这就是成品的数据包，建议命名为“pcub.zip”。
+将“DataPack”目录中的所有文件打包，这就是成品的数据包，建议命名为“pcub.zip”。
 
 
 
