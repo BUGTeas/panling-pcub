@@ -2,10 +2,10 @@
 	"geyser":{
 		"fallback":{},
 		"base":{
-			"container.enderchest": "container.enderchest:force_desktop_ui:",
 			"item.pcub.bedrock_menubook": "§6菜单\n§7常规功能选项都在这里"
 		},
 		"conversion":{
+			"container.enderchest": "钱庄服务:force_desktop_ui:",
 			"please.use.right.resourcepack": "§6基岩版不支持聊天栏按钮，\n请在聊天栏输入此命令， 开始加载： §a§l/trigger begin set 1\n§7§o互通套件已为基岩版提供了专用资源包支持， 若您能看到此提示， 说明已经正常配置",
 			"pl.info.resourcepack_version":"互通套件版本：1.7.0 先行版",
 			"pl.info.newest_version":"§6当前互通套件版本：1.7.0 先行版",
@@ -22,9 +22,6 @@
 			"pcub.not_suppor.offhand":"§c检测到您正在使用副手作为武器激活位，§e这在基岩版中暂不支持§c，请通过菜单书将武器激活位设置为主手§e（一至九号位）§c，否则武器将无法使用。",
 			"pcub.showitem.title":"§6请选择要展示的物品",
 			"pcub.showitem.subtitle":"§a点击或按下槽位对应数字键"
-		},
-		"tw":{
-			"container.enderchest": "container.enderchest:force_desktop_ui:"
 		}
 	},
 	"bedrock":{
