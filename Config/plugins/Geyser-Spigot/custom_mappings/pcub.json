@@ -5,6 +5,115 @@
 		"minecraft:structure_block": {
 			"name": "structure_block"
 		},
+		//苔石围栏
+		"minecraft:mossy_cobblestone_wall": {
+			"only_override_states": true,
+			"name": "plbe_mossy_wall",
+			"state_overrides": {
+				"east=none,north=none,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_post" },
+				"east=none,north=low,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_n" },
+				"east=none,north=none,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_n", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=none,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_n", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=low,north=none,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_n", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=low,north=low,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne" },
+				"east=none,north=low,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=none,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=low,north=none,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=none,north=low,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=none,north=low,south=low,up=false,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns" },
+				"east=low,north=none,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=none,south=none,up=false,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ns", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=low,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=low,north=low,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=low,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=low,north=none,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=low,north=low,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=low,south=low,up=false,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+
+				"east=none,north=tall,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_n" },
+				"east=none,north=none,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_n", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=none,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_n", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=tall,north=none,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_n", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=tall,north=low,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne" },
+				"east=low,north=tall,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne" },
+				"east=tall,north=tall,south=none,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne" },
+				"east=none,north=tall,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=low,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=tall,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=none,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=none,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=none,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=tall,north=none,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=low,north=none,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=tall,north=none,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ne", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=none,north=tall,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=none,north=low,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=none,north=tall,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=none,north=tall,south=low,up=false,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=none,north=low,south=tall,up=false,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=none,north=tall,south=tall,up=false,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_ns_above" },
+				"east=tall,north=none,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=none,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=none,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=none,south=none,up=false,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=none,south=none,up=false,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=none,south=none,up=false,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_ns_above", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=low,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=tall,north=tall,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=tall,north=tall,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=low,north=tall,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=tall,north=low,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=low,north=tall,south=low,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=low,north=low,south=tall,up=true,waterlogged=false,west=none": { "geometry": "geometry.plbe_mossy_wall_nse" },
+				"east=tall,north=low,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=tall,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=tall,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=tall,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=tall,north=low,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=tall,south=none,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=low,north=low,south=none,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 90, 0 ] } },
+				"east=none,north=tall,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=tall,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=tall,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=low,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=tall,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=low,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=none,north=low,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 180, 0 ] } },
+				"east=tall,north=none,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=tall,north=none,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=tall,north=none,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=low,north=none,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=tall,north=none,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=low,north=none,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=low,north=none,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nse", "transformation": { "rotation": [ 0, 270, 0 ] } },
+				"east=tall,north=low,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=tall,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=low,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=low,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=tall,south=low,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=tall,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=tall,south=tall,up=false,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=low,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=tall,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=tall,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=low,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=tall,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=low,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=low,south=low,up=false,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=low,south=tall,up=true,waterlogged=false,west=low": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=low,north=tall,south=low,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=tall,south=tall,up=true,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" },
+				"east=tall,north=tall,south=tall,up=false,waterlogged=false,west=tall": { "geometry": "geometry.plbe_mossy_wall_nsew" }
+				// 还有太多常规手段放不出的就不管了，让它保持原版就好（）
+			},
+			"material_instances": {
+				"*": {
+					"texture": "plbe_cobblestone_mossy",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				}
+			}
+		},
 		//圆石压力板-传送圆环
 		"minecraft:stone_pressure_plate": {
 			"name": "plbe_cd_plate",
@@ -58,43 +167,26 @@
 		},
 		//漏斗-投放桶
 		"minecraft:hopper": {
+			"only_override_states": true,
 			"name": "plbe_hopper",
 			"geometry": "geometry.plbe_hopper_down",
 			"state_overrides": {
-				"enabled=true,facing=north": {
-					"geometry": "geometry.plbe_hopper_side"
-				},
-				"enabled=true,facing=south": {
-					"geometry": "geometry.plbe_hopper_side",
-					"transformation": { "rotation": [ 0, 180, 0 ] }
-				},
-				"enabled=true,facing=west": {
-					"geometry": "geometry.plbe_hopper_side",
-					"transformation": { "rotation": [ 0, 90, 0 ] }
-				},
-				"enabled=true,facing=east": {
-					"geometry": "geometry.plbe_hopper_side",
-					"transformation": { "rotation": [ 0, 270, 0 ] }
-				},
-				"enabled=false,facing=north": {
-					"geometry": "geometry.plbe_hopper_side"
-				},
-				"enabled=false,facing=south": {
-					"geometry": "geometry.plbe_hopper_side",
-					"transformation": { "rotation": [ 0, 180, 0 ] }
-				},
-				"enabled=false,facing=west": {
-					"geometry": "geometry.plbe_hopper_side",
-					"transformation": { "rotation": [ 0, 90, 0 ] }
-				},
-				"enabled=false,facing=east": {
-					"geometry": "geometry.plbe_hopper_side",
-					"transformation": { "rotation": [ 0, 270, 0 ] }
-				}
+				"enabled=true,facing=down": {},
+				"enabled=false,facing=down": {}
 			},
 			"material_instances": {
+				"up": {
+					"texture": "hopper_top",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
 				"*": {
-					"texture": "plbe_textures_mix_1",
+					"texture": "hopper_outside",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
+				"inside": {
+					"texture": "hopper_inside",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				}
@@ -141,8 +233,27 @@
 			"name": "plbe_wet_sponge",
 			"geometry": "geometry.plbe_wet_sponge",
 			"material_instances": {
+				"up": {
+					"texture": "plbe_sponge_wet_all",
+					"render_method": "blend",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
 				"*": {
-					"texture": "plbe_textures_mix_1",
+					"texture": "plbe_sponge_wet_side",
+					"render_method": "blend",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
+				"inside": {
+					"texture": "plbe_sponge_wet",
+					"render_method": "blend",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
+				"water": {
+					"texture": "still_water",
+					"render_method": "blend",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				}
@@ -153,8 +264,18 @@
 			"name": "plbe_dark_prismarine_1",
 			"geometry": "geometry.plbe_dark_prismarine_1",
 			"material_instances": {
+				"up": {
+					"texture": "plbe_dark_prismarine_top",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
 				"*": {
-					"texture": "plbe_textures_mix_1",
+					"texture": "plbe_dark_prismarine_side",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
+				"down": {
+					"texture": "plbe_dark_prismarine_bottom",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				}
@@ -162,19 +283,24 @@
 		},
 		//深色橡木原木-茶桶
 		"minecraft:dark_oak_log": {
+			"only_override_states": true,
 			"name": "plbe_dark_oak_log",
+			"geometry": "geometry.plbe_dark_oak_log_side",
 			"state_overrides": {
-				"axis=z": {
-					"geometry": "geometry.plbe_dark_oak_log_side"
-				},
+				"axis=z": {},
 				"axis=x": {
-					"geometry": "geometry.plbe_dark_oak_log_side",
 					"transformation":{ "rotation":[0,90,0] }
 				}
 			},
 			"material_instances": {
+				"side3": {
+					"texture": "plbe_dark_oak_log_side3",
+					"render_method": "alpha_test",
+					"face_dimming": true,
+					"ambient_occlusion": true
+				},
 				"*": {
-					"texture": "plbe_textures_mix_1",
+					"texture": "plbe_dark_oak_log",
 					"render_method": "alpha_test",
 					"face_dimming": true,
 					"ambient_occlusion": true
@@ -188,9 +314,13 @@
 			"state_overrides": {
 				"axis=z": {
 					"material_instances": {
-						"*": {
+						"up": {
 							"texture": "plbe_acacia_log_z",
-							"render_method": "alpha_test",
+							"face_dimming": true,
+							"ambient_occlusion": true
+						},
+						"*": {
+							"texture": "plbe_acacia_log_side",
 							"face_dimming": true,
 							"ambient_occlusion": true
 						}
@@ -198,15 +328,25 @@
 				},
 				"axis=x": {
 					"material_instances": {
-						"*": {
+						"up": {
 							"texture": "plbe_acacia_log_x",
-							"render_method": "alpha_test",
+							"face_dimming": true,
+							"ambient_occlusion": true
+						},
+						"*": {
+							"texture": "plbe_acacia_log_side",
 							"face_dimming": true,
 							"ambient_occlusion": true
 						}
 					}
 				}
 			}
+		// },
+		// "minecraft:brown_mushroom_block": {
+		// 	"name": "full_skin_brown_mushroom_block"
+		// },
+		// "minecraft:red_mushroom_block": {
+		// 	"name": "full_skin_red_mushroom_block"
 		}
 	}
 }
