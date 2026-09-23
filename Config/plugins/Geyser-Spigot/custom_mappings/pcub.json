@@ -5,6 +5,154 @@
 		"minecraft:structure_block": {
 			"name": "structure_block"
 		},
+		//完整火把
+		"minecraft:torch": {
+			"only_override_states": true,
+			"name": "plbe_torch",
+			"geometry": "geometry.plbe_template_torch",
+			"light_emission": 14,
+			"material_instances": {
+				"*": {
+					"texture": "torch_on",
+					"render_method": "alpha_test_single_sided"
+				}
+			}
+		},
+		"minecraft:redstone_torch": {
+			"only_override_states": true,
+			"name": "plbe_redstone_torch",
+			"geometry": "geometry.plbe_template_torch",
+			"state_overrides": {
+				"lit=true": {
+					"light_emission": 7,
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_on",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"lit=false": {
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_off",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			}
+		},
+		"minecraft:wall_torch": {
+			"name": "plbe_wall_torch",
+			"geometry": "geometry.plbe_template_torch_wall",
+			"light_emission": 14,
+			"state_overrides": {
+				"facing=north": {
+					"transformation": { "rotation": [ 0, 90, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] }
+				},
+				"facing=west": {
+					"transformation": { "rotation": [ 0, 180, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] }
+				},
+				"facing=south": {
+					"transformation": { "rotation": [ 0, 270, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] }
+				}
+			},
+			"material_instances": {
+				"*": {
+					"texture": "torch_on",
+					"render_method": "alpha_test_single_sided"
+				}
+			}
+		},
+		"minecraft:redstone_wall_torch": {
+			"name": "plbe_redstone_wall_torch",
+			"geometry": "geometry.plbe_template_torch_wall",
+			"state_overrides": {
+				"facing=east,lit=true": {
+					"light_emission": 7,
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_on",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=east,lit=false": {
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_off",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=north,lit=true": {
+					"light_emission": 7,
+					"transformation": { "rotation": [ 0, 90, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] },
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_on",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=north,lit=false": {
+					"transformation": { "rotation": [ 0, 90, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] },
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_off",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=west,lit=true": {
+					"light_emission": 7,
+					"transformation": { "rotation": [ 0, 180, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] },
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_on",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=west,lit=false": {
+					"transformation": { "rotation": [ 0, 180, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] },
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_off",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=south,lit=true": {
+					"light_emission": 7,
+					"transformation": { "rotation": [ 0, 270, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] },
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_on",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				},
+				"facing=south,lit=false": {
+					"transformation": { "rotation": [ 0, 270, 0 ] },
+					"selection_box": { "origin": [3, 3, -2.5], "size": [5, 10, 5] },
+					"material_instances": {
+						"*": {
+							"texture": "redstone_torch_off",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			}
+		},
 		//苔石围栏
 		"minecraft:mossy_cobblestone_wall": {
 			"only_override_states": true,
