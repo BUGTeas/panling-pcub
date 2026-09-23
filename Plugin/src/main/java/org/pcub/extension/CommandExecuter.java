@@ -56,18 +56,13 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
         String locale = targetPlayer.getLocale();
         boolean isCN = locale.equalsIgnoreCase("zh_cn");
         // pcub stack
-        if (args.length >= 1 && args[0].equalsIgnoreCase("stack")) new BukkitRunnable(){
+        if (args.length >= 1 && args[0].equalsIgnoreCase("stack")) {
             //强制叠放物品
-            @Override
-            public void run(){
                 sender.sendMessage("§a" + ((isCN) ? "已强制叠放" : "已強制疊放") + " §b" + Stacker.forceStack(targetPlayer, 64) + ((isCN) ? " 种" : " 種") + "物品");
-            }
-        }.runTaskAsynchronously(main);
+        }
         // pcub dropContinuous
-        else if (args.length >= 1 && args[0].equalsIgnoreCase("dropContinuous")) new BukkitRunnable(){
+        else if (args.length >= 1 && args[0].equalsIgnoreCase("dropContinuous")) {
             //连续投掷
-            @Override
-            public void run(){
                 String[] setResult = (isCN) ? new String[]{"始终禁用", "始终启用", "仅基岩版禁用", "仅 Android/iOS/WP 禁用"} : new String[]{"始終禁用", "始終啟用", "僅 Bedrock 版禁用", "僅 Android/iOS/WP 禁用"};
                 if (args.length >= 2) {
                     int toInt;
@@ -81,13 +76,10 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                         sender.sendMessage("§a" + ((isCN) ? "连续投掷 已设置为" : "連續投擲 已設定為") + ": §b" + setResult[toInt]);
                     } else sender.sendMessage((isCN) ? "§c错误: 不正确的参数。§r\n去掉所有参数以获得帮助。\n(如需获取当前值请去掉最后一个参数)" : "§c錯誤: 不正確的引數。§r\n去掉所有引數以獲得幫助。\n(如需獲取當前值請去掉最後一個引數)");
                 } else sender.sendMessage("§a" + ((isCN) ? "当前 连续投掷 为" : "當前 連續投擲 為") + ": §b" + setResult[common.getScore("pcub_enable_continuous", targetName)]);
-            }
-        }.runTaskAsynchronously(main);
+        }
         // pcub dropInterval
-        else if (args.length >= 1 && args[0].equalsIgnoreCase("dropInterval")) new BukkitRunnable(){
+        else if (args.length >= 1 && args[0].equalsIgnoreCase("dropInterval")) {
             //每次投掷间隔
-            @Override
-            public void run(){
                 if (args.length >= 2) {
                     if (args[1].matches("[0-9]*")) {
                         int toInt = Integer.parseInt(args[1]);
@@ -97,13 +89,9 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                         } else sender.sendMessage((isCN) ? "§c错误: 此值不能超过 20。" : "§c錯誤: 此值不能超過 20。");
                     } else sender.sendMessage((isCN) ? "§c错误: 需要整数。§r\n去掉所有参数以获得帮助。\n(如需获取当前值请去掉最后一个参数)" : "§c錯誤: 需要整數。§r\n去掉所有引數以獲得幫助。\n(如需獲取當前值請去掉最後一個引數)");
                 } else sender.sendMessage("§a" + ((isCN) ? "当前 连续投掷间隔 为" : "當前 連續投擲間隔 為") + ": §b" + common.getScore("pcub_drop_interval", targetName) + " 刻");
-            }
-        }.runTaskAsynchronously(main);
+        }
         // pcub fastSkill
-        else if (args.length >= 1 && args[0].equalsIgnoreCase("fastSkill")) new BukkitRunnable(){
-            //按住潜行发动技能
-            @Override
-            public void run(){
+        else if (args.length >= 1 && args[0].equalsIgnoreCase("fastSkill")) {
                 if (common.getScore("job", targetName) == 0) {
                     String[] setResult = (isCN) ? new String[]{"始终禁用", "始终启用", "仅基岩版启用", "仅 Android/iOS/WP 启用"} : new String[]{"始終禁用", "始終啟用", "僅 Bedrock 版啟用", "僅 Android/iOS/WP 啟用"};
                     if (args.length >= 2) {
@@ -119,13 +107,9 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                         } else sender.sendMessage((isCN) ? "§c错误: 不正确的参数。§r\n去掉所有参数以获得帮助。\n(如需获取当前值请去掉最后一个参数)" : "§c錯誤: 不正確的引數。§r\n去掉所有引數以獲得幫助。\n(如需獲取當前值請去掉最後一個引數)");
                     } else sender.sendMessage("§a" + ((isCN) ? "当前 按住潜行发动技能 为" : "當前 按住潛行發動技能 為") + ": §b" + setResult[common.getScore("pcub_enable_fastskill", targetName)]);
                 } else sender.sendMessage((isCN) ? "§c错误: 本功能仅限战士使用。" : "§c錯誤: 本功能僅限戰士使用。");
-            }
-        }.runTaskAsynchronously(main);
+        }
         // pcub fastSkillDuration
-        else if (args.length >= 1 && args[0].equalsIgnoreCase("fastSkillDuration")) new BukkitRunnable(){
-            //发动技能所需时长
-            @Override
-            public void run(){
+        else if (args.length >= 1 && args[0].equalsIgnoreCase("fastSkillDuration")) {
                 if (common.getScore("job", targetName) == 0) {
                     if (args.length >= 2) {
                         if (args[1].matches("[0-9]*")) {
@@ -137,8 +121,7 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                         } else sender.sendMessage((isCN) ? "§c错误: 需要整数。§r\n去掉所有参数以获得帮助。\n(如需获取当前值请去掉最后一个参数)" : "§c錯誤: 需要整數。§r\n去掉所有引數以獲得幫助。\n(如需獲取當前值請去掉最後一個引數)");
                     } else sender.sendMessage("§a" + ((isCN) ? "当前 潜行技能所需时长 为" : "當前 潛行技能所需時長 為") + ": §b" + common.getScore("pcub_fastskill_duration", targetName) + " 刻");
                 } else sender.sendMessage((isCN) ? "§c错误: 本功能仅限战士使用。" : "§c錯誤: 本功能僅限戰士使用。");
-            }
-        }.runTaskAsynchronously(main);
+        }
         // pcub option
         else if (args.length >= 1 && args[0].equalsIgnoreCase("option")) {
             //基岩Forms菜单
@@ -150,7 +133,7 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                 return true;
             } else if (args.length < 2) return true;
             //基岩版设置界面
-            if (args[1].equalsIgnoreCase("combat")) new BukkitRunnable() {
+            if (args[1].equalsIgnoreCase("combat")) new Runnable() { // 隔离类，以免类加载时无视 Geyser / Floodgate 可用性而造成异常
                 @Override
                 public void run(){
                     int job = common.getScore("job", targetName);
@@ -190,6 +173,7 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                             .dropdown(skillTitle, currentFastSkill, "pcub.combat_option.disable", "pcub.combat_option.enable", "pcub.combat_option.enable_bedrock", "pcub.combat_option.enable_mobile")
                             .slider(skillTitle + ((isCN) ? " 所需时长 （秒）" : " 所需時長 （秒）"), 0F, 1F, 0.05F, (float) currentSkillDuration / 20);
                     } else currentFastSkill = currentSkillDuration = -1;
+                    // 基于 Geyser API 的表单回调发生在其内部线程中，需拉回主线程
                     optForm
                         .closedResultHandler(() -> new BukkitRunnable(){
                                 @Override
@@ -243,11 +227,11 @@ public class CommandExecuter implements CommandExecutor, TabExecutor {
                                     }
                                 }
                             }
-                        }.runTaskAsynchronously(main));
+                        }.runTask(main));
                     if(common.floodgateValid) common.floodgateApi.getPlayer(targetIDN).sendForm(optForm);
                     else common.geyserApi.sendForm(targetIDN, optForm);
                 }
-            }.runTaskAsynchronously(main);
+            }.run();
         }
         else {
             String msg = "§6§l" + ((isCN) ? "盘灵无界功能专用命令" : "盤靈無界功能專用命令") + "§r\n所有用法：";

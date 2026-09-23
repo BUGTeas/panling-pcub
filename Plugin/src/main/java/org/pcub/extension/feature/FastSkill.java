@@ -11,11 +11,12 @@ import org.pcub.extension.Main;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class FastSkill {
     private final Common common = Common.getInstance();
     private final Main main = common.main;
-    private final Map<Player, BukkitRunnable> sneakSkill = new HashMap<>();
+    private final Map<Player, BukkitRunnable> sneakSkill = new ConcurrentHashMap<>();
 
 
 
@@ -46,7 +47,6 @@ public class FastSkill {
         ItemStack currentItem = player.getInventory().getItemInMainHand();
         ItemMeta currentMeta = currentItem.getItemMeta();
         if (currentItem.getType() == Material.CARROT_ON_A_STICK && currentMeta != null) {
-            cancelSneak(player); // 异步可能导致 setSneak 在取消潜行前触发，在这里同步取消一遍，以免上一任务被覆盖无法取消导致反复潜行切换可能误判
             BukkitRunnable runnable = new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -58,7 +58,7 @@ public class FastSkill {
                 }
             };
             sneakSkill.put(player, runnable);
-            runnable.runTaskLaterAsynchronously(main, duration);
+            runnable.runTaskLater(main, duration);
         }
     }
 

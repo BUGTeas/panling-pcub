@@ -72,13 +72,8 @@ public class ScoreboardTool {
         }
         // 如果已经过期，异步刷新记分项列表
         if (useCarrotOnStickExpired) {
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    loadUseCarrotOnStick();
-                    if (common.debug) common.debugLogger("已刷新 使用胡萝卜钓竿记分项列表");
-                }
-            }.runTaskAsynchronously(main);
+            loadUseCarrotOnStick();
+            if (common.debug) common.debugLogger("已刷新 使用胡萝卜钓竿记分项列表");
         }
         // 遍历加分
         for (Objective objective : useCarrotOnStickObj) {
@@ -96,13 +91,8 @@ public class ScoreboardTool {
         }
         // 如果已经过期，异步刷新记分项列表
         if (sneakTimeExpired) {
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    loadSneakTime();
-                    if (common.debug) common.debugLogger("已刷新 潜行时长记分项列表");
-                }
-            }.runTaskAsynchronously(main);
+            loadSneakTime();
+            if (common.debug) common.debugLogger("已刷新 潜行时长记分项列表");
         }
         // 遍历加分
         for (Objective objective : sneakTimeObj) {

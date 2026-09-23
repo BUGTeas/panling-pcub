@@ -291,12 +291,7 @@ public class EventListener implements Listener {
             if (shortcutResult.limit) event.setCancelled(true);
             // 基岩版副手功能
             if (!shortcutResult.success && isBedrock) {
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        useItemToRun.bedrockOffhand(targetPlayer, usedType);
-                    }
-                }.runTaskAsynchronously(main);
+                useItemToRun.bedrockOffhand(targetPlayer, usedType);
             }
         }
     }
@@ -327,11 +322,6 @@ public class EventListener implements Listener {
     // 玩家切换潜行
     @EventHandler
     public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
-        new BukkitRunnable(){
-            @Override
-            public void run() {
-                fastSkill.check(event.getPlayer(), event.isSneaking());
-            }
-        }.runTaskAsynchronously(main);
+        fastSkill.check(event.getPlayer(), event.isSneaking());
     }
 }
