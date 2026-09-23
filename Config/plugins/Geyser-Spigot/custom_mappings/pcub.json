@@ -383,25 +383,25 @@
 			"material_instances": {
 				"up": {
 					"texture": "plbe_sponge_wet_all",
-					"render_method": "blend",
+					"render_method": "blend_to_opaque",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				},
 				"*": {
 					"texture": "plbe_sponge_wet_side",
-					"render_method": "blend",
+					"render_method": "blend_to_opaque",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				},
 				"inside": {
 					"texture": "plbe_sponge_wet",
-					"render_method": "blend",
+					"render_method": "blend_to_opaque",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				},
 				"water": {
 					"texture": "still_water",
-					"render_method": "blend",
+					"render_method": "blend_to_opaque",
 					"face_dimming": true,
 					"ambient_occlusion": true
 				}
@@ -489,12 +489,6 @@
 					}
 				}
 			}
-		// },
-		// "minecraft:brown_mushroom_block": {
-		// 	"name": "full_skin_brown_mushroom_block"
-		// },
-		// "minecraft:red_mushroom_block": {
-		// 	"name": "full_skin_red_mushroom_block"
 		}
 	}
 }
