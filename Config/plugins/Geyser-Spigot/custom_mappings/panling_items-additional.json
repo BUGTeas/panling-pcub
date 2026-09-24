@@ -98,6 +98,14 @@
 						"bedrock_identifier": "pcub:potion_2039713",
 						"bedrock_options": { "allow_offhand": false },
 						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						// 备用叠放映射：颜色映射（核心组件）罢工时生效
+						"bedrock_identifier": "pcub:potion_fallback",
+						"bedrock_options": {
+							"icon": "potion_bottle_drinkable",
+							"allow_offhand": false
+						},
+						"components": { "minecraft:max_stack_size": 64 }
 					}
 				]
 			}
@@ -177,6 +185,14 @@
 							"tags": ["pcub:animated_items"]
 						},
 						"components": { "minecraft:max_stack_size": 64 }
+					}, {
+						// 备用叠放映射：颜色映射（核心组件）罢工时生效
+						"bedrock_identifier": "pcub:splash_potion_fallback",
+						"bedrock_options": {
+							"icon": "potion_bottle_splash",
+							"allow_offhand": false
+						},
+						"components": { "minecraft:max_stack_size": 64 }
 					}
 				]
 			}
@@ -205,7 +221,7 @@
 			},
 			"components": { "minecraft:max_stack_size": 64 }
 		} ],
-		// 雪球
+		// 雪球（曾用于缩小贴图）
 		"minecraft:snowball": [ {
 			"type": "definition",
 			"model": "minecraft:snowball",

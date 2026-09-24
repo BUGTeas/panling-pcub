@@ -376,7 +376,11 @@
 			// }, {
 				"type": "legacy",
 				"custom_model_data": 1,
-				"bedrock_identifier": "panling:sword5_skill"
+				"bedrock_identifier": "panling:sword5_skill",
+				"bedrock_options": {
+					"icon": "panling.sword5",
+					"display_handheld": true
+				}
 			}
 		],
 
@@ -390,7 +394,11 @@
 			// }, {
 				"type": "legacy",
 				"custom_model_data": 1,
-				"bedrock_identifier": "panling:in3_axe3_skill"
+				"bedrock_identifier": "panling:in3_axe3_skill",
+				"bedrock_options": {
+					"icon": "panling.axe3",
+					"display_handheld": true
+				}
 			}
 		],
 		"minecraft:stone_sword": [
@@ -402,7 +410,11 @@
 			// }, {
 				"type": "legacy",
 				"custom_model_data": 1,
-				"bedrock_identifier": "panling:in3_sword2_skill"
+				"bedrock_identifier": "panling:in3_sword2_skill",
+				"bedrock_options": {
+					"icon": "panling.sword2",
+					"display_handheld": true
+				}
 			}
 		],
 
