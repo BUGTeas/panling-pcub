@@ -61,19 +61,11 @@
 
 
 
-## ⚠️ 本套件暂时内置魔改版 Geyser
+## ⚠️ 原魔改版 Geyser 已经移除
 
-**支持 1.21.70 - 1.21.93 的基岩版客户端**，版本为 2.8.2-SNAPSHOT (git-pcub-temp-feature-b00ff2d)。
+现已通过盘灵互通核心组件（本套件附带的 `PCUB-Core` 插件）实现相关功能，并完全兼容 Geyser 当前已正式实装的[自定义物品映射接口 V2](https://github.com/GeyserMC/Geyser/pull/5189)
 
-魔改版本克隆自官方仓库，独立分支并同样开源：[BUGTeas/Geyser](https://github.com/BUGTeas/Geyser/tree/pcub-temp-feature)
-
-盘灵无界现正将部分修复和优化结合到 Geyser 底层上，我最近常通过 Issues 和 Pull Request 积极向 Geyser 官方反馈问题并提供帮助，助力改善所有互通服的游戏体验。例如部分音效修复以及药水效果显示。
-
-这些问题在此前一直是通过**原优化修改选装组件**对梦盘数据包内容修改实现修复，然而这些问题的根源在于 Geyser，这样的做法不仅治标不治本，还影响了兼容性。也正因如此直到近期才实现了对 “万通货斋” DLC 的兼容。
-
-计划摆脱对优化修改选装套件的依赖的，还有药水颜色和药水叠放实现。然而，此时 Geyser 官方正在开发新的[自定义物品映射接口 V2](https://github.com/GeyserMC/Geyser/pull/5189)，以跟进 Java 版 1.21.4 更高级的物品模型实现，因此由我提供的自定义叠放解决方案暂未被 Geyser 官方采纳：[GeyserMC/Geyser#5241](https://github.com/GeyserMC/Geyser/pull/5241)
-
-但盘灵无界项目不能因此而停滞。在 Geyser 官方版本实现相关功能前，此套件中将内置魔改版 Geyser，为之后的更新提供更好的条件。属于临时过渡方案，并不代表最终效果，且不少东西仍待完善，这也是为什么当前版本会被划分为先行版的主要原因。
+若您是从本套件的旧版本升级而来，请从 Geyser 官方网站或本套件另供的服务端部署包获取更新版本的 Geyser。此外原 `custom-skulls.yml` 自 Geyser v2.11.1 起弃用，会自动更新为新配置格式，而此新格式现已被本套件采用（见 `custom_mappings/panling_skulls.json`），建议删除其一以免冲突。
 
 
 
@@ -124,6 +116,6 @@
 
 ## ❇️ 开源
 
-为了促进盘灵无界项目的发展，本套件的源代码对外公开，您可以从 [GitHub](https://github.com/BUGTeas/panling-pcub) 或 [Gitee](https://gitee.com/BugTeaON/panling-pcub) 同步更新的仓库上获取到最新的源代码，其中带有构建说明，可自行构建测试。
+为了促进盘灵互通的发展，本套件的源代码对外公开，您可以从 [GitHub](https://github.com/BUGTeas/panling-pcub) 或 [Gitee](https://gitee.com/BugTeaON/panling-pcub) 同步更新的仓库上获取到最新的源代码，其中带有构建说明，可自行构建测试。
 
 当然如果您有不错的想法，也可发起 Issues 或 PR 或者在官方交流社区中直接反馈

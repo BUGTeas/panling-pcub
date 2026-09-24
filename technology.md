@@ -108,30 +108,20 @@ collisions:
 
 
 
-## ☢️ 本套件对游戏内容所造成的影响
-
-为了确保基岩版玩家的正常游戏，本套件目前会对存档中以下数据进行修改，这在将来可能会对某些 DLC 内容造成影响：
-
-### 所有村民 NPC
-
-自基岩版 1.21.30 开始，当前可交易超过 2147483647 次的村民交易项，都将无法使用触屏或 Shift 键交易。在梦回盘灵中几乎所有的 NPC 都存在这种情况，故本套件会对所有村民的前 24 个交易项进行自动检查修复。
-
-修复原理是将符合条件的数据 `Offers.Recipes[x].uses` 设为 -2147483647，`Offers.Recipes[x].maxUses` 设为 0。当村民被玩家交互时，由 PCUB 插件在交易界面加载前通过标签 `#pcub:interact_villager/villager` 执行 pcub 数据包中的修复函数。该修复不会覆盖原数据包文件。
-
-### 忠烈祠头饰
-
-由于经过 Geyser 映射后的自定义头颅作为自定义方块，受制于基岩版特性无法直接装备（佩戴），现通过为这些头饰附加模型数据值（CustomModelData），并基于此值在 Geyser 中二次映射，使其成为可装备的正常物品。
-
-修复仅限于带有值为 `panling:honor_head` 的自定义标签 `id` 的玩家头颅 `minecraft:player_head`，附加的数据值为 100 + 自定义标签 `type` 的数值。
-
-比如物品 `{id: "minecraft:player_head", tag: {id: "panling:honor_head", type: 4}}` 经过处理后就会变成 `{id: "minecraft:player_head", tag: {id: "panling:honor_head", type: 4, CustomModelData: 104}}`。该修复不会覆盖原数据包文件。
-
-
-
 ## ☢️ 选装数据包对游戏内容所造成的影响
+
+为了进一步确保基岩版玩家的游戏体验，本套件的选装数据包会对存档中以下数据进行修改，这在将来可能会对某些 DLC 内容造成影响：
 
 如果以下变动对某些 DLC 内容造成影响，请到交流社区反馈，或禁用选装包：  
 `/datapack disable "file/pcub_add.zip"`
+
+### 弓箭手武器技能
+
+如果您安装了 Floodgate（基岩版登录优化）插件，则会导致基岩版玩家的 UUID 格式与 Java 版玩家不同，通过该插件登录的基岩版玩家其 UUID 通常为`00000000-0000-0000-xxxx-xxxxxxxxxxxx`（x 代表玩家的 Xbox ID，即 XUID）
+
+由于前段值都为 0，而梦回盘灵数据包中弓箭手武器技能【日落九天·落日】的运行正是通过检测前段 UUID，这就意味着，所有通过 Floodgate 登录且未绑定 Java 版账户的基岩版玩家，都将无法正常使用这个技能。
+
+选装包通过覆盖数据包相关函数，将检测 UUID 改为末端以修复此问题。具体修改详见选装包中的 `data/pcub/system/archer_damage/weapon_skill/bow6/fall_sun` 目录。
 
 ### 钱庄末影箱系统
 
@@ -142,14 +132,6 @@ collisions:
 - `data/pld/functions/system/chest_menu/tick_players.mcfunction`
 
 再或者，若您希望适配选装包，请在您自己的数据包中添加函数标签 `#pcub_add:chest_menu/<open|click|leave>` 并在其中定义相关函数。
-
-### 针对 Floodgate 插件的修复
-
-如果您安装了 Floodgate（基岩版登录优化）插件，则会导致基岩版玩家的 UUID 格式与 Java 版玩家不同，通过该插件登录的基岩版玩家其 UUID 通常为`00000000-0000-0000-xxxx-xxxxxxxxxxxx`（x 代表玩家的 Xbox ID，即 XUID）
-
-由于前段值都为 0，而梦回盘灵数据包中弓箭手武器技能【日落九天·落日】的运行正是通过检测前段 UUID，这就意味着，所有通过 Floodgate 登录且未绑定 Java 版账户的基岩版玩家，都将无法正常使用这个技能。
-
-选装包通过覆盖数据包相关函数，将检测 UUID 改为末端以修复此问题。具体修改详见选装包中的 `data/pcub/system/archer_damage/weapon_skill/bow6/fall_sun` 目录。
 
 
 
@@ -245,7 +227,7 @@ tag
 注：如果只是单纯需要适配选装包，请将 `pcub` 命名空间改为 `pcub_add` 
 
 ### 在携带版 UI 档案下强制使用经典箱子界面，防止布局错乱
-- 接口类型：容器（>=9 个槽位）标题
+- 接口类型：投掷/发射器（始终启用）；箱子类容器（标题）
 
 该方案已经在末影箱界面中实装，此外对副本保底便捷钱庄（插件 DLC）做了特别适配，当容器标题中带有 `掌上钱庄` 或 `元素锻炉` 字样（仅在显示为大箱的情况下），再或者带有 `Ender Chest` （仅在显示为小箱的情况下）时就会生效。
 
